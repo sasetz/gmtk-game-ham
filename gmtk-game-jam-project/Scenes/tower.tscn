@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://052pr8j1kulu"]
+
+[ext_resource type="Script" path="res://scripts/tower.gd" id="1_5jhqf"]
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_l5fj2"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_62g58"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_av4ng"]
+size = Vector2(124, 100)
+
+[node name="Tower" type="Area2D"]
+script = ExtResource("1_5jhqf")
+
+[node name="Rectangle" type="Sprite2D" parent="."]
+position = Vector2(0, -50)
+texture = SubResource("CanvasTexture_62g58")
+script = ExtResource("2_l5fj2")
+fill_color = Color(0.3182, 0.80582, 0.86, 1)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -50)
+shape = SubResource("RectangleShape2D_av4ng")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

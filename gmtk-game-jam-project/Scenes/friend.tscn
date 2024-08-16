@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn5aa55m1lhsj"]
+
+[ext_resource type="Script" path="res://scripts/friend.gd" id="1_d4owc"]
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_xqyqq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
+radius = 16.0
+height = 56.0
+
+[node name="Friend" type="CharacterBody2D" groups=["friend"]]
+script = ExtResource("1_d4owc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -28)
+scale = Vector2(0.313383, -0.568714)
+script = ExtResource("2_xqyqq")
+fill_color = Color(0.37521, 0.99, 0.3069, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -28)
+shape = SubResource("CapsuleShape2D_x5cul")

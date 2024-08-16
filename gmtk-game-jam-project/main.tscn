@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://nnb6bka3fmpo"]
+
+[ext_resource type="PackedScene" uid="uid://052pr8j1kulu" path="res://scenes/tower.tscn" id="1_vyirh"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_53yhx"]
+[ext_resource type="PackedScene" uid="uid://cit0cbwkietxx" path="res://scenes/enemy.tscn" id="2_na3r5"]
+[ext_resource type="PackedScene" uid="uid://bn5aa55m1lhsj" path="res://scenes/friend.tscn" id="3_xsjan"]
+[ext_resource type="PackedScene" uid="uid://ddoyd4m54hamr" path="res://scenes/ramp.tscn" id="5_j803d"]
+[ext_resource type="PackedScene" uid="uid://dnf1qqwn2vo6l" path="res://scenes/cube.tscn" id="6_3kgs8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
+
+[node name="World" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -276)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape2D_yfavc")
+
+[node name="Tower" parent="." instance=ExtResource("1_vyirh")]
+position = Vector2(471, -2)
+level = 2
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("2_53yhx")
+Friend = ExtResource("3_xsjan")
+Enemy = ExtResource("2_na3r5")
+Ramp = ExtResource("5_j803d")
+Cube = ExtResource("6_3kgs8")
+SpawnInterval = 0.5
+
+[node name="Spawner" type="Marker2D" parent="GameManager"]
+position = Vector2(-519, -46)
+
+[node name="SpawnTimer" type="Timer" parent="GameManager"]
+wait_time = 5.0
+autostart = true
+
+[node name="RampButton" type="Button" parent="GameManager"]
+offset_left = -518.0
+offset_top = -558.0
+offset_right = -413.0
+offset_bottom = -527.0
+text = "Spawn ramp"
+
+[node name="CubeButton" type="Button" parent="GameManager"]
+offset_left = -395.0
+offset_top = -558.0
+offset_right = -290.0
+offset_bottom = -527.0
+text = "Spawn cube"
+
+[node name="NoneButton" type="Button" parent="GameManager"]
+offset_left = -267.0
+offset_top = -558.0
+offset_right = -162.0
+offset_bottom = -527.0
+text = "Deselect"
+
+[connection signal="timeout" from="GameManager/SpawnTimer" to="GameManager" method="_on_spawn_timeout"]
+[connection signal="pressed" from="GameManager/RampButton" to="GameManager" method="_on_ramp_button_pressed"]
+[connection signal="pressed" from="GameManager/CubeButton" to="GameManager" method="_on_cube_button_pressed"]
+[connection signal="pressed" from="GameManager/NoneButton" to="GameManager" method="_on_none_button_pressed"]
