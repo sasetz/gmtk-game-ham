@@ -1,3 +1,14 @@
-# GMTK Game Jam 2024
+# GMTK Game Jam 2024 Game document
 
-Placeholder description for this repository
+## Name
+
+## Genre
+
+## Mechanics
+
+## Gameplay
+
+## Controls
+
+## Tech detail
+
