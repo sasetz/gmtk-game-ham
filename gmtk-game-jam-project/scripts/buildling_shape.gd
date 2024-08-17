@@ -14,4 +14,3 @@ var has_collision := true :
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Collision.disabled = not has_collision
-

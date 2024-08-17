@@ -2,17 +2,30 @@ extends Area2D
 
 @export var level := 1
 
-const ENEMY_DAMAGE := 50
+const ENEMY_DAMAGE := 10
 const FRIEND_DAMAGE := -100
+const Peoples:=1.0
 var health := 200
+var number_in := 1.0
 
 func _ready() -> void:
+	level=clamp(number_in / Peoples, 1, 15)
 	update_level()
 
 func update_level():
-	level = clamp(health / 200.0, 1, 5)
-	scale.y = level
-
+	if level+1==clamp(number_in / Peoples, 1, 15):
+		add_new_part()
+		health+=100
+		level=clamp(number_in / Peoples, 1, 15)
+	$Collision.scale.y = level
+	$StaticBody2D/CollisionShape2D.scale.y = level
+	$StaticBody2D/Sprite2D2.position.y=-64*level-32
+	
+func add_new_part()->void:
+	var sprite = Sprite2D.new()
+	sprite.texture = load("res://Visual/Backgrounds/Башня основа.png")
+	$StaticBody2D.add_child(sprite)
+	sprite.position.y=-64*level-32
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
@@ -24,6 +37,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("friend"):
 		print("Friend reached the tower!")
 		body.queue_free()
-		health -= FRIEND_DAMAGE
+		number_in+=1
 		update_level()
 	print("Current health: %d" % health)

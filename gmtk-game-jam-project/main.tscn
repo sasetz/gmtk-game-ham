@@ -1,16 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://nnb6bka3fmpo"]
+[gd_scene load_steps=10 format=3 uid="uid://nnb6bka3fmpo"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
 [ext_resource type="PackedScene" uid="uid://052pr8j1kulu" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_53yhx"]
 [ext_resource type="PackedScene" uid="uid://cit0cbwkietxx" path="res://Scenes/enemy.tscn" id="2_na3r5"]
 [ext_resource type="PackedScene" uid="uid://bn5aa55m1lhsj" path="res://Scenes/friend.tscn" id="3_xsjan"]
-[ext_resource type="PackedScene" uid="uid://ddoyd4m54hamr" path="res://scenes/ramp.tscn" id="5_j803d"]
-[ext_resource type="PackedScene" uid="uid://dnf1qqwn2vo6l" path="res://scenes/cube.tscn" id="6_3kgs8"]
+[ext_resource type="PackedScene" uid="uid://ddoyd4m54hamr" path="res://Scenes/ramp.tscn" id="5_j803d"]
+[ext_resource type="PackedScene" uid="uid://dnf1qqwn2vo6l" path="res://Scenes/cube.tscn" id="6_3kgs8"]
 [ext_resource type="Texture2D" uid="uid://dtnwnqe1ng4rx" path="res://Visual/Backgrounds/Задник.png" id="7_djedb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_7an7p")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -276)
@@ -61,6 +63,13 @@ text = "Deselect"
 [node name="Spawner2" type="Marker2D" parent="GameManager"]
 position = Vector2(519, -46)
 
+[node name="RichTextLabel" type="RichTextLabel" parent="GameManager"]
+offset_left = 478.805
+offset_top = -563.78
+offset_right = 571.805
+offset_bottom = -538.78
+text = "Health"
+
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="Node2D"]
@@ -71,6 +80,18 @@ z_index = -2
 position = Vector2(0, -417.78)
 texture = ExtResource("7_djedb")
 
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(0, -370)
+enabled = false
+zoom = Vector2(0.755, 0.755)
+
+[node name="Camera2D3" type="Camera2D" parent="."]
+position = Vector2(0, -416)
+enabled = false
+zoom = Vector2(0.605, 0.605)
+
+[connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
+[connection signal="body_entered" from="Tower" to="GameManager" method="_on_tower_body_entered"]
 [connection signal="timeout" from="GameManager/SpawnTimer" to="GameManager" method="_on_spawn_timeout"]
 [connection signal="pressed" from="GameManager/RampButton" to="GameManager" method="_on_ramp_button_pressed"]
 [connection signal="pressed" from="GameManager/CubeButton" to="GameManager" method="_on_cube_button_pressed"]

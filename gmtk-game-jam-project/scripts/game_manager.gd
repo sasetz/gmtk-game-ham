@@ -26,6 +26,7 @@ var heldItemObject : Node2D = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$RichTextLabel.text=str("Health:",$"../Tower".health)
 	spawnTimer = Timer.new()
 	add_child(spawnTimer)
 	spawnTimer.wait_time = SpawnInterval
@@ -109,3 +110,7 @@ func spawn_preview() -> void:
 	heldItemObject = object
 	
 	
+
+func _on_tower_body_entered(body):
+	print("check")
+	$RichTextLabel.text=str("Health:",$"../Tower".health)

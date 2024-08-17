@@ -1,24 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://052pr8j1kulu"]
+[gd_scene load_steps=8 format=3 uid="uid://052pr8j1kulu"]
 
 [ext_resource type="Script" path="res://scripts/tower.gd" id="1_5jhqf"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_l5fj2"]
+[ext_resource type="Texture2D" uid="uid://u4meriudq32v" path="res://Visual/Backgrounds/Башня фундамент.png" id="3_0av7w"]
+[ext_resource type="Texture2D" uid="uid://dnptcyx1pw1tr" path="res://Visual/Backgrounds/Башня верхушка.png" id="4_jc5er"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_62g58"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_av4ng"]
-size = Vector2(124, 100)
+size = Vector2(144, 116)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcgpw"]
+size = Vector2(121, 108)
 
 [node name="Tower" type="Area2D"]
 script = ExtResource("1_5jhqf")
 
 [node name="Rectangle" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -50)
 texture = SubResource("CanvasTexture_62g58")
 script = ExtResource("2_l5fj2")
 fill_color = Color(0.3182, 0.80582, 0.86, 1)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -50)
+position = Vector2(-1, -58)
 shape = SubResource("RectangleShape2D_av4ng")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, -54)
+shape = SubResource("RectangleShape2D_tcgpw")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(0, -32)
+texture = ExtResource("3_0av7w")
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(0, -96)
+texture = ExtResource("4_jc5er")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
