@@ -49,9 +49,6 @@ offset_bottom = -462.0
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="TileMap" type="TileMap" parent="Node2D"]
-format = 2
-
 [node name="Background" type="Sprite2D" parent="Node2D"]
 z_index = -2
 position = Vector2(0, -417.78)

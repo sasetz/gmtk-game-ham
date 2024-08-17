@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crnttg5dixspw"
-path="res://.godot/imported/ramp_texture.png-92890734e51e428789241b8179c81dd0.ctex"
+uid="uid://bedbyu0b3cfdp"
+path="res://.godot/imported/Квадрат.png-d1aa8b0221497a87781ef28063671488.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ramp_texture.png"
-dest_files=["res://.godot/imported/ramp_texture.png-92890734e51e428789241b8179c81dd0.ctex"]
+source_file="res://Visual/Sprites/Квадрат.png"
+dest_files=["res://.godot/imported/Квадрат.png-d1aa8b0221497a87781ef28063671488.ctex"]
 
 [params]
 

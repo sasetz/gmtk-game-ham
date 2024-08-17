@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bedbyu0b3cfdp"
-path="res://.godot/imported/Квадрат.png-4986a6ee2fbad33dd1e7f67ef72e1b05.ctex"
+uid="uid://dudvt5eg2vcjt"
+path="res://.godot/imported/Треугольник.png-3ca6ec2f35db45e722839fcff5aebd8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scripts/Квадрат.png"
-dest_files=["res://.godot/imported/Квадрат.png-4986a6ee2fbad33dd1e7f67ef72e1b05.ctex"]
+source_file="res://Visual/Sprites/Треугольник.png"
+dest_files=["res://.godot/imported/Треугольник.png-3ca6ec2f35db45e722839fcff5aebd8a.ctex"]
 
 [params]
 
