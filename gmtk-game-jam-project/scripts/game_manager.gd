@@ -31,7 +31,7 @@ class ActionInventoryItem extends InventoryItem:
 @export var Ramp: PackedScene = preload("res://Scenes/ramp.tscn")
 @export var Cube: PackedScene = preload("res://Scenes/cube.tscn")
 @export var Circle: PackedScene = preload("res://Scenes/circle.tscn")
-@export var Squere: PackedScene = preload("res://Scenes/square.tscn")
+@export var Square: PackedScene = preload("res://Scenes/square.tscn")
 @export var Delete: PackedScene = preload("res://Scenes/delete.tscn")
 
 @export_category("Spawning rules")
@@ -53,7 +53,7 @@ var _none_item = InventoryItem.new() # currently not holding anything
 @onready var _ramp_item = StructureInventoryItem.new(Ramp, "Ramp")
 @onready var _cube_item = StructureInventoryItem.new(Cube, "Cube")
 @onready var _circle_item = StructureInventoryItem.new(Circle, "Circle")
-@onready var _squere_item = StructureInventoryItem.new(Squere, "Squere")
+@onready var _square_item = StructureInventoryItem.new(Square, "Square")
 #@onready var _resize_item = ActionInventoryItem.new()
 #@onready var _rotate_item = ActionInventoryItem.new()
 @onready var _delete_item = ActionInventoryItem.new(Delete, "Delete")
@@ -81,7 +81,7 @@ var _next_roster_index := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$RichTextLabel.text = str("Health:",$"../Tower".health)
+	$HealthLabel.text = str("Health:",$"../Tower".health)
 	_spawn_timer = Timer.new()
 	add_child(_spawn_timer)
 	_spawn_timer.wait_time = SpawnInterval
@@ -164,6 +164,9 @@ func _test_signal_process(button: InventoryButton):
 		print("Error! The button pressed was not in the inventory array!")
 		return
 	
+	if _current_item != _none_item:
+		_add_item(_current_item)
+	
 	if inventory_item is StructureInventoryItem:
 		_current_item = inventory_item
 		_spawn_preview()
@@ -214,7 +217,7 @@ func _spawn_preview() -> void:
 
 func _on_tower_body_entered(_body):
 	print("check")
-	$RichTextLabel.text=str("Health:",$"../Tower".health)
+	$HealthLabel.text=str("Health:",$"../Tower".health)
 
 func _on_spawn_interval_timeout() -> void:
 	_batch_left -= 1

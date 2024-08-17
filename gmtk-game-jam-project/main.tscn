@@ -34,7 +34,7 @@ autostart = true
 [node name="Spawner2" type="Marker2D" parent="GameManager"]
 position = Vector2(650, -46)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GameManager"]
+[node name="HealthLabel" type="RichTextLabel" parent="GameManager"]
 offset_left = 450.0
 offset_top = -600.0
 offset_right = 545.0
@@ -81,7 +81,7 @@ zoom = Vector2(0.605, 0.605)
 
 [node name="add_timer" type="Timer" parent="."]
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+[node name="ResourceLabel" type="RichTextLabel" parent="."]
 offset_left = -575.0
 offset_top = -600.0
 offset_right = -436.0
