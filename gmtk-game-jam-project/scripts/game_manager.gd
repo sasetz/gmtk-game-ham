@@ -43,7 +43,6 @@ class ActionInventoryItem extends InventoryItem:
 var _none_item = InventoryItem.new() # currently not holding anything
 @onready var _ramp_item = StructureInventoryItem.new(Ramp, "Ramp")
 @onready var _cube_item = StructureInventoryItem.new(Cube, "Cube")
-@onready var _circle_item = StructureInventoryItem.new(Circle, "Circle")
 @onready var _resize_item = ActionInventoryItem.new()
 @onready var _rotate_item = ActionInventoryItem.new()
 @onready var _delete_item = ActionInventoryItem.new()
