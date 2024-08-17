@@ -32,7 +32,7 @@ func _ready() -> void:
 	
 func _on_die_interval_timeout() -> void:
 	print("Mob died!")
-	get_tree().current_scene.remove_child(self)
+	queue_free()
 
 func _on_damage_interval_timeout() -> void:
 	should_damage = true
@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
-		if c.get_collider() is BuildingShape and \
+		if c.get_collider() is BuildingStructure and \
 		should_damage and \
 		(SHOULD_DAMAGE_WHEN_ON_TOP or is_on_wall()):
 			print("Damaging the shape! Its health: %d" % c.get_collider().current_health)

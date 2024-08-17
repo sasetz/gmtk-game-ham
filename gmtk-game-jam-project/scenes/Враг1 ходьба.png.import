@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cj5ij0j5dyu47"
-path="res://.godot/imported/Враг1 ходьба.png-d85878c3207d86006290982028aa4995.ctex"
+path="res://.godot/imported/Враг1 ходьба.png-e9d0782b0393877c79fa407f25a570f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/Враг1 ходьба.png"
-dest_files=["res://.godot/imported/Враг1 ходьба.png-d85878c3207d86006290982028aa4995.ctex"]
+source_file="res://Scenes/Враг1 ходьба.png"
+dest_files=["res://.godot/imported/Враг1 ходьба.png-e9d0782b0393877c79fa407f25a570f2.ctex"]
 
 [params]
 
