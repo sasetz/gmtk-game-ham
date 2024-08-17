@@ -25,4 +25,3 @@ var has_collision := true :
 func _ready() -> void:
 	Collision.disabled = not has_collision
 	freeze = not has_collision
-

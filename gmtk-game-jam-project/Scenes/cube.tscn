@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnf1qqwn2vo6l"]
 
-[ext_resource type="PackedScene" uid="uid://dnwaxq8plwid4" path="res://scenes/building_shape.tscn" id="1_kv5qh"]
+[ext_resource type="PackedScene" uid="uid://dnwaxq8plwid4" path="res://Scenes/building_shape.tscn" id="1_kv5qh"]
 [ext_resource type="Script" path="res://scripts/buildling_shape.gd" id="2_0upj3"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_1sw4b"]
 
