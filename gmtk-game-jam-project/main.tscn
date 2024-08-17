@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://nnb6bka3fmpo"]
+[gd_scene load_steps=9 format=3 uid="uid://nnb6bka3fmpo"]
 
 [ext_resource type="PackedScene" uid="uid://052pr8j1kulu" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_53yhx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bn5aa55m1lhsj" path="res://Scenes/friend.tscn" id="3_xsjan"]
 [ext_resource type="PackedScene" uid="uid://ddoyd4m54hamr" path="res://Scenes/ramp.tscn" id="5_j803d"]
 [ext_resource type="PackedScene" uid="uid://dnf1qqwn2vo6l" path="res://Scenes/cube.tscn" id="6_3kgs8"]
+[ext_resource type="Texture2D" uid="uid://dtnwnqe1ng4rx" path="res://Visual/Backgrounds/Задник.png" id="7_djedb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
 
@@ -28,7 +29,6 @@ Friend = ExtResource("3_xsjan")
 Enemy = ExtResource("2_na3r5")
 Ramp = ExtResource("5_j803d")
 Cube = ExtResource("6_3kgs8")
-SpawnInterval = 0.5
 
 [node name="Spawner" type="Marker2D" parent="GameManager"]
 position = Vector2(-519, -46)
@@ -65,6 +65,11 @@ position = Vector2(519, -46)
 
 [node name="TileMap" type="TileMap" parent="Node2D"]
 format = 2
+
+[node name="Задник" type="Sprite2D" parent="Node2D"]
+z_index = -2
+position = Vector2(0, -417.78)
+texture = ExtResource("7_djedb")
 
 [connection signal="timeout" from="GameManager/SpawnTimer" to="GameManager" method="_on_spawn_timeout"]
 [connection signal="pressed" from="GameManager/RampButton" to="GameManager" method="_on_ramp_button_pressed"]
