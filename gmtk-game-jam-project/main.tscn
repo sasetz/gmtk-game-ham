@@ -41,13 +41,28 @@ offset_right = 545.0
 offset_bottom = -559.0
 text = "Health"
 
+[node name="Panel" type="Panel" parent="GameManager"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+z_index = -6
+z_as_relative = false
+offset_left = -575.0
+offset_top = -602.0
+offset_right = 578.0
+offset_bottom = 51.0
+
 [node name="Inventory" type="HBoxContainer" parent="GameManager"]
-offset_left = -517.0
-offset_top = -502.0
-offset_right = -477.0
-offset_bottom = -462.0
+z_index = 4
+z_as_relative = false
+offset_left = -575.0
+offset_top = -568.25
+offset_right = -468.0
+offset_bottom = -545.25
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Node2D"]
+format = 2
 
 [node name="Background" type="Sprite2D" parent="Node2D"]
 z_index = -2

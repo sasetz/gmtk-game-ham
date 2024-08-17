@@ -20,6 +20,8 @@ corner_radius = 5.0
 square = true
 style = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+[node name="Node2D" type="Node2D" parent="." index="1"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" index="0"]
 scale = Vector2(0.365, 0.365)
 texture = ExtResource("4_dem5n")

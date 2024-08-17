@@ -58,6 +58,7 @@ var _none_item = InventoryItem.new() # currently not holding anything
 #@onready var _rotate_item = ActionInventoryItem.new()
 @onready var _delete_item = ActionInventoryItem.new(Delete, "Delete")
 
+var Pi:=3.14
 var _spawn_timer: Timer
 var _inventory_giver_timer: Timer
 var _spawning_enemies := true
@@ -87,7 +88,7 @@ func _ready() -> void:
 	_spawn_timer.one_shot = true
 	_spawn_timer.autostart = false
 	_spawn_timer.timeout.connect(_on_spawn_interval_timeout)
-
+	
 	_inventory_giver_timer = Timer.new()
 	add_child(_inventory_giver_timer)
 	_inventory_giver_timer.wait_time = 3
@@ -103,15 +104,38 @@ func _ready() -> void:
 	_add_item(_ramp_item)
 	_add_item(_cube_item)
 
+var i:=0
+
 func _process(_delta: float) -> void:
 	if _held_item_object != null:
 		_held_item_object.position = get_global_mouse_position()
+		"""if Input.is_action_just_released("MWU"):
+			_held_item_object.scale*=1.1
+		if Input.is_action_just_released("MWD"):
+			_held_item_object.scale*=0.9"""
+		if Input.is_action_just_released("MWU"):
+			if i<20:
+				i+=1
+				for child in _held_item_object.get_children():
+					child.scale+=Vector2(0.1,0.1)
+		if Input.is_action_just_released("MWD"):
+			if i>-7:
+				i-=1
+				for child in _held_item_object.get_children():
+					child.scale-=Vector2(0.1,0.1)
+		if Input.is_action_pressed("right"):
+			_held_item_object.rotation+=Pi/64
+		if Input.is_action_pressed("left"):
+			_held_item_object.rotation-=Pi/64
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("mouse1") and _held_item_object != null:
+		var scale:Vector2=_held_item_object.scale
 		_held_item_object.has_collision = true
 		_held_item_object.position = get_global_mouse_position()
+		print(_held_item_object.scale)
 		_held_item_object = null # we don't delete the shape, we just clear this variable!
+		i=0
 
 
 func _add_item(item: InventoryItem):
