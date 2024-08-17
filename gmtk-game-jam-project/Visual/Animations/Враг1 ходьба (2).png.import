@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cj5ij0j5dyu47"
-path="res://.godot/imported/Враг1 ходьба.png-e9d0782b0393877c79fa407f25a570f2.ctex"
+uid="uid://rviema1f0ntf"
+path="res://.godot/imported/Враг1 ходьба (2).png-7d573fe2962c750fb2621403d71aff30.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Враг1 ходьба.png"
-dest_files=["res://.godot/imported/Враг1 ходьба.png-e9d0782b0393877c79fa407f25a570f2.ctex"]
+source_file="res://Visual/Animations/Враг1 ходьба (2).png"
+dest_files=["res://.godot/imported/Враг1 ходьба (2).png-7d573fe2962c750fb2621403d71aff30.ctex"]
 
 [params]
 

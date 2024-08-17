@@ -52,8 +52,10 @@ func _on_spawn_interval_timeout() -> void:
 	get_tree().current_scene.add_child(entity)
 	if spawner == spawner1:
 		entity.DIRECTION = 1
+		entity.scale.x=1
 	else:
 		entity.DIRECTION = -1
+		entity.scale.x=-1
 	if batchLeft > 0:
 		spawnTimer.start()
 

@@ -1,56 +1,75 @@
-[gd_scene load_steps=10 format=3 uid="uid://dd0ekioqy8yj4"]
+[gd_scene load_steps=13 format=3 uid="uid://gu8ue7aoc67a"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_atmmb"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_dwrsq"]
-[ext_resource type="Texture2D" uid="uid://2n4th4876ew8" path="res://Visual/Animations/Враг1 ходьба.png" id="3_rnr4h"]
+[ext_resource type="Texture2D" uid="uid://rviema1f0ntf" path="res://Visual/Animations/Враг1 ходьба (2).png" id="3_3ou02"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
 radius = 16.0
 height = 56.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j8vvb"]
-atlas = ExtResource("3_rnr4h")
-region = Rect2(270, 0, 90, 96)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rh3k"]
+atlas = ExtResource("3_3ou02")
+region = Rect2(0, 0, 87, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o8nta"]
-atlas = ExtResource("3_rnr4h")
-region = Rect2(0, 0, 90, 96)
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnpos"]
+atlas = ExtResource("3_3ou02")
+region = Rect2(87, 0, 87, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2j44n"]
-atlas = ExtResource("3_rnr4h")
-region = Rect2(90, 0, 90, 96)
+[sub_resource type="AtlasTexture" id="AtlasTexture_issji"]
+atlas = ExtResource("3_3ou02")
+region = Rect2(174, 0, 87, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ecibf"]
-atlas = ExtResource("3_rnr4h")
-region = Rect2(180, 0, 90, 96)
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5kau"]
+atlas = ExtResource("3_3ou02")
+region = Rect2(261, 0, 87, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrkjk"]
+atlas = ExtResource("3_3ou02")
+region = Rect2(348, 0, 87, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xi05g"]
+atlas = ExtResource("3_3ou02")
+region = Rect2(435, 0, 87, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60xr6"]
+atlas = ExtResource("3_3ou02")
+region = Rect2(522, 0, 87, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lap3j"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j8vvb")
+"texture": SubResource("AtlasTexture_4rh3k")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o8nta")
+"texture": SubResource("AtlasTexture_wnpos")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2j44n")
+"texture": SubResource("AtlasTexture_issji")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ecibf")
+"texture": SubResource("AtlasTexture_u5kau")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_j8vvb")
+"texture": SubResource("AtlasTexture_wrkjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xi05g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60xr6")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_atmmb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -28)
 scale = Vector2(0.313383, -0.568714)
 script = ExtResource("1_dwrsq")
@@ -64,10 +83,4 @@ shape = SubResource("CapsuleShape2D_x5cul")
 position = Vector2(0, -32)
 scale = Vector2(0.677778, 0.677778)
 sprite_frames = SubResource("SpriteFrames_lap3j")
-frame_progress = 0.94246
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -32)
-scale = Vector2(0.677778, 0.677778)
-sprite_frames = SubResource("SpriteFrames_lap3j")
-frame_progress = 0.149928
+frame_progress = 0.406173
