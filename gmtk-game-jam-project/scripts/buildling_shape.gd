@@ -1,5 +1,5 @@
 extends RigidBody2D
-class_name BuildingShape
+class_name BuildingStructure
 
 
 @export var INITIAL_HEALTH := 30
