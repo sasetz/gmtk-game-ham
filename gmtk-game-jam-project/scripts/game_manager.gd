@@ -14,7 +14,7 @@ enum PlaceMode {
 @export var SpawnInterval: float = 0.5
 @export var BatchSize: int = 4
 
-@onready var spawner : Marker2D = $Spawner
+@onready var current_spawner : Marker2D = $Spawner
 @onready var spawner1 : Marker2D = $Spawner
 @onready var spawner2 : Marker2D = $Spawner2
 
@@ -39,18 +39,20 @@ func _process(delta: float) -> void:
 	if heldItemObject != null:
 		heldItemObject.position = get_global_mouse_position()
 
-		if Input.is_action_just_pressed("mouse1"):
-			heldItemObject.has_collision = true
-			heldItemObject.position = get_global_mouse_position()
-			heldItemObject = null # we don't delete the shape, we just clear this variable!
+
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("mouse1") and heldItemObject != null:
+		heldItemObject.has_collision = true
+		heldItemObject.position = get_global_mouse_position()
+		heldItemObject = null # we don't delete the shape, we just clear this variable!
 
 
 func _on_spawn_interval_timeout() -> void:
 	batchLeft -= 1
 	var entity: MobNPC = Enemy.instantiate() if spawningEnemies else Friend.instantiate()
-	entity.position = spawner.position
+	entity.position = current_spawner.position
 	get_tree().current_scene.add_child(entity)
-	if spawner == spawner1:
+	if current_spawner == spawner1:
 		entity.DIRECTION = 1
 		entity.scale.x=1
 	else:
@@ -62,15 +64,15 @@ func _on_spawn_interval_timeout() -> void:
 func _on_spawn_timeout() -> void:
 	BatchSize = randi_range(1,5)
 	batchLeft = BatchSize
-	if randi_range(1,2)==1:
+	if randi_range(1,2) == 1:
 		spawningEnemies = not spawningEnemies
 	else:
 		spawningEnemies = spawningEnemies
 		
 	if randi_range(1,2) == 1:
-		spawner = spawner1
+		current_spawner = spawner1
 	else:
-		spawner = spawner2
+		current_spawner = spawner2
 	spawnTimer.start()
 
 
@@ -96,10 +98,9 @@ func _on_none_button_pressed() -> void:
 	spawn_preview()
 
 func spawn_preview() -> void:
-	print(heldItemObject)
+	if heldItemObject != null:
+		heldItemObject.queue_free()
 	if currentItem == PlaceMode.None:
-		if heldItemObject != null:
-			heldItemObject.queue_free()
 		return
 
 	var object : Node2D
