@@ -1,13 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cn03up8if3snt"]
+[gd_scene load_steps=11 format=3 uid="uid://i38wi5l872co"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
-[ext_resource type="PackedScene" path="res://Scenes/tower.tscn" id="1_vyirh"]
+[ext_resource type="PackedScene" uid="uid://ccrvr1cjv81rx" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="2_53yhx"]
-[ext_resource type="PackedScene" uid="uid://cxgs66i0u1gs" path="res://Scenes/enemy.tscn" id="2_na3r5"]
+[ext_resource type="PackedScene" path="res://Scenes/enemy.tscn" id="2_na3r5"]
 [ext_resource type="PackedScene" path="res://Scenes/friend.tscn" id="3_xsjan"]
 [ext_resource type="PackedScene" path="res://Scenes/ramp.tscn" id="5_j803d"]
 [ext_resource type="PackedScene" path="res://Scenes/cube.tscn" id="6_3kgs8"]
-[ext_resource type="PackedScene" uid="uid://bjburu23c6n50" path="res://Scenes/enemyfast.tscn" id="6_8487a"]
+[ext_resource type="PackedScene" uid="uid://bw10wo2dkcma1" path="res://Scenes/enemyfast.tscn" id="6_8487a"]
 [ext_resource type="Texture2D" uid="uid://dtnwnqe1ng4rx" path="res://Visual/Backgrounds/Задник.png" id="7_djedb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
@@ -91,6 +91,15 @@ zoom = Vector2(0.755, 0.755)
 position = Vector2(0, -416)
 enabled = false
 zoom = Vector2(0.605, 0.605)
+
+[node name="add_timer" type="Timer" parent="."]
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = -573.0
+offset_top = -599.0
+offset_right = -479.0
+offset_bottom = -563.0
+text = "Resource"
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="body_entered" from="Tower" to="GameManager" method="_on_tower_body_entered"]

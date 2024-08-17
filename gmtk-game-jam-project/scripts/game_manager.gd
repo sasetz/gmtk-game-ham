@@ -126,5 +126,4 @@ func spawn_preview() -> void:
 	
 
 func _on_tower_body_entered(body):
-	print("check")
 	$RichTextLabel.text=str("Health:",$"../Tower".health)

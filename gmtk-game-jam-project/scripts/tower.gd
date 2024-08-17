@@ -1,7 +1,6 @@
 extends Area2D
 
 @export var level := 1
-
 const ENEMY_DAMAGE := 10
 const FRIEND_DAMAGE := -100
 const Peoples:=1.0
@@ -23,7 +22,10 @@ func update_level():
 	
 func add_new_part()->void:
 	var sprite = Sprite2D.new()
-	sprite.texture = load("res://Visual/Backgrounds/Башня основа.png")
+	if randi_range(1,2)==1:
+		sprite.texture = load("res://Visual/Backgrounds/Башня основа.png")
+	else:
+		sprite.texture = load("res://Visual/Backgrounds/Башня окно.png")
 	$StaticBody2D.add_child(sprite)
 	sprite.position.y=-64*level-32
 
