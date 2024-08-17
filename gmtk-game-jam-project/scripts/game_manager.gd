@@ -140,6 +140,9 @@ func _test_signal_process(button: InventoryButton):
 		print("Error! The button pressed was not in the inventory array!")
 		return
 	
+	if _current_item != _none_item:
+		_add_item(_current_item)
+	
 	if inventory_item is StructureInventoryItem:
 		_current_item = inventory_item
 		_spawn_preview()
