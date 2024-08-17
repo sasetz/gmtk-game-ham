@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://wkop00wh4iib"]
+
+[ext_resource type="Script" path="res://Scripts/inventory_button.gd" id="1_3j6sa"]
+
+[node name="InventoryButton" type="Button"]
+text = "Custom Button"
+script = ExtResource("1_3j6sa")

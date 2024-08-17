@@ -1,13 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://drkjijsa5kyl5"]
+[gd_scene load_steps=6 format=3 uid="uid://drkjijsa5kyl5"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
 [ext_resource type="PackedScene" uid="uid://bo872my1o0d31" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="2_53yhx"]
-[ext_resource type="PackedScene" path="res://Scenes/enemy.tscn" id="2_na3r5"]
-[ext_resource type="PackedScene" path="res://Scenes/friend.tscn" id="3_xsjan"]
-[ext_resource type="PackedScene" uid="uid://dsmpd3ope7nra" path="res://Scenes/ramp.tscn" id="5_j803d"]
-[ext_resource type="PackedScene" uid="uid://djyp8ncns1cce" path="res://Scenes/cube.tscn" id="6_3kgs8"]
-[ext_resource type="PackedScene" uid="uid://bor4yh38fy67t" path="res://Scenes/enemyfast.tscn" id="6_8487a"]
 [ext_resource type="Texture2D" uid="uid://dtnwnqe1ng4rx" path="res://Visual/Backgrounds/Задник.png" id="7_djedb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
@@ -28,11 +23,6 @@ level = 2
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("2_53yhx")
-Friend = ExtResource("3_xsjan")
-Enemy = ExtResource("2_na3r5")
-FastEnemy = ExtResource("6_8487a")
-Ramp = ExtResource("5_j803d")
-Cube = ExtResource("6_3kgs8")
 
 [node name="Spawner" type="Marker2D" parent="GameManager"]
 position = Vector2(-650, -46)
@@ -40,27 +30,6 @@ position = Vector2(-650, -46)
 [node name="SpawnTimer" type="Timer" parent="GameManager"]
 wait_time = 5.0
 autostart = true
-
-[node name="RampButton" type="Button" parent="GameManager"]
-offset_left = -518.0
-offset_top = -558.0
-offset_right = -413.0
-offset_bottom = -527.0
-text = "Spawn ramp"
-
-[node name="CubeButton" type="Button" parent="GameManager"]
-offset_left = -395.0
-offset_top = -558.0
-offset_right = -290.0
-offset_bottom = -527.0
-text = "Spawn cube"
-
-[node name="NoneButton" type="Button" parent="GameManager"]
-offset_left = -267.0
-offset_top = -558.0
-offset_right = -162.0
-offset_bottom = -527.0
-text = "Deselect"
 
 [node name="Spawner2" type="Marker2D" parent="GameManager"]
 position = Vector2(650, -46)
@@ -72,12 +41,18 @@ offset_right = 545.0
 offset_bottom = -559.0
 text = "Health"
 
+[node name="Inventory" type="HBoxContainer" parent="GameManager"]
+offset_left = -517.0
+offset_top = -502.0
+offset_right = -477.0
+offset_bottom = -462.0
+
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="Node2D"]
 format = 2
 
-[node name="Задник" type="Sprite2D" parent="Node2D"]
+[node name="Background" type="Sprite2D" parent="Node2D"]
 z_index = -2
 position = Vector2(0, -417.78)
 texture = ExtResource("7_djedb")
@@ -104,6 +79,3 @@ text = "Resource"
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="body_entered" from="Tower" to="GameManager" method="_on_tower_body_entered"]
 [connection signal="timeout" from="GameManager/SpawnTimer" to="GameManager" method="_on_spawn_timeout"]
-[connection signal="pressed" from="GameManager/RampButton" to="GameManager" method="_on_ramp_button_pressed"]
-[connection signal="pressed" from="GameManager/CubeButton" to="GameManager" method="_on_cube_button_pressed"]
-[connection signal="pressed" from="GameManager/NoneButton" to="GameManager" method="_on_none_button_pressed"]
