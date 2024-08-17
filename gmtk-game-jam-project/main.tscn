@@ -35,7 +35,7 @@ Ramp = ExtResource("5_j803d")
 Cube = ExtResource("6_3kgs8")
 
 [node name="Spawner" type="Marker2D" parent="GameManager"]
-position = Vector2(-519, -46)
+position = Vector2(-650, -46)
 
 [node name="SpawnTimer" type="Timer" parent="GameManager"]
 wait_time = 5.0
@@ -63,13 +63,13 @@ offset_bottom = -527.0
 text = "Deselect"
 
 [node name="Spawner2" type="Marker2D" parent="GameManager"]
-position = Vector2(519, -46)
+position = Vector2(650, -46)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="GameManager"]
-offset_left = 478.805
-offset_top = -563.78
-offset_right = 571.805
-offset_bottom = -538.78
+offset_left = 450.0
+offset_top = -600.0
+offset_right = 545.0
+offset_bottom = -559.0
 text = "Health"
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -95,10 +95,10 @@ zoom = Vector2(0.605, 0.605)
 [node name="add_timer" type="Timer" parent="."]
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
-offset_left = -573.0
-offset_top = -599.0
-offset_right = -479.0
-offset_bottom = -563.0
+offset_left = -575.0
+offset_top = -600.0
+offset_right = -436.0
+offset_bottom = -564.0
 text = "Resource"
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
