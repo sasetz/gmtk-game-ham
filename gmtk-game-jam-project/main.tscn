@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="2_53yhx"]
 [ext_resource type="PackedScene" uid="uid://cit0cbwkietxx" path="res://Scenes/enemy.tscn" id="2_na3r5"]
 [ext_resource type="PackedScene" uid="uid://bn5aa55m1lhsj" path="res://Scenes/friend.tscn" id="3_xsjan"]
-[ext_resource type="PackedScene" uid="uid://ddoyd4m54hamr" path="res://scenes/ramp.tscn" id="5_j803d"]
-[ext_resource type="PackedScene" uid="uid://dnf1qqwn2vo6l" path="res://scenes/cube.tscn" id="6_3kgs8"]
+[ext_resource type="PackedScene" uid="uid://ddoyd4m54hamr" path="res://Scenes/ramp.tscn" id="5_j803d"]
+[ext_resource type="PackedScene" uid="uid://dnf1qqwn2vo6l" path="res://Scenes/cube.tscn" id="6_3kgs8"]
 [ext_resource type="Texture2D" uid="uid://dtnwnqe1ng4rx" path="res://Visual/Backgrounds/Задник.png" id="7_djedb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
