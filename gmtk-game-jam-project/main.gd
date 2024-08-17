@@ -26,8 +26,16 @@ func _process(delta):
 func _on_tower_body_entered(body):
 	$add_timer.wait_time=2.0-0.1*$Tower.level
 	if $Tower.level>=10:
+		$GameManager/RichTextLabel.position=Vector2(850,-950)
+		$RichTextLabel2.position=Vector2(-950,-950)
+		$GameManager/Spawner.position.x=-1000
+		$GameManager/Spawner2.position.x=1000
 		$Camera2D2.enabled=false
 		$Camera2D3.enabled=true
 	elif $Tower.level>=5:
+		$GameManager/RichTextLabel.position=Vector2(655,-800)
+		$RichTextLabel2.position=Vector2(-760,-800)
+		$GameManager/Spawner.position.x=-825
+		$GameManager/Spawner2.position.x=825
 		$Camera2D.enabled=false
 		$Camera2D2.enabled=true
