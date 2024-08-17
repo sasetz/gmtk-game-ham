@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 
 func _on_spawn_interval_timeout() -> void:
 	batchLeft -= 1
-	var entity: Mobe = Enemy.instantiate() if spawningEnemies else Friend.instantiate()
+	var entity: Mob = Enemy.instantiate() if spawningEnemies else Friend.instantiate()
 	entity.position = spawner.position
 	get_tree().current_scene.add_child(entity)
 	if spawner == spawner1:
@@ -94,7 +94,10 @@ func _on_none_button_pressed() -> void:
 	spawn_preview()
 
 func spawn_preview() -> void:
+	print(heldItemObject)
 	if currentItem == PlaceMode.None:
+		if heldItemObject != null:
+			heldItemObject.queue_free()
 		return
 
 	var object : Node2D

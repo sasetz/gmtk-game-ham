@@ -9,6 +9,7 @@ height = 56.0
 
 [node name="Friend" type="CharacterBody2D" groups=["friend"]]
 script = ExtResource("1_d4owc")
+DAMAGE = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -28)

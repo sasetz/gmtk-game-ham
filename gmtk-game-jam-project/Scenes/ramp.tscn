@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ddoyd4m54hamr"]
 
-[ext_resource type="PackedScene" uid="uid://dnwaxq8plwid4" path="res://scenes/building_shape.tscn" id="1_r2i5y"]
+[ext_resource type="PackedScene" uid="uid://dnwaxq8plwid4" path="res://Scenes/building_shape.tscn" id="1_r2i5y"]
 [ext_resource type="Texture2D" uid="uid://crnttg5dixspw" path="res://assets/ramp_texture.png" id="2_6di1o"]
 [ext_resource type="Script" path="res://scripts/buildling_shape.gd" id="2_hr5s4"]
 
