@@ -15,7 +15,6 @@ const default_size := 100
 func _ready():
 	generate_geometry()
 
-
 @export var size: Vector2 = Vector2(default_size, default_size):
 	get:
 		return size
