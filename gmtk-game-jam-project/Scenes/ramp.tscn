@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dnwaxq8plwid4" path="res://Scenes/building_shape.tscn" id="1_r2i5y"]
 [ext_resource type="Texture2D" uid="uid://crnttg5dixspw" path="res://assets/ramp_texture.png" id="2_6di1o"]
-[ext_resource type="Script" path="res://scripts/buildling_shape.gd" id="2_hr5s4"]
+[ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_htoe6"]
 
 [node name="Ramp" instance=ExtResource("1_r2i5y")]
-script = ExtResource("2_hr5s4")
+script = ExtResource("2_htoe6")
 
 [node name="Collision" type="CollisionPolygon2D" parent="." index="0"]
 position = Vector2(66.51, 40.0355)

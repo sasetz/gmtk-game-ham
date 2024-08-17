@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 
 func _on_spawn_interval_timeout() -> void:
 	batchLeft -= 1
-	var entity: Mob = Enemy.instantiate() if spawningEnemies else Friend.instantiate()
+	var entity: MobNPC = Enemy.instantiate() if spawningEnemies else Friend.instantiate()
 	entity.position = spawner.position
 	get_tree().current_scene.add_child(entity)
 	if spawner == spawner1:

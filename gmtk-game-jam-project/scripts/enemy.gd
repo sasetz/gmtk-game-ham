@@ -1,1 +1,1 @@
-extends Mob
+extends MobNPC

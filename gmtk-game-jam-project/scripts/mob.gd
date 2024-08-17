@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Mob
+class_name MobNPC
 
 
 @export var SPEED = 100.0
