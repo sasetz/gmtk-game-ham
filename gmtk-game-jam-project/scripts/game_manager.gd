@@ -14,16 +14,25 @@ class StructureInventoryItem extends InventoryItem:
 		text = name
 
 class ActionInventoryItem extends InventoryItem:
-	pass
+	var scene_to_spawn: PackedScene
+	var text: String
+
+	func _init(scene: PackedScene, name: String) -> void:
+		scene_to_spawn = scene
+		text = name
 
 
 @export_category("Mobs")
 @export var Friend: PackedScene = preload("res://Scenes/friend.tscn")
 @export var EnemyScene: PackedScene = preload("res://Scenes/enemy.tscn")
+@export var FastEnemyScene: PackedScene = preload("res://Scenes/enemyfast.tscn")
 
 @export_category("Building structures")
 @export var Ramp: PackedScene = preload("res://Scenes/ramp.tscn")
 @export var Cube: PackedScene = preload("res://Scenes/cube.tscn")
+@export var Circle: PackedScene = preload("res://Scenes/circle.tscn")
+@export var Squere: PackedScene = preload("res://Scenes/square.tscn")
+@export var Delete: PackedScene = preload("res://Scenes/delete.tscn")
 
 @export_category("Spawning rules")
 @export var SpawnInterval: float = 0.5
@@ -44,9 +53,10 @@ var _none_item = InventoryItem.new() # currently not holding anything
 @onready var _ramp_item = StructureInventoryItem.new(Ramp, "Ramp")
 @onready var _cube_item = StructureInventoryItem.new(Cube, "Cube")
 @onready var _circle_item = StructureInventoryItem.new(Circle, "Circle")
-@onready var _resize_item = ActionInventoryItem.new()
-@onready var _rotate_item = ActionInventoryItem.new()
-@onready var _delete_item = ActionInventoryItem.new()
+@onready var _squere_item = StructureInventoryItem.new(Squere, "Squere")
+#@onready var _resize_item = ActionInventoryItem.new()
+#@onready var _rotate_item = ActionInventoryItem.new()
+@onready var _delete_item = ActionInventoryItem.new(Delete, "Delete")
 
 var _spawn_timer: Timer
 var _inventory_giver_timer: Timer
@@ -59,9 +69,11 @@ var _held_item_object : Node2D = null
 # second: UI button
 var _inventory: Array = []
 @onready var _item_roster := [
-	_ramp_item,
-	_ramp_item,
+	_circle_item,
+	_delete_item,
 	_cube_item,
+	_ramp_item,
+	_circle_item,
 	_cube_item,
 ]
 var _next_roster_index := 0
@@ -133,7 +145,8 @@ func _test_signal_process(button: InventoryButton):
 		_spawn_preview()
 	elif inventory_item is ActionInventoryItem:
 		match inventory_item:
-			_:
+			_delete_item:
+				_spawn_action_preview()
 				print("Action")
 	_remove_item(entry_index)
 
@@ -150,6 +163,16 @@ func _spawn_object_at_mouse(shape: PackedScene):
 
 	obj.position = get_global_mouse_position()
 	return obj
+func _spawn_action_preview() -> void:
+	if _held_item_object != null:
+		_held_item_object.queue_free()
+	if _current_item == _none_item:
+		return
+	
+	var object : BuildingStructure = _spawn_object_at_mouse(_current_item.scene_to_spawn)
+	object.has_collision = false
+	add_child(object)
+	_held_item_object = object
 
 func _spawn_preview() -> void:
 	if _held_item_object != null:
@@ -172,6 +195,13 @@ func _on_tower_body_entered(_body):
 func _on_spawn_interval_timeout() -> void:
 	_batch_left -= 1
 	var entity: MobNPC = EnemyScene.instantiate() if _spawning_enemies else Friend.instantiate()
+	if _spawning_enemies:
+		if randi_range(1,3)==1:
+			entity = FastEnemyScene.instantiate()
+		else:
+			entity = EnemyScene.instantiate()
+	else:
+		entity = Friend.instantiate()
 	entity.position = _current_spawner.position
 	get_tree().current_scene.add_child(entity)
 	if _current_spawner == _spawner1:

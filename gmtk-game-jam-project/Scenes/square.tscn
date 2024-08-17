@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://qsy5hkpg0mmf"]
+
+[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_0pbiq"]
+[ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_x2b4c"]
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="3_k6qqf"]
+[ext_resource type="Texture2D" uid="uid://covpbs713r2vj" path="res://Visual/Backgrounds/Квадрат.png" id="4_k6cex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyh0e"]
+size = Vector2(70, 70)
+
+[node name="Cube" instance=ExtResource("1_0pbiq")]
+scale = Vector2(2.5, 0.5)
+script = ExtResource("2_x2b4c")
+
+[node name="Collision" type="CollisionShape2D" parent="." index="0"]
+visible = false
+shape = SubResource("RectangleShape2D_gyh0e")
+script = ExtResource("3_k6qqf")
+size = Vector2(70, 70)
+corner_radius = 5.0
+square = true
+style = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+scale = Vector2(0.365, 0.365)
+texture = ExtResource("4_k6cex")

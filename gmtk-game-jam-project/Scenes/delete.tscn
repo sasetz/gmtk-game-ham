@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxtmpln877emv"]
+
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_apo13"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s45n0"]
+
+[node name="Delete" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_s45n0")
+
+[node name="Rectangle" type="Node2D" parent="Area2D"]
+script = ExtResource("1_apo13")
+fill_color = Color(0.843176, 0.121473, 0, 0.380392)
