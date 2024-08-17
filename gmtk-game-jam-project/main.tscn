@@ -1,13 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://i38wi5l872co"]
+[gd_scene load_steps=11 format=3 uid="uid://drkjijsa5kyl5"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
-[ext_resource type="PackedScene" uid="uid://ccrvr1cjv81rx" path="res://Scenes/tower.tscn" id="1_vyirh"]
+[ext_resource type="PackedScene" uid="uid://bo872my1o0d31" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="2_53yhx"]
 [ext_resource type="PackedScene" path="res://Scenes/enemy.tscn" id="2_na3r5"]
 [ext_resource type="PackedScene" path="res://Scenes/friend.tscn" id="3_xsjan"]
-[ext_resource type="PackedScene" path="res://Scenes/ramp.tscn" id="5_j803d"]
-[ext_resource type="PackedScene" path="res://Scenes/cube.tscn" id="6_3kgs8"]
-[ext_resource type="PackedScene" uid="uid://bw10wo2dkcma1" path="res://Scenes/enemyfast.tscn" id="6_8487a"]
+[ext_resource type="PackedScene" uid="uid://dsmpd3ope7nra" path="res://Scenes/ramp.tscn" id="5_j803d"]
+[ext_resource type="PackedScene" uid="uid://djyp8ncns1cce" path="res://Scenes/cube.tscn" id="6_3kgs8"]
+[ext_resource type="PackedScene" uid="uid://bor4yh38fy67t" path="res://Scenes/enemyfast.tscn" id="6_8487a"]
 [ext_resource type="Texture2D" uid="uid://dtnwnqe1ng4rx" path="res://Visual/Backgrounds/Задник.png" id="7_djedb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]

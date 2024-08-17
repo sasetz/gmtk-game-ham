@@ -1,5 +1,5 @@
 extends Area2D
-
+@export var TowerPart: PackedScene
 @export var level := 1
 const ENEMY_DAMAGE := 10
 const FRIEND_DAMAGE := -100
@@ -21,13 +21,13 @@ func update_level():
 	$StaticBody2D/Sprite2D2.position.y=-64*level-32
 	
 func add_new_part()->void:
-	var sprite = Sprite2D.new()
-	if randi_range(1,2)==1:
-		sprite.texture = load("res://Visual/Backgrounds/Башня основа.png")
-	else:
-		sprite.texture = load("res://Visual/Backgrounds/Башня окно.png")
-	$StaticBody2D.add_child(sprite)
-	sprite.position.y=-64*level-32
+	var obj : Node2D = TowerPart.instantiate()
+	#if randi_range(1,2)==1:
+		#sprite.texture = load("res://Visual/Backgrounds/Башня основа.png")
+	#else:
+		#sprite.texture = load("res://Visual/Backgrounds/Башня окно.png")
+	$StaticBody2D.add_child(obj)
+	obj.position.y=-64*level-32
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):

@@ -1,17 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddoyd4m54hamr"]
+[gd_scene load_steps=4 format=3 uid="uid://dsmpd3ope7nra"]
 
-[ext_resource type="PackedScene" uid="uid://dnwaxq8plwid4" path="res://Scenes/building_shape.tscn" id="1_r2i5y"]
-[ext_resource type="Texture2D" uid="uid://crnttg5dixspw" path="res://assets/ramp_texture.png" id="2_6di1o"]
+[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_r2i5y"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_htoe6"]
+[ext_resource type="Texture2D" uid="uid://c4a1aeqmniw30" path="res://Visual/Backgrounds/Треугольник.png" id="3_rwr7d"]
 
 [node name="Ramp" instance=ExtResource("1_r2i5y")]
 script = ExtResource("2_htoe6")
 
 [node name="Collision" type="CollisionPolygon2D" parent="." index="0"]
-position = Vector2(66.51, 40.0355)
-polygon = PackedVector2Array(0, 0, 0, -82.335, -132.7, 0)
+visible = false
+position = Vector2(59, -1)
+scale = Vector2(0.5, 0.5)
+polygon = PackedVector2Array(24, 54, -168, -142, -168, 54)
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="1"]
-position = Vector2(0.509995, 0.0354996)
-scale = Vector2(0.774598, 0.300511)
-texture = ExtResource("2_6di1o")
+position = Vector2(23, -23)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_rwr7d")
