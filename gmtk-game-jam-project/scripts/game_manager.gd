@@ -9,6 +9,7 @@ enum PlaceMode {
 
 @export var Friend: PackedScene
 @export var Enemy: PackedScene
+@export var FastEnemy: PackedScene
 @export var Ramp: PackedScene
 @export var Cube: PackedScene
 @export var SpawnInterval: float = 0.5
@@ -48,6 +49,13 @@ func _process(delta: float) -> void:
 func _on_spawn_interval_timeout() -> void:
 	batchLeft -= 1
 	var entity: MobNPC = Enemy.instantiate() if spawningEnemies else Friend.instantiate()
+	if spawningEnemies:
+		if randi_range(1,3)==1:
+			entity = FastEnemy.instantiate()
+		else:
+			entity = Enemy.instantiate()
+	else:
+		entity = Friend.instantiate()
 	entity.position = spawner.position
 	get_tree().current_scene.add_child(entity)
 	if spawner == spawner1:

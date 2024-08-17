@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bq6hx1d54873w"]
+[gd_scene load_steps=11 format=3 uid="uid://cn03up8if3snt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
-[ext_resource type="PackedScene" uid="uid://cnn7sa8kv102g" path="res://Scenes/tower.tscn" id="1_vyirh"]
+[ext_resource type="PackedScene" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="2_53yhx"]
-[ext_resource type="PackedScene" uid="uid://gu8ue7aoc67a" path="res://Scenes/enemy.tscn" id="2_na3r5"]
-[ext_resource type="PackedScene" uid="uid://bn5aa55m1lhsj" path="res://Scenes/friend.tscn" id="3_xsjan"]
-[ext_resource type="PackedScene" uid="uid://ddoyd4m54hamr" path="res://Scenes/ramp.tscn" id="5_j803d"]
-[ext_resource type="PackedScene" uid="uid://darlsu5t2racy" path="res://Scenes/cube.tscn" id="6_3kgs8"]
+[ext_resource type="PackedScene" uid="uid://cxgs66i0u1gs" path="res://Scenes/enemy.tscn" id="2_na3r5"]
+[ext_resource type="PackedScene" path="res://Scenes/friend.tscn" id="3_xsjan"]
+[ext_resource type="PackedScene" path="res://Scenes/ramp.tscn" id="5_j803d"]
+[ext_resource type="PackedScene" path="res://Scenes/cube.tscn" id="6_3kgs8"]
+[ext_resource type="PackedScene" uid="uid://bjburu23c6n50" path="res://Scenes/enemyfast.tscn" id="6_8487a"]
 [ext_resource type="Texture2D" uid="uid://dtnwnqe1ng4rx" path="res://Visual/Backgrounds/Задник.png" id="7_djedb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
@@ -29,6 +30,7 @@ level = 2
 script = ExtResource("2_53yhx")
 Friend = ExtResource("3_xsjan")
 Enemy = ExtResource("2_na3r5")
+FastEnemy = ExtResource("6_8487a")
 Ramp = ExtResource("5_j803d")
 Cube = ExtResource("6_3kgs8")
 

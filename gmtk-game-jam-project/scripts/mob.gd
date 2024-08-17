@@ -3,6 +3,7 @@ class_name MobNPC
 
 
 @export var SPEED = 100.0
+@export var VERTICALSPEED = 100.0
 @export var JUMP_VELOCITY = -400.0
 @export var DIRECTION := 1.0
 @export var DAMAGE_INTERVAL := 0.5
@@ -47,7 +48,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	if is_on_wall():
-		velocity.y = -SPEED*0.5
+		velocity.y = -VERTICALSPEED*0.5
 	
 	move_and_slide()
 

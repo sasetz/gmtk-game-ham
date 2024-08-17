@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://gu8ue7aoc67a"]
+[gd_scene load_steps=13 format=3 uid="uid://cxgs66i0u1gs"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_atmmb"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_dwrsq"]
@@ -83,4 +83,3 @@ shape = SubResource("CapsuleShape2D_x5cul")
 position = Vector2(0, -32)
 scale = Vector2(0.677778, 0.677778)
 sprite_frames = SubResource("SpriteFrames_lap3j")
-frame_progress = 0.406173

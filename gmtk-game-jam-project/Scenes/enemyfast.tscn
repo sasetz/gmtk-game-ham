@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjburu23c6n50"]
+
+[ext_resource type="Script" path="res://Scripts/fastenemy.gd" id="1_oct7h"]
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_p5blc"]
+[ext_resource type="Texture2D" uid="uid://digw052bujtwu" path="res://Visual/Animations/Враг2 ходьба.png" id="3_nyjro"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
+radius = 16.0
+height = 56.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0pcn"]
+atlas = ExtResource("3_nyjro")
+region = Rect2(0, 0, 46, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxxcf"]
+atlas = ExtResource("3_nyjro")
+region = Rect2(46, 0, 46, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3somh"]
+atlas = ExtResource("3_nyjro")
+region = Rect2(92, 0, 46, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1w2hw"]
+atlas = ExtResource("3_nyjro")
+region = Rect2(138, 0, 46, 63)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lap3j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0pcn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxxcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3somh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1w2hw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_oct7h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -28)
+scale = Vector2(0.313383, -0.568714)
+script = ExtResource("2_p5blc")
+fill_color = Color(0.9, 0.189, 0.189, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -28)
+shape = SubResource("CapsuleShape2D_x5cul")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -21)
+scale = Vector2(0.677778, 0.677778)
+sprite_frames = SubResource("SpriteFrames_lap3j")
+frame_progress = 0.630465
