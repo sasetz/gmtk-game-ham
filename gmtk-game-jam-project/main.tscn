@@ -1,13 +1,47 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4gfmgbckwmfy"]
+[gd_scene load_steps=17 format=3 uid="uid://d4gfmgbckwmfy"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
 [ext_resource type="PackedScene" uid="uid://bgsr2eqq3pvhv" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="2_53yhx"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/spawner.gd" id="4_kkvm3"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/inventory.gd" id="5_bhk52"]
+[ext_resource type="Texture2D" uid="uid://bg5sju7pyil7" path="res://Visual/UI/Монетки.png" id="6_a1i2i"]
 [ext_resource type="Texture2D" uid="uid://dtnwnqe1ng4rx" path="res://Visual/Backgrounds/Задник.png" id="7_djedb"]
+[ext_resource type="Texture2D" uid="uid://8b1geqnek601" path="res://Visual/Screens/Ветер6.png" id="7_xeqyv"]
+[ext_resource type="Texture2D" uid="uid://c63gbyubbtxbn" path="res://Visual/Screens/Ветер1.png" id="8_qmcxi"]
+[ext_resource type="Texture2D" uid="uid://dgxgu3ddrfk62" path="res://Visual/Screens/Ветер2.png" id="9_ryh1b"]
+[ext_resource type="Texture2D" uid="uid://cl0dl0l3hk1d0" path="res://Visual/Screens/Ветер3.png" id="10_jy2cl"]
+[ext_resource type="Texture2D" uid="uid://ca62hgv304rqn" path="res://Visual/Screens/Ветер4.png" id="11_oec58"]
+[ext_resource type="Texture2D" uid="uid://c4nbp07yry72b" path="res://Visual/Screens/Ветер5.png" id="12_c7e7a"]
+[ext_resource type="Script" path="res://weather.gd" id="14_gljpk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n30pi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_xeqyv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qmcxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ryh1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jy2cl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_oec58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_c7e7a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("left_spawner", "right_spawner", "health_label", "resource_label", "first_camera", "second_camera", "third_camera")]
 script = ExtResource("1_7an7p")
@@ -66,8 +100,12 @@ text = "Health"
 offset_left = -575.0
 offset_top = -600.0
 offset_right = -436.0
-offset_bottom = -564.0
+offset_bottom = -537.0
 text = "Resource"
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/ResourceLabel"]
+position = Vector2(36.18, 30.52)
+texture = ExtResource("6_a1i2i")
 
 [node name="Background" type="Sprite2D" parent="UI"]
 z_index = -2
@@ -88,6 +126,15 @@ zoom = Vector2(0.755, 0.755)
 position = Vector2(0, -416)
 enabled = false
 zoom = Vector2(0.605, 0.605)
+
+[node name="Weather" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.999969, -411)
+scale = Vector2(1.03021, 1)
+sprite_frames = SubResource("SpriteFrames_n30pi")
+frame = 2
+script = ExtResource("14_gljpk")
+
+[node name="Weather_timer" type="Timer" parent="Weather"]
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="timeout" from="GameManager/Spawner/SpawnTimer" to="GameManager" method="_on_spawn_timeout"]
