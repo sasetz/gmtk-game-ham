@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cu0cvcsr2p42x"]
 
-[ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_f6uf3"]
+[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_f6uf3"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_itf13"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="3_cy8lw"]
 [ext_resource type="Texture2D" uid="uid://bbmdxxfol3uip" path="res://Visual/Backgrounds/Круг.png" id="4_agcui"]
@@ -9,6 +9,7 @@
 radius = 35.0143
 
 [node name="Cube" instance=ExtResource("1_f6uf3")]
+collision_mask = 255
 script = ExtResource("2_itf13")
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]

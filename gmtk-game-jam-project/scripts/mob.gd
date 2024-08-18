@@ -59,8 +59,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	if is_on_wall():
-		velocity.y = -VERTICALSPEED*0.5
+	wall_check()
 		
 	weather_check()
 	move_and_slide()
@@ -96,3 +95,7 @@ func weather_check():
 				velocity.y*=0.7
 	else:
 		slide_timer.stop()
+		
+func wall_check():
+	if is_on_wall():
+		velocity.y = -VERTICALSPEED*0.5

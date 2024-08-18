@@ -15,6 +15,7 @@ size = Vector2(144, 116)
 size = Vector2(121, 108)
 
 [node name="Tower" type="Area2D"]
+collision_mask = 255
 script = ExtResource("1_nv4hn")
 TowerPart = ExtResource("2_iaeff")
 

@@ -4,6 +4,7 @@ extends Node2D
 @export var Friend: PackedScene = preload("res://Scenes/friend.tscn")
 @export var EnemyScene: PackedScene = preload("res://Scenes/enemy.tscn")
 @export var FastEnemyScene: PackedScene = preload("res://Scenes/enemyfast.tscn")
+@export var BigEnemyScene: PackedScene = preload("res://Scenes/bigenemy.tscn")
 
 @export_category("Spawning rules")
 @export var IntervalBetweenEntities: float = 0.5
@@ -41,10 +42,13 @@ func _on_spawn_interval_timeout() -> void:
 	_batch_left -= 1
 	var entity: MobNPC
 	if _spawning_enemies:
-		if randi_range(1,3)==1:
-			entity = FastEnemyScene.instantiate()
-		else:
-			entity = EnemyScene.instantiate()
+		match randi_range(1,4):
+			1:
+				entity = FastEnemyScene.instantiate()
+			2,3:
+				entity = EnemyScene.instantiate()
+			4:
+				entity = BigEnemyScene.instantiate()
 	else:
 		entity = Friend.instantiate()
 	

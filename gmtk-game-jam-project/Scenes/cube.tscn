@@ -8,6 +8,7 @@
 size = Vector2(70, 70)
 
 [node name="Cube" instance=ExtResource("1_kv5qh")]
+collision_mask = 255
 script = ExtResource("2_fo07c")
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]

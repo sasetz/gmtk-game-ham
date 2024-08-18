@@ -54,6 +54,7 @@ second_camera = NodePath("Cameras/Camera2D2")
 third_camera = NodePath("Cameras/Camera2D3")
 
 [node name="Floor" type="StaticBody2D" parent="."]
+collision_mask = 255
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_yfavc")

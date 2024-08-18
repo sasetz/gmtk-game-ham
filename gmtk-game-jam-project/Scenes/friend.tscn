@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/friend.gd" id="1_kyjyt"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_xqyqq"]
 [ext_resource type="Texture2D" uid="uid://b702eudfmq7t" path="res://Visual/Animations/Друг1 ходьба.png" id="3_6jib2"]
-[ext_resource type="Texture2D" uid="uid://dnauxscend0ia" path="res://Visual/Animations/Друг2 ходьба.png" id="4_545lb"]
+[ext_resource type="Texture2D" uid="uid://cdmuxapo8jja1" path="res://Visual/Animations/Друг2 ходьба.png" id="4_545lb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
 radius = 16.0
@@ -79,6 +79,8 @@ animations = [{
 }]
 
 [node name="Friend" type="CharacterBody2D" groups=["friend"]]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_kyjyt")
 DAMAGE = 0
 
