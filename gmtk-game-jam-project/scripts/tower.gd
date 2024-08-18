@@ -1,5 +1,5 @@
 extends Area2D
-class_name Tower
+class_name tower
 @export var TowerPart: PackedScene
 @export var level := 1
 @export var REGENERATION:=0.0

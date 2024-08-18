@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxq44fulk1jt3"
-path="res://.godot/imported/Балиста части.png-af93d0e3a5f59431bd19d4eb78caae73.ctex"
+uid="uid://bm4m4ixcf7ufm"
+path="res://.godot/imported/Рамка.png-95653fbea07815851d6218c3979f5add.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Visual/Animations/Балиста части.png"
-dest_files=["res://.godot/imported/Балиста части.png-af93d0e3a5f59431bd19d4eb78caae73.ctex"]
+source_file="res://Visual/UI/Рамка.png"
+dest_files=["res://.godot/imported/Рамка.png-95653fbea07815851d6218c3979f5add.ctex"]
 
 [params]
 

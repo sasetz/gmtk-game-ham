@@ -1,12 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkqmqyq2pbwbx"]
+[gd_scene load_steps=10 format=3 uid="uid://dkqmqyq2pbwbx"]
 
 [ext_resource type="Script" path="res://Scripts/friend.gd" id="1_kyjyt"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_xqyqq"]
-[ext_resource type="Texture2D" uid="uid://v4sarqu0sqbq" path="res://Visual/Animations/Союзник болванка.png" id="3_5h2r1"]
+[ext_resource type="Texture2D" uid="uid://b702eudfmq7t" path="res://Visual/Animations/Друг1 ходьба.png" id="3_6jib2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
 radius = 16.0
 height = 56.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5g2v"]
+atlas = ExtResource("3_6jib2")
+region = Rect2(0, 0, 31, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ht56f"]
+atlas = ExtResource("3_6jib2")
+region = Rect2(31, 0, 31, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur4kd"]
+atlas = ExtResource("3_6jib2")
+region = Rect2(62, 0, 31, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7ww0"]
+atlas = ExtResource("3_6jib2")
+region = Rect2(93, 0, 31, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_24x37"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5g2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ht56f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur4kd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7ww0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="Friend" type="CharacterBody2D" groups=["friend"]]
 script = ExtResource("1_kyjyt")
@@ -23,7 +59,8 @@ fill_color = Color(0.37521, 0.99, 0.3069, 1)
 position = Vector2(0, -28)
 shape = SubResource("CapsuleShape2D_x5cul")
 
-[node name="СоюзникБолванка" type="Sprite2D" parent="."]
-position = Vector2(-0.500001, -30)
-scale = Vector2(1.21875, 0.96875)
-texture = ExtResource("3_5h2r1")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.5, -27.25)
+scale = Vector2(0.870968, 0.823077)
+sprite_frames = SubResource("SpriteFrames_24x37")
+frame_progress = 0.561797

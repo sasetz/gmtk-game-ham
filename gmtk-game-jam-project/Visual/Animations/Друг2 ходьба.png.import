@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxq44fulk1jt3"
-path="res://.godot/imported/Балиста части.png-af93d0e3a5f59431bd19d4eb78caae73.ctex"
+uid="uid://5k0f370q44rm"
+path="res://.godot/imported/Друг2 ходьба.png-bfe48735ff000d69771af6e70e8b7ba4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Visual/Animations/Балиста части.png"
-dest_files=["res://.godot/imported/Балиста части.png-af93d0e3a5f59431bd19d4eb78caae73.ctex"]
+source_file="res://Visual/Animations/Друг2 ходьба.png"
+dest_files=["res://.godot/imported/Друг2 ходьба.png-bfe48735ff000d69771af6e70e8b7ba4.ctex"]
 
 [params]
 

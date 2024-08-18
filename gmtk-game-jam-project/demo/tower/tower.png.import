@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxq44fulk1jt3"
-path="res://.godot/imported/Балиста части.png-af93d0e3a5f59431bd19d4eb78caae73.ctex"
+uid="uid://wkgkmuyyry7"
+path="res://.godot/imported/tower.png-18b6db3b470bebd6dfd0b2fed2ac616d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Visual/Animations/Балиста части.png"
-dest_files=["res://.godot/imported/Балиста части.png-af93d0e3a5f59431bd19d4eb78caae73.ctex"]
+source_file="res://demo/tower/tower.png"
+dest_files=["res://.godot/imported/tower.png-18b6db3b470bebd6dfd0b2fed2ac616d.ctex"]
 
 [params]
 

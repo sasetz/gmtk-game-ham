@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxq44fulk1jt3"
-path="res://.godot/imported/Балиста части.png-af93d0e3a5f59431bd19d4eb78caae73.ctex"
+uid="uid://blyrqr2gddr4"
+path="res://.godot/imported/Ветер6.png-326fa5550af31db8fba8007bd4d05b63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Visual/Animations/Балиста части.png"
-dest_files=["res://.godot/imported/Балиста части.png-af93d0e3a5f59431bd19d4eb78caae73.ctex"]
+source_file="res://Visual/Screens/Ветер6.png"
+dest_files=["res://.godot/imported/Ветер6.png-326fa5550af31db8fba8007bd4d05b63.ctex"]
 
 [params]
 
