@@ -1,14 +1,14 @@
 extends Node2D
 class_name Tower_Part
-var choosing:bool
-@export var allvariants:Array
-@export var arrow:PackedScene = preload("res://Scenes/arrow.tscn")
-var i:=0
-var reload:=false
-var tower: tower 
+var choosing: bool
+@export var allvariants: Array
+@export var arrow: PackedScene = preload("res://Scenes/arrow.tscn")
+var i := 0
+var reload := false
+var tower: Tower 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	tower= get_parent() as tower
+	tower = get_parent() as Tower
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
