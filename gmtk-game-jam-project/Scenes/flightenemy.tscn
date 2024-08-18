@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://dff2oe11a5eir"]
+
+[ext_resource type="Script" path="res://Scenes/flightenemy.gd" id="1_uu4ww"]
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_a2ryx"]
+[ext_resource type="Texture2D" uid="uid://8biuot8rh6et" path="res://Visual/Animations/Враг4 ходьба1.png" id="3_ef54o"]
+[ext_resource type="Texture2D" uid="uid://cg5vy11vlywll" path="res://Visual/Animations/Враг4 ходьба2.png" id="4_l8rh1"]
+[ext_resource type="Texture2D" uid="uid://d2ydfew13oust" path="res://Visual/Animations/Враг4 ходьба3.png" id="5_voe2i"]
+[ext_resource type="Texture2D" uid="uid://b5ypu7rjxcqgk" path="res://Visual/Animations/Враг4 ходьба4.png" id="6_lwymu"]
+[ext_resource type="Texture2D" uid="uid://c0gam06bk25bf" path="res://Visual/Animations/Враг4 ходьба5.png" id="7_web31"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
+radius = 16.0
+height = 56.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lap3j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ef54o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l8rh1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_voe2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lwymu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_web31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lwymu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_voe2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l8rh1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_uu4ww")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -28)
+scale = Vector2(0.313383, -0.568714)
+script = ExtResource("2_a2ryx")
+fill_color = Color(0.9, 0.189, 0.189, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -28)
+shape = SubResource("CapsuleShape2D_x5cul")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -21)
+scale = Vector2(0.677778, 0.677778)
+sprite_frames = SubResource("SpriteFrames_lap3j")
+frame_progress = 0.805945
