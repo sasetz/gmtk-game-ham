@@ -51,8 +51,7 @@ func _on_damage_interval_timeout() -> void:
 	should_damage = true
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	floor_check(delta)
 
 	if DIRECTION:
 		velocity.x = DIRECTION * SPEED
@@ -99,3 +98,7 @@ func weather_check():
 func wall_check():
 	if is_on_wall():
 		velocity.y = -VERTICALSPEED*0.5
+		
+func floor_check(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta

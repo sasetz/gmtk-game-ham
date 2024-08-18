@@ -5,6 +5,7 @@ extends Node2D
 @export var EnemyScene: PackedScene = preload("res://Scenes/enemy.tscn")
 @export var FastEnemyScene: PackedScene = preload("res://Scenes/enemyfast.tscn")
 @export var BigEnemyScene: PackedScene = preload("res://Scenes/bigenemy.tscn")
+@export var FlightEnemyScene: PackedScene = preload("res://Scenes/flightenemy.tscn")
 
 @export_category("Spawning rules")
 @export var IntervalBetweenEntities: float = 0.5
@@ -40,19 +41,23 @@ func _ready() -> void:
 
 func _on_spawn_interval_timeout() -> void:
 	_batch_left -= 1
+	var bonus:=0
 	var entity: MobNPC
 	if _spawning_enemies:
 		match randi_range(1,4):
 			1:
 				entity = FastEnemyScene.instantiate()
-			2,3:
+			2:
 				entity = EnemyScene.instantiate()
+			3:
+				entity=FlightEnemyScene.instantiate()
+				bonus=200
 			4:
 				entity = BigEnemyScene.instantiate()
 	else:
 		entity = Friend.instantiate()
 	
-	entity.position = _current_spawner.position
+	entity.position = Vector2(_current_spawner.position.x,_current_spawner.position.y-bonus)
 	get_tree().current_scene.add_child(entity)
 	entity.LIFE_TIME=entity.LIFE_TIME*$"../..".LIFE_TIME_MODIFICATOR
 	entity.die_timer.wait_time=entity.LIFE_TIME

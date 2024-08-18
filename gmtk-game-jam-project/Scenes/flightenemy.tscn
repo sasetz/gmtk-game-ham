@@ -64,4 +64,8 @@ shape = SubResource("CapsuleShape2D_x5cul")
 position = Vector2(0, -21)
 scale = Vector2(0.677778, 0.677778)
 sprite_frames = SubResource("SpriteFrames_lap3j")
-frame_progress = 0.805945
+frame_progress = 0.0478546
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true

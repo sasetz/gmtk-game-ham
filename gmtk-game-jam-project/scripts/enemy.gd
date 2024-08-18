@@ -4,7 +4,8 @@ class_name Enemy
 
 func _ready():
 	super._ready()
-	TOWER_DAMAGE=25
-	LIFE_TIME=8
-	self.VERTICALSPEED = 600
-	self.SPEED=200
+	TOWER_DAMAGE=15
+	LIFE_TIME=10
+	self.VERTICALSPEED = 100
+	self.SPEED=100
+	$AnimatedSprite2D.play("default")
