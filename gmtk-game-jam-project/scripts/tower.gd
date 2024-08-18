@@ -29,11 +29,11 @@ func add_new_part()->void:
 	$StaticBody2D.add_child(obj)
 	obj.position.y=-64*level-32
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body: MobNPC) -> void:
 	if body.is_in_group("enemy"):
 		print("Enemy reached the tower!")
 		body.queue_free()
-		health -= ENEMY_DAMAGE
+		health -= body.TOWER_DAMAGE
 		update_level()
 	
 	if body.is_in_group("friend"):

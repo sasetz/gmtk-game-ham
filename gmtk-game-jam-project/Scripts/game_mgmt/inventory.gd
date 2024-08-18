@@ -183,7 +183,8 @@ func _spawn_preview() -> void:
 		return
 	if not (_current_item is StructureInventoryItem):
 		return
-	
+	_is_scaling = true
+	_is_rotating = true
 	var object : BuildingStructure = _spawn_object_at_mouse(_current_item.scene_to_spawn)
 	object.has_collision = false
 	add_child(object)

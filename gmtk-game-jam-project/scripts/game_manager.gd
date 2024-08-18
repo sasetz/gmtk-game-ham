@@ -4,10 +4,11 @@ extends Node2D
 
 var _inventory_giver_timer: Timer
 @onready var _item_roster := [
-	inventory.RESIZE_ITEM,
-	inventory.RESIZE_ITEM,
+	inventory.CUBE_ITEM,
+	inventory.RAMP_ITEM,
 	inventory.RESIZE_ITEM,
 	inventory.ROTATE_ITEM,
+	inventory.DELETE_ITEM,
 ]
 var _next_roster_index := 0
 
@@ -39,4 +40,3 @@ func _process(_delta: float) -> void:
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("mouse1"):
 		inventory.release_item()
-

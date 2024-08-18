@@ -8,6 +8,7 @@ class_name MobNPC
 @export var DIRECTION := 1.0
 @export var DAMAGE_INTERVAL := 0.5
 @export var DAMAGE := 1
+@export var TOWER_DAMAGE := 10
 @export var SHOULD_DAMAGE_WHEN_ON_TOP := false
 
 var die_timer: Timer
