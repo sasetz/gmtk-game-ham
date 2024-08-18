@@ -18,6 +18,9 @@ var slide_timer: Timer
 var should_damage := true
 var weath: Weather
 func _ready() -> void:
+	
+	weath=$"../Weather" as Weather
+	
 	slide_timer=Timer.new()
 	slide_timer.wait_time=100.0
 	add_child(slide_timer)
@@ -58,29 +61,8 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_wall():
 		velocity.y = -VERTICALSPEED*0.5
-	weath=$"../Weather" as Weather
-	if (DIRECTION == 1 and weath.type == "Wind1") or (DIRECTION == -1 and weath.type == "Wind2"):
-		velocity.x *= 2
-	elif (DIRECTION == 1 and weath.type == "Wind2") or (DIRECTION == -1 and weath.type == "Wind1"):
-		velocity.x *= 0.5
-	if weath.type=="Rain":
-		velocity.y*=0.1
-		if position.y>=-10:
-			velocity.x*=0.8
-
-	
-	if weath.type=="Snow":
-		if not is_on_wall():
-			if slide_timer.is_stopped():
-				slide_timer.wait_time=100.0
-				slide_timer.start()
-			velocity.x=velocity.x*0.5+velocity.x*(100.0-slide_timer.time_left)*(100.0-slide_timer.time_left)*0.1
-		else:
-			slide_timer.stop()
-			velocity.y*=0.7
-	else:
-		slide_timer.stop()
 		
+	weather_check()
 	move_and_slide()
 
 	for i in get_slide_collision_count():
@@ -91,3 +73,26 @@ func _physics_process(delta: float) -> void:
 			print("Damaging the shape! Its health: %d" % c.get_collider().current_health)
 			c.get_collider().current_health -= DAMAGE
 			should_damage = false
+
+func weather_check():
+	if (DIRECTION == 1 and weath.type == "Wind1") or (DIRECTION == -1 and weath.type == "Wind2"):
+		velocity.x *= 2
+	elif (DIRECTION == 1 and weath.type == "Wind2") or (DIRECTION == -1 and weath.type == "Wind1"):
+		velocity.x *= 0.5
+	elif weath.type=="Rain":
+		if velocity.y<=0:
+			velocity.y*=0.1
+		if position.y>=-10:
+			velocity.x*=0.8
+	elif weath.type=="Snow":
+		if not is_on_wall():
+			if slide_timer.is_stopped():
+				slide_timer.wait_time=100.0
+				slide_timer.start()
+			velocity.x=velocity.x*0.5+velocity.x*(100.0-slide_timer.time_left)*(100.0-slide_timer.time_left)*0.1
+		else:
+			slide_timer.stop()
+			if velocity.y<=0:
+				velocity.y*=0.7
+	else:
+		slide_timer.stop()
