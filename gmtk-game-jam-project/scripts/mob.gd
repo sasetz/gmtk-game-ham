@@ -15,7 +15,7 @@ class_name MobNPC
 var die_timer: Timer
 var damage_timer: Timer
 var should_damage := true
-
+var weath: Weather
 func _ready() -> void:
 	die_timer = Timer.new()
 	add_child(die_timer)
@@ -51,7 +51,17 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_wall():
 		velocity.y = -VERTICALSPEED*0.5
+	weath=$"../Weather" as Weather
 	
+	if weath != null and weath.wind!=null:
+		var wind_direction = weath.wind
+		if (DIRECTION == 1 and wind_direction == 1) or (DIRECTION == -1 and wind_direction == 2):
+			velocity.x *= 2
+		elif (DIRECTION == 1 and wind_direction == 2) or (DIRECTION == -1 and wind_direction == 1):
+			velocity.x *= 0.5
+	else:
+		print("Error: 'Weather' node is null or does not have a 'wind' method/property.")
+		
 	move_and_slide()
 
 	for i in get_slide_collision_count():
