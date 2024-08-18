@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name main
 
 @export var resource := 10
 @export var game_end: PackedScene = preload("res://Scenes/UI/Game_end.tscn")
@@ -17,7 +17,8 @@ var _resource_timer: Timer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	resource_label.text = str("Resource:", resource)
-	health_label.text = str("Health:",$Tower.health)
+	
+	health_label.text = str("Health:", round($Tower.health))
 	add_resource()
 
 func add_resource():
@@ -36,8 +37,7 @@ func _on_add_interval_timeout():
 
 
 func _on_tower_body_entered(_body):
-	_resource_timer.wait_time = 2.0 - 0.1 * $Tower.level
-	health_label.text = str("Health:", $Tower.health)
+	health_label.text = str("Health:", round($Tower.health))
 	if $Tower.health<=0:
 		var obj : Control = game_end.instantiate()
 		add_child(obj)
