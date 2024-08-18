@@ -76,6 +76,7 @@ func scale_up():
 	_scale_iterations += 1
 	for child in _held_item_object.get_children():
 		child.scale += Vector2(ScaleFraction, ScaleFraction)
+		_held_item_object.mass=child.scale.x*child.scale.x*child.scale.x
 
 func scale_down():
 	if _held_item_object == null or _scale_iterations <= ScaleMin or not _is_scaling:

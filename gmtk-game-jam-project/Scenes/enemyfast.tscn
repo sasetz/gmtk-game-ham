@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ifsxcuvfwnvp"]
+[gd_scene load_steps=10 format=3 uid="uid://3g4nbud5clmx"]
 
 [ext_resource type="Script" path="res://Scripts/fastenemy.gd" id="1_oct7h"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_p5blc"]
