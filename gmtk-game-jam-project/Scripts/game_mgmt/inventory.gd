@@ -1,13 +1,16 @@
 extends Node2D
+class_name Inventory
 
 
 class InventoryItem:
-	pass
+	var text: String
+	var icon: CompressedTexture2D
+	func _init(name: String, img: CompressedTexture2D) -> void:
+		text = name
+		icon = img
 
 class StructureInventoryItem extends InventoryItem:
 	var scene_to_spawn: PackedScene
-	var text: String
-	var icon: CompressedTexture2D
 
 	func _init(scene: PackedScene, name: String, img: CompressedTexture2D) -> void:
 		scene_to_spawn = scene
@@ -15,12 +18,8 @@ class StructureInventoryItem extends InventoryItem:
 		icon = img
 
 class ActionInventoryItem extends InventoryItem:
-	var text: String
-	var icon: CompressedTexture2D
+	pass
 	
-	func _init(name: String, img: CompressedTexture2D) -> void:
-		text = name
-		icon = img
 
 @export_category("Building structures")
 @export var Ramp: PackedScene = preload("res://Scenes/ramp.tscn")
@@ -31,6 +30,7 @@ class ActionInventoryItem extends InventoryItem:
 
 @export_category("Inventory")
 @export var InventoryButtonScene: PackedScene = preload("res://Scenes/UI/inventory_button.tscn")
+@export var InventoryPreviewScene: PackedScene = preload("res://Scenes/UI/inventory_button.tscn")
 @export var InventorySize: int = 5
 @export var InventoryUIContainer: HBoxContainer
 
@@ -42,7 +42,7 @@ class ActionInventoryItem extends InventoryItem:
 
 # Inventory item definitions (singletons)
 
-var NONE_ITEM = InventoryItem.new() # currently not holding anything
+var NONE_ITEM = InventoryItem.new("none", null) # currently not holding anything
 @onready var RAMP_ITEM = StructureInventoryItem.new(Ramp, "Ramp", preload("res://Visual/Backgrounds/Треугольник.png"))
 @onready var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube", preload("res://Visual/Backgrounds/Квадрат.png"))
 @onready var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle", preload("res://Visual/Backgrounds/Круг.png"))
@@ -64,7 +64,26 @@ var _is_scaling := false
 # second: UI button
 var _inventory: Array = []
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+@onready var _item_roster := [
+	CUBE_ITEM,
+	RAMP_ITEM,
+	CIRCLE_ITEM,
+	ROTATE_ITEM,
+	SQUARE_ITEM,
+	RESIZE_ITEM,
+	DELETE_ITEM,
+]
+var _next_roster_index := 0
+var _preview_item: BaseButton 
+
+func _ready() -> void:
+	for i in _item_roster.size():
+		_add_next_item_from_roster()
+	_preview_item = InventoryPreviewScene.instantiate()
+	_preview_item.icon = _get_next_roster_item().icon
+	_preview_item.disabled = true
+	InventoryUIContainer.add_child(_preview_item)
+
 func _process(_delta: float) -> void:
 	if _held_item_object != null:
 		_held_item_object.position = get_global_mouse_position()
@@ -75,7 +94,7 @@ func scale_up():
 	_scale_iterations += 1
 	for child in _held_item_object.get_children():
 		child.scale += Vector2(ScaleFraction, ScaleFraction)
-		_held_item_object.mass=child.scale.x*child.scale.x*child.scale.x
+		_held_item_object.mass = pow(child.scale.x, 3)
 
 func scale_down():
 	if _held_item_object == null or _scale_iterations <= ScaleMin or not _is_scaling:
@@ -113,10 +132,14 @@ func add_item(item: InventoryItem):
 	)
 	# TODO: initialize button here
 	InventoryUIContainer.add_child(_inventory.back()[1])
-	_inventory.back()[1].connect("custom_press", _test_signal_process)
+	_inventory.back()[1].connect("custom_press", _inventory_button_pressed)
 	_inventory.back()[1].icon = _inventory.back()[0].icon
+	# update the preview's position
+	if _preview_item != null:
+		InventoryUIContainer.move_child(_preview_item, -1)
+		_preview_item.icon = _get_next_roster_item().icon
 
-func _test_signal_process(button: InventoryButton):
+func _inventory_button_pressed(button: InventoryButton):
 	# find the button's entry
 	var inventory_item = null
 	var entry_index := -1
@@ -142,12 +165,26 @@ func _test_signal_process(button: InventoryButton):
 
 	remove_item(entry_index)
 
+	_add_next_item_from_roster()
+
 
 func remove_item(index: int):
 	if index >= _inventory.size() or index < 0:
 		return
 	_inventory[index][1].queue_free()
 	_inventory.remove_at(index)
+
+
+func _add_next_item_from_roster():
+	# NOTE: we need to store the item beforehand, since add_item() uses the _next_roster_index
+	# and it needs it to point to the *next* item, not the one that we just added
+	var item = _item_roster[_next_roster_index]
+	_next_roster_index += 1
+	_next_roster_index %= _item_roster.size() # restricts the index to only this array's size
+	add_item(item)
+
+func _get_next_roster_item() -> Inventory.InventoryItem:
+	return _item_roster[_next_roster_index]
 
 
 func _spawn_object_at_mouse(shape: PackedScene):
