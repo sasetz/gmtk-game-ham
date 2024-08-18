@@ -25,3 +25,4 @@ var has_collision := true :
 func _ready() -> void:
 	Collision.disabled = not has_collision
 	freeze = not has_collision
+	Collision.connect("input_event", func(): print("test"))

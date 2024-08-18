@@ -62,16 +62,6 @@ offset_right = 545.0
 offset_bottom = -559.0
 text = "Health"
 
-[node name="Panel" type="Panel" parent="UI"]
-visible = false
-self_modulate = Color(1, 1, 1, 0)
-z_index = -6
-z_as_relative = false
-offset_left = -575.0
-offset_top = -602.0
-offset_right = 578.0
-offset_bottom = 51.0
-
 [node name="ResourceLabel" type="RichTextLabel" parent="UI"]
 offset_left = -575.0
 offset_top = -600.0

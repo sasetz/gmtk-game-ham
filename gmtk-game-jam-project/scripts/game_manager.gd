@@ -4,12 +4,10 @@ extends Node2D
 
 var _inventory_giver_timer: Timer
 @onready var _item_roster := [
-	inventory.CIRCLE_ITEM,
-	inventory.DELETE_ITEM,
-	inventory.CUBE_ITEM,
-	inventory.RAMP_ITEM,
-	inventory.CIRCLE_ITEM,
-	inventory.CUBE_ITEM,
+	inventory.RESIZE_ITEM,
+	inventory.RESIZE_ITEM,
+	inventory.RESIZE_ITEM,
+	inventory.ROTATE_ITEM,
 ]
 var _next_roster_index := 0
 
@@ -27,9 +25,6 @@ func _ready() -> void:
 	)
 	inventory.add_item(inventory.RAMP_ITEM)
 	inventory.add_item(inventory.CUBE_ITEM)
-
-
-var i:=0
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("MWU"):

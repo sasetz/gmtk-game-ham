@@ -14,11 +14,9 @@ class StructureInventoryItem extends InventoryItem:
 		text = name
 
 class ActionInventoryItem extends InventoryItem:
-	var scene_to_spawn: PackedScene
 	var text: String
 
-	func _init(scene: PackedScene, name: String) -> void:
-		scene_to_spawn = scene
+	func _init(name: String) -> void:
 		text = name
 
 
@@ -47,15 +45,18 @@ var NONE_ITEM = InventoryItem.new() # currently not holding anything
 @onready var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube")
 @onready var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle")
 @onready var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square")
-#@onready var RESIZE_ITEM = ActionInventoryItem.new()
-#@onready var ROTATE_ITEM = ActionInventoryItem.new()
-@onready var DELETE_ITEM = ActionInventoryItem.new(Delete, "Delete")
+@onready var RESIZE_ITEM = ActionInventoryItem.new("Resize")
+@onready var ROTATE_ITEM = ActionInventoryItem.new("Rotate")
+@onready var DELETE_ITEM = ActionInventoryItem.new("Delete")
 
 const Pi:=3.14
 
 var _current_item: InventoryItem = NONE_ITEM
 var _scale_iterations: int = 0
 var _held_item_object: Node2D = null
+
+var _is_rotating := false
+var _is_scaling := false
 
 # first: inventory item
 # second: UI button
@@ -67,26 +68,26 @@ func _process(_delta: float) -> void:
 		_held_item_object.position = get_global_mouse_position()
 
 func scale_up():
-	if _held_item_object == null or _scale_iterations >= ScaleMax:
+	if _held_item_object == null or _scale_iterations >= ScaleMax or not _is_scaling:
 		return
 	_scale_iterations += 1
 	for child in _held_item_object.get_children():
 		child.scale += Vector2(ScaleFraction, ScaleFraction)
 
 func scale_down():
-	if _held_item_object == null or _scale_iterations <= ScaleMin:
+	if _held_item_object == null or _scale_iterations <= ScaleMin or not _is_scaling:
 		return
 	_scale_iterations -= 1
 	for child in _held_item_object.get_children():
 		child.scale -= Vector2(ScaleFraction, ScaleFraction)
 
 func rotate_clockwise():
-	if _held_item_object == null:
+	if _held_item_object == null or not _is_rotating:
 		return
 	_held_item_object.rotation += Pi / RotationFraction
 
 func rotate_counter():
-	if _held_item_object == null:
+	if _held_item_object == null or not _is_rotating:
 		return
 	_held_item_object.rotation -= Pi / RotationFraction
 
@@ -97,6 +98,8 @@ func release_item():
 	_held_item_object.position = get_global_mouse_position()
 	_held_item_object = null # we don't delete the shape, we just clear this variable!
 	_scale_iterations = 0
+	_is_rotating = false
+	_is_scaling = false
 
 func add_item(item: InventoryItem):
 	if _inventory.size() >= InventorySize:
@@ -125,16 +128,14 @@ func _test_signal_process(button: InventoryButton):
 		return
 	
 	if _current_item != NONE_ITEM:
-		add_item(_current_item)
+		add_item(_current_item) # TODO: fix this, it causes various glitches
 	
+	_current_item = inventory_item
 	if inventory_item is StructureInventoryItem:
-		_current_item = inventory_item
 		_spawn_preview()
 	elif inventory_item is ActionInventoryItem:
-		match inventory_item:
-			DELETE_ITEM:
-				_spawn_action_preview()
-				print("Action")
+		_spawn_action_preview()
+
 	remove_item(entry_index)
 
 
@@ -154,13 +155,26 @@ func _spawn_object_at_mouse(shape: PackedScene):
 func _spawn_action_preview() -> void:
 	if _held_item_object != null:
 		_held_item_object.queue_free()
-	if _current_item == NONE_ITEM:
+	if _current_item == NONE_ITEM or not (_current_item is ActionInventoryItem):
 		return
+	print("spawning action prev")
 	
-	var object : BuildingStructure = _spawn_object_at_mouse(_current_item.scene_to_spawn)
+	var object : BuildingStructure = _spawn_object_at_mouse(Cube) # TODO: change this to pick cubes from the ground
 	object.has_collision = false
 	add_child(object)
 	_held_item_object = object
+	match _current_item:
+		DELETE_ITEM:
+			# TODO: remove the block here
+			print("Deleting the block that was picked up!")
+			object.queue_free()
+			_held_item_object = null
+		RESIZE_ITEM:
+			_is_scaling = true
+		ROTATE_ITEM:
+			_is_rotating = true
+		_:
+			print("Unknown action item!")
 
 func _spawn_preview() -> void:
 	if _held_item_object != null:

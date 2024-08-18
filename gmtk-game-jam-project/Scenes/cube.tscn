@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://djyp8ncns1cce"]
+[gd_scene load_steps=5 format=3 uid="uid://djyp8ncns1cce"]
 
 [ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_kv5qh"]
-[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_1sw4b"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_fo07c"]
 [ext_resource type="Texture2D" uid="uid://covpbs713r2vj" path="res://Visual/Backgrounds/Квадрат.png" id="4_dem5n"]
 
@@ -14,11 +13,6 @@ script = ExtResource("2_fo07c")
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
 visible = false
 shape = SubResource("RectangleShape2D_gyh0e")
-script = ExtResource("2_1sw4b")
-size = Vector2(70, 70)
-corner_radius = 5.0
-square = true
-style = 2
 
 [node name="Node2D" type="Node2D" parent="." index="1"]
 
