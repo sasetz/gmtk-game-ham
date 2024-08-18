@@ -9,6 +9,7 @@ class_name MobNPC
 @export var DAMAGE_INTERVAL := 0.5
 @export var DAMAGE := 1
 @export var TOWER_DAMAGE := 10
+@export var LIFE_TIME := 10.0
 @export var SHOULD_DAMAGE_WHEN_ON_TOP := false
 
 var die_timer: Timer
@@ -18,7 +19,7 @@ var should_damage := true
 func _ready() -> void:
 	die_timer = Timer.new()
 	add_child(die_timer)
-	die_timer.wait_time = 10.0
+	die_timer.wait_time = LIFE_TIME
 	die_timer.one_shot = true
 	die_timer.autostart = true
 	die_timer.start()
