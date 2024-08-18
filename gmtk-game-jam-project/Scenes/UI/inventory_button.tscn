@@ -9,6 +9,7 @@ custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
 icon = ExtResource("1_i8hva")
+flat = true
 expand_icon = true
 script = ExtResource("1_3j6sa")
 
