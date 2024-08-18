@@ -26,9 +26,9 @@ func add_resource():
 	_resource_timer.wait_time = 2.0
 	_resource_timer.one_shot = true
 	_resource_timer.autostart = true
-	_resource_timer.start()
 	_resource_timer.timeout.connect(_on_add_interval_timeout)
 	add_child(_resource_timer)
+	_resource_timer.start()
 	
 func _on_add_interval_timeout():
 	resource += 1

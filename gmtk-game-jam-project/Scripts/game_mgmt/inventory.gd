@@ -4,13 +4,12 @@ extends Node2D
 class InventoryItem:
 	pass
 
-# TODO: replace name replacement with custom sprites
 class StructureInventoryItem extends InventoryItem:
 	var scene_to_spawn: PackedScene
 	var text: String
 	var icon: CompressedTexture2D
 
-	func _init(scene: PackedScene, name: String, img:CompressedTexture2D) -> void:
+	func _init(scene: PackedScene, name: String, img: CompressedTexture2D) -> void:
 		scene_to_spawn = scene
 		text = name
 		icon = img
@@ -19,7 +18,7 @@ class ActionInventoryItem extends InventoryItem:
 	var text: String
 	var icon: CompressedTexture2D
 	
-	func _init(name: String, img:CompressedTexture2D) -> void:
+	func _init(name: String, img: CompressedTexture2D) -> void:
 		text = name
 		icon = img
 
@@ -44,15 +43,15 @@ class ActionInventoryItem extends InventoryItem:
 # Inventory item definitions (singletons)
 
 var NONE_ITEM = InventoryItem.new() # currently not holding anything
-@onready var RAMP_ITEM = StructureInventoryItem.new(Ramp, "Ramp",preload("res://Visual/Backgrounds/Треугольник.png"))
-@onready var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube",preload("res://Visual/Backgrounds/Квадрат.png"))
-@onready var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle",preload("res://Visual/Backgrounds/Круг.png"))
-@onready var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square",preload("res://Visual/Backgrounds/Прямоугольник.png"))
-@onready var RESIZE_ITEM = ActionInventoryItem.new("Resize",preload("res://Visual/UI/Размер.png"))
-@onready var ROTATE_ITEM = ActionInventoryItem.new("Rotate",preload("res://Visual/UI/Форма.png"))
-@onready var DELETE_ITEM = ActionInventoryItem.new("Delete",preload("res://Visual/UI/Удалить.png"))
+@onready var RAMP_ITEM = StructureInventoryItem.new(Ramp, "Ramp", preload("res://Visual/Backgrounds/Треугольник.png"))
+@onready var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube", preload("res://Visual/Backgrounds/Квадрат.png"))
+@onready var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle", preload("res://Visual/Backgrounds/Круг.png"))
+@onready var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square", preload("res://Visual/Backgrounds/Прямоугольник.png"))
+@onready var RESIZE_ITEM = ActionInventoryItem.new("Resize", preload("res://Visual/UI/Размер.png"))
+@onready var ROTATE_ITEM = ActionInventoryItem.new("Rotate", preload("res://Visual/UI/Форма.png"))
+@onready var DELETE_ITEM = ActionInventoryItem.new("Delete", preload("res://Visual/UI/Удалить.png"))
 
-const Pi:=3.14
+const Pi := 3.14
 
 var _current_item: InventoryItem = NONE_ITEM
 var _scale_iterations: int = 0
@@ -104,6 +103,7 @@ func release_item():
 	_scale_iterations = 0
 	_is_rotating = false
 	_is_scaling = false
+	_current_item = NONE_ITEM
 
 func add_item(item: InventoryItem):
 	if _inventory.size() >= InventorySize:
@@ -132,7 +132,7 @@ func _test_signal_process(button: InventoryButton):
 		return
 	
 	if _current_item != NONE_ITEM:
-		add_item(_current_item) # TODO: fix this, it causes various glitches
+		add_item(_current_item)
 	
 	_current_item = inventory_item
 	if inventory_item is StructureInventoryItem:
