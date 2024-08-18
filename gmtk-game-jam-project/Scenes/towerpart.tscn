@@ -75,7 +75,7 @@ frame_progress = 0.663066
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 visible = false
 z_index = -1
-position = Vector2(-49, 12)
+position = Vector2(-47, 12)
 sprite_frames = SubResource("SpriteFrames_ojho8")
 frame_progress = 0.634885
 flip_h = true

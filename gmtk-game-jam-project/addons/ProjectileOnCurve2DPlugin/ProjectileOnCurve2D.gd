@@ -22,4 +22,5 @@ func _physics_process(delta):
 	for i in range(_stepAmount):
 		_velocity.y += _gravity * delta
 		position += _velocity * delta
+		print(position)
 	rotation = _velocity.angle()

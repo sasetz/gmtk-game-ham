@@ -113,4 +113,3 @@ func draw_handles(overlay: Control) -> Array:
 		handles[i].draw(overlay)
 	
 	return handles
-

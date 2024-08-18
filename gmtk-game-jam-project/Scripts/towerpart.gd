@@ -58,8 +58,8 @@ func _end():
 func fire_timeout():
 	var projectile:= arrow.instantiate()
 	add_child(projectile)
-	print($AnimatedSprite2D.get_global_position())
+	print($AnimatedSprite2D.get_global_position()," ",get_global_mouse_position())
 	projectile.launch($AnimatedSprite2D.get_global_position(),
-	get_global_mouse_position(),9.0,10)
-	$Timer.wait_time = 2.5
+	get_global_mouse_position(),9.0,1)
+	$Timer.wait_time = 12.5
 	$Timer.start()
