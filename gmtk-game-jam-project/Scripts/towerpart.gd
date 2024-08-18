@@ -2,12 +2,13 @@ extends Node2D
 class_name Tower_Part
 var choosing:bool
 @export var allvariants:Array
+@export var arrow:PackedScene = preload("res://Scenes/arrow.tscn")
 var i:=0
-
-var tower: Tower 
+var reload:=false
+var tower: tower 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	tower= get_parent() as Tower
+	tower= get_parent() as tower
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,6 +36,16 @@ func _on_button_pressed():
 		
 func _end():
 	match i:
+		2:
+			$AnimatedSprite2D.visible=true
+			$AnimatedSprite2D.play("default")
+			$AnimatedSprite2D2.visible=true
+			$AnimatedSprite2D2.play("default")
+			$Timer.wait_time = 1.8
+			$Timer.one_shot = true
+			$Timer.autostart = true
+			$Timer.start()
+			$Timer.timeout.connect(fire_timeout)
 		3:
 			tower.INCOME_TIME-=0.2
 			print(tower.INCOME_TIME)
@@ -43,3 +54,12 @@ func _end():
 	choosing=false
 	$Button.disabled=true
 	$Button.visible=false
+	
+func fire_timeout():
+	var projectile:= arrow.instantiate()
+	add_child(projectile)
+	print($AnimatedSprite2D.get_global_position())
+	projectile.launch($AnimatedSprite2D.get_global_position(),
+	get_global_mouse_position(),9.0,10)
+	$Timer.wait_time = 2.5
+	$Timer.start()

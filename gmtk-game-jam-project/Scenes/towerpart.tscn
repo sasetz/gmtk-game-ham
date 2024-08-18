@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c85fq640lnwqr"]
+[gd_scene load_steps=15 format=3 uid="uid://c85fq640lnwqr"]
 
 [ext_resource type="Script" path="res://Scripts/towerpart.gd" id="1_3ldg3"]
 [ext_resource type="Texture2D" uid="uid://dy6xgccqx7ttv" path="res://Visual/Backgrounds/Башня основа.png" id="1_gqg6t"]
@@ -6,6 +6,51 @@
 [ext_resource type="Texture2D" uid="uid://ca5we5t1xb0gn" path="res://Visual/Backgrounds/Башня атака.png" id="4_len5m"]
 [ext_resource type="Texture2D" uid="uid://dlqhlnpd388nj" path="res://Visual/Backgrounds/Башня добыча.png" id="5_dkndy"]
 [ext_resource type="Texture2D" uid="uid://bwwab10tj8i8x" path="res://Visual/Backgrounds/Башня строительство.png" id="6_82iq1"]
+[ext_resource type="Texture2D" uid="uid://1dhb5vfvmts1" path="res://Visual/Animations/Балиста перезарядка.png" id="7_amta1"]
+[ext_resource type="Texture2D" uid="uid://dmpxblt4uosmr" path="res://Visual/Animations/reload.png" id="8_jd13o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upn5h"]
+atlas = ExtResource("7_amta1")
+region = Rect2(0, 0, 40, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oavay"]
+atlas = ExtResource("7_amta1")
+region = Rect2(40, 0, 40, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ar1k0"]
+atlas = ExtResource("7_amta1")
+region = Rect2(80, 0, 40, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppp53"]
+atlas = ExtResource("7_amta1")
+region = Rect2(120, 0, 40, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anbdc"]
+atlas = ExtResource("8_jd13o")
+region = Rect2(160, 0, 40, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ojho8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upn5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oavay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ar1k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppp53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anbdc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [node name="Towerpart" type="Node2D"]
 script = ExtResource("1_3ldg3")
@@ -19,5 +64,22 @@ offset_left = -49.0
 offset_top = -32.0
 offset_right = 47.0
 offset_bottom = 32.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(46, 12)
+sprite_frames = SubResource("SpriteFrames_ojho8")
+frame_progress = 0.663066
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = -1
+position = Vector2(-49, 12)
+sprite_frames = SubResource("SpriteFrames_ojho8")
+frame_progress = 0.634885
+flip_h = true
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
