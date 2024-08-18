@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkqmqyq2pbwbx"]
+[gd_scene load_steps=15 format=3 uid="uid://dkqmqyq2pbwbx"]
 
 [ext_resource type="Script" path="res://Scripts/friend.gd" id="1_kyjyt"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_xqyqq"]
 [ext_resource type="Texture2D" uid="uid://b702eudfmq7t" path="res://Visual/Animations/Друг1 ходьба.png" id="3_6jib2"]
+[ext_resource type="Texture2D" uid="uid://dnauxscend0ia" path="res://Visual/Animations/Друг2 ходьба.png" id="4_545lb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
 radius = 16.0
@@ -24,6 +25,22 @@ region = Rect2(62, 0, 31, 65)
 atlas = ExtResource("3_6jib2")
 region = Rect2(93, 0, 31, 65)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjgrn"]
+atlas = ExtResource("4_545lb")
+region = Rect2(0, 0, 33, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqe1n"]
+atlas = ExtResource("4_545lb")
+region = Rect2(33, 0, 33, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_443pb"]
+atlas = ExtResource("4_545lb")
+region = Rect2(66, 0, 33, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pkqa"]
+atlas = ExtResource("4_545lb")
+region = Rect2(99, 0, 33, 71)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_24x37"]
 animations = [{
 "frames": [{
@@ -42,6 +59,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjgrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqe1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_443pb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pkqa")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
 [node name="Friend" type="CharacterBody2D" groups=["friend"]]
@@ -63,4 +97,5 @@ shape = SubResource("CapsuleShape2D_x5cul")
 position = Vector2(1.5, -27.25)
 scale = Vector2(0.870968, 0.823077)
 sprite_frames = SubResource("SpriteFrames_24x37")
-frame_progress = 0.561797
+animation = &"new_animation"
+frame_progress = 0.328473
