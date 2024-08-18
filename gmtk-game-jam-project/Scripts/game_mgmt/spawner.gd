@@ -52,7 +52,6 @@ func _on_spawn_interval_timeout() -> void:
 	get_tree().current_scene.add_child(entity)
 	entity.LIFE_TIME=entity.LIFE_TIME*$"../..".LIFE_TIME_MODIFICATOR
 	entity.die_timer.wait_time=entity.LIFE_TIME
-	print("life",entity.LIFE_TIME)
 	if _current_spawner == _spawner1:
 		entity.DIRECTION = 1
 		entity.scale.x = 1
