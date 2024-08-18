@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://f5a60swo65hu"]
+
+[ext_resource type="Script" path="res://addons/ProjectileOnCurve2DPlugin/ProjectileOnCurve2D.gd" id="1_t3b2h"]
+[ext_resource type="Texture2D" uid="uid://bexrsgdaqpfae" path="res://Visual/Animations/Метеорит.png" id="2_5a3gr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gs4t"]
+atlas = ExtResource("2_5a3gr")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0xvf"]
+atlas = ExtResource("2_5a3gr")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdb21"]
+atlas = ExtResource("2_5a3gr")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1tb67"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gs4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0xvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdb21")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Meteor" type="Node2D"]
+script = ExtResource("1_t3b2h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1tb67")
+frame_progress = 0.286347

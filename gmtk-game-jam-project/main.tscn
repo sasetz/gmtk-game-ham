@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ivljoeow546n"]
+[gd_scene load_steps=36 format=3 uid="uid://ivljoeow546n"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
 [ext_resource type="PackedScene" uid="uid://bwym84b4eelp0" path="res://Scenes/tower.tscn" id="1_vyirh"]
@@ -8,13 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://bg5sju7pyil7" path="res://Visual/UI/Монетки.png" id="6_a1i2i"]
 [ext_resource type="Texture2D" uid="uid://dtnwnqe1ng4rx" path="res://Visual/Backgrounds/Задник.png" id="7_djedb"]
 [ext_resource type="Texture2D" uid="uid://c8t2iuciwksii" path="res://Visual/Screens/Ветер6.png" id="7_xeqyv"]
+[ext_resource type="Texture2D" uid="uid://b8cxytnwf2e1y" path="res://Visual/Screens/tuman1.png" id="8_cv15u"]
 [ext_resource type="Texture2D" uid="uid://c06x8ufn3csv4" path="res://Visual/Screens/Ветер1.png" id="8_qmcxi"]
+[ext_resource type="Texture2D" uid="uid://cxpahns8eiwb1" path="res://Visual/Screens/tuman2.png" id="9_nfmgy"]
 [ext_resource type="Texture2D" uid="uid://bmgfape2jorki" path="res://Visual/Screens/Ветер2.png" id="9_ryh1b"]
+[ext_resource type="Texture2D" uid="uid://bmc54i5ckp57h" path="res://Visual/Screens/tuman3.png" id="10_46ot1"]
 [ext_resource type="Texture2D" uid="uid://bkabfumkixux8" path="res://Visual/Screens/Ветер3.png" id="10_jy2cl"]
 [ext_resource type="Texture2D" uid="uid://ckk5a4d5anus1" path="res://Visual/Screens/Ветер4.png" id="11_oec58"]
+[ext_resource type="Texture2D" uid="uid://bhwc0rfgh3bjb" path="res://Visual/Screens/tuman4.png" id="11_yid8x"]
 [ext_resource type="Texture2D" uid="uid://dfjm5jvrl1egt" path="res://Visual/Screens/Ветер5.png" id="12_c7e7a"]
+[ext_resource type="Texture2D" uid="uid://qdpjc1ytmua0" path="res://Visual/Screens/tuman5.png" id="12_dirie"]
+[ext_resource type="Texture2D" uid="uid://58snx4h07vxj" path="res://Visual/Screens/tuman6.png" id="13_lhnfk"]
 [ext_resource type="Script" path="res://weather.gd" id="14_gljpk"]
+[ext_resource type="Texture2D" uid="uid://d0g3m10jx8fq0" path="res://Visual/Screens/tuman7.png" id="14_nwevj"]
 [ext_resource type="Texture2D" uid="uid://elmo5koikn2f" path="res://Visual/Screens/Дождь1.png" id="14_v0a40"]
+[ext_resource type="Texture2D" uid="uid://bnf1ifjc4u0tc" path="res://Visual/Screens/tuman8.png" id="15_1vv7b"]
 [ext_resource type="Texture2D" uid="uid://b50fpx31aepch" path="res://Visual/Screens/Дождь2.png" id="15_mk5sk"]
 [ext_resource type="Texture2D" uid="uid://b7xsbdj3617vn" path="res://Visual/Screens/Дождь3.png" id="16_aymgt"]
 [ext_resource type="Texture2D" uid="uid://cspmwemk6y1rj" path="res://Visual/Screens/Дождь4.png" id="17_o2wer"]
@@ -30,6 +38,35 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n30pi"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_cv15u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_nfmgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_46ot1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_yid8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dirie")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_lhnfk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_nwevj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_1vv7b")
+}],
+"loop": true,
+"name": &"Tuman",
+"speed": 4.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("7_xeqyv")
@@ -99,7 +136,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Туман",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("left_spawner", "right_spawner", "health_label", "resource_label", "first_camera", "second_camera", "third_camera")]
@@ -188,11 +225,13 @@ enabled = false
 zoom = Vector2(0.605, 0.605)
 
 [node name="Weather" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 1
 position = Vector2(-0.999969, -411)
 scale = Vector2(1.03021, 1)
 sprite_frames = SubResource("SpriteFrames_n30pi")
-animation = &"Туман"
-frame_progress = 0.811623
+animation = &"Tuman"
+frame_progress = 0.088136
 script = ExtResource("14_gljpk")
 
 [node name="Weather_timer" type="Timer" parent="Weather"]
