@@ -6,8 +6,10 @@ var _inventory_giver_timer: Timer
 @onready var _item_roster := [
 	inventory.CUBE_ITEM,
 	inventory.RAMP_ITEM,
-	inventory.RESIZE_ITEM,
+	inventory.CIRCLE_ITEM,
 	inventory.ROTATE_ITEM,
+	inventory.SQUARE_ITEM,
+	inventory.RESIZE_ITEM,
 	inventory.DELETE_ITEM,
 ]
 var _next_roster_index := 0

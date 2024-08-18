@@ -8,17 +8,20 @@ class InventoryItem:
 class StructureInventoryItem extends InventoryItem:
 	var scene_to_spawn: PackedScene
 	var text: String
+	var icon: CompressedTexture2D
 
-	func _init(scene: PackedScene, name: String) -> void:
+	func _init(scene: PackedScene, name: String, img:CompressedTexture2D) -> void:
 		scene_to_spawn = scene
 		text = name
+		icon = img
 
 class ActionInventoryItem extends InventoryItem:
 	var text: String
-
-	func _init(name: String) -> void:
+	var icon: CompressedTexture2D
+	
+	func _init(name: String, img:CompressedTexture2D) -> void:
 		text = name
-
+		icon = img
 
 @export_category("Building structures")
 @export var Ramp: PackedScene = preload("res://Scenes/ramp.tscn")
@@ -41,13 +44,13 @@ class ActionInventoryItem extends InventoryItem:
 # Inventory item definitions (singletons)
 
 var NONE_ITEM = InventoryItem.new() # currently not holding anything
-@onready var RAMP_ITEM = StructureInventoryItem.new(Ramp, "Ramp")
-@onready var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube")
-@onready var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle")
-@onready var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square")
-@onready var RESIZE_ITEM = ActionInventoryItem.new("Resize")
-@onready var ROTATE_ITEM = ActionInventoryItem.new("Rotate")
-@onready var DELETE_ITEM = ActionInventoryItem.new("Delete")
+@onready var RAMP_ITEM = StructureInventoryItem.new(Ramp, "Ramp",preload("res://Visual/Backgrounds/Треугольник.png"))
+@onready var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube",preload("res://Visual/Backgrounds/Квадрат.png"))
+@onready var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle",preload("res://Visual/Backgrounds/Круг.png"))
+@onready var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square",preload("res://Visual/Backgrounds/Прямоугольник.png"))
+@onready var RESIZE_ITEM = ActionInventoryItem.new("Resize",preload("res://Visual/UI/Размер.png"))
+@onready var ROTATE_ITEM = ActionInventoryItem.new("Rotate",preload("res://Visual/UI/Форма.png"))
+@onready var DELETE_ITEM = ActionInventoryItem.new("Delete",preload("res://Visual/UI/Удалить.png"))
 
 const Pi:=3.14
 
@@ -110,7 +113,7 @@ func add_item(item: InventoryItem):
 	# TODO: initialize button here
 	InventoryUIContainer.add_child(_inventory.back()[1])
 	_inventory.back()[1].connect("custom_press", _test_signal_process)
-	_inventory.back()[1].text = _inventory.back()[0].text
+	_inventory.back()[1].icon = _inventory.back()[0].icon
 
 func _test_signal_process(button: InventoryButton):
 	# find the button's entry

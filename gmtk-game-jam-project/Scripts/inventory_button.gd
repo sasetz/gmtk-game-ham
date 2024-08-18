@@ -9,4 +9,3 @@ func _ready() -> void:
 
 func _pressed() -> void:
 	custom_press.emit(self)
-
