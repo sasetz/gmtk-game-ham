@@ -14,9 +14,16 @@ class_name MobNPC
 
 var die_timer: Timer
 var damage_timer: Timer
+var slide_timer: Timer
 var should_damage := true
 var weath: Weather
 func _ready() -> void:
+	slide_timer=Timer.new()
+	slide_timer.wait_time=100.0
+	add_child(slide_timer)
+	slide_timer.start()
+	slide_timer.stop()
+	
 	die_timer = Timer.new()
 	add_child(die_timer)
 	die_timer.wait_time = LIFE_TIME
@@ -60,6 +67,19 @@ func _physics_process(delta: float) -> void:
 		velocity.y*=0.1
 		if position.y>=-10:
 			velocity.x*=0.8
+
+	
+	if weath.type=="Snow":
+		if not is_on_wall():
+			if slide_timer.is_stopped():
+				slide_timer.wait_time=100.0
+				slide_timer.start()
+			velocity.x=velocity.x*0.5+velocity.x*(100.0-slide_timer.time_left)*(100.0-slide_timer.time_left)*0.1
+		else:
+			slide_timer.stop()
+			velocity.y*=0.7
+	else:
+		slide_timer.stop()
 		
 	move_and_slide()
 

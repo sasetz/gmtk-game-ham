@@ -11,7 +11,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _new_weather_timeout():
-	match randi_range(1,5):
+	match randi_range(1,9):
 		1:
 			if not visible:
 				match randi_range(1,2):
@@ -35,6 +35,13 @@ func _new_weather_timeout():
 			type="Rain"
 			visible=true
 			print("RAIN")
+			play("default")
+			$Weather_timer.wait_time=5.0
+			$Weather_timer.start()
+		5,6,7,8,9:
+			type="Snow"
+			visible=true
+			print("SNOW")
 			play("default")
 			$Weather_timer.wait_time=5.0
 			$Weather_timer.start()
