@@ -1,12 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwnj7yfvtyp4y"]
+[gd_scene load_steps=17 format=3 uid="uid://cwnj7yfvtyp4y"]
 
 [ext_resource type="Script" path="res://Scripts/towerpart.gd" id="1_3ldg3"]
 [ext_resource type="Texture2D" uid="uid://dy6xgccqx7ttv" path="res://Visual/Backgrounds/Башня основа.png" id="1_gqg6t"]
-[ext_resource type="Texture2D" uid="uid://u3j05vjbgyt6" path="res://Visual/Backgrounds/Башня окно.png" id="2_h4g2g"]
+[ext_resource type="Texture2D" uid="uid://b4mn2fb1c426a" path="res://Visual/Backgrounds/Башня ускорение.png" id="2_lmhas"]
+[ext_resource type="Texture2D" uid="uid://iy6ja2xowq2n" path="res://Visual/Backgrounds/Башня склад.png" id="3_aj85x"]
 [ext_resource type="Texture2D" uid="uid://ca5we5t1xb0gn" path="res://Visual/Backgrounds/Башня атака.png" id="4_len5m"]
 [ext_resource type="Texture2D" uid="uid://dlqhlnpd388nj" path="res://Visual/Backgrounds/Башня добыча.png" id="5_dkndy"]
 [ext_resource type="Texture2D" uid="uid://bwwab10tj8i8x" path="res://Visual/Backgrounds/Башня строительство.png" id="6_82iq1"]
-[ext_resource type="Texture2D" uid="uid://1dhb5vfvmts1" path="res://Visual/Animations/Балиста перезарядка.png" id="7_amta1"]
+[ext_resource type="Texture2D" uid="uid://cuwk20ilqitvk" path="res://Visual/Animations/Балиста перезарядка.png" id="7_amta1"]
+[ext_resource type="Texture2D" uid="uid://bg8rml5csv82v" path="res://Visual/Backgrounds/Башня допжизнь.png" id="7_q4ycj"]
 [ext_resource type="Texture2D" uid="uid://dmpxblt4uosmr" path="res://Visual/Animations/reload.png" id="8_jd13o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_upn5h"]
@@ -54,7 +56,7 @@ animations = [{
 
 [node name="Towerpart" type="Node2D"]
 script = ExtResource("1_3ldg3")
-allvariants = [ExtResource("2_h4g2g"), ExtResource("1_gqg6t"), ExtResource("4_len5m"), ExtResource("5_dkndy"), ExtResource("6_82iq1")]
+allvariants = [ExtResource("2_lmhas"), ExtResource("3_aj85x"), ExtResource("4_len5m"), ExtResource("5_dkndy"), ExtResource("6_82iq1"), ExtResource("7_q4ycj")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_gqg6t")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dff2oe11a5eir"]
 
-[ext_resource type="Script" path="res://Scenes/flightenemy.gd" id="1_uu4ww"]
+[ext_resource type="Script" path="res://Scripts/flightenemy.gd" id="1_uu4ww"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_a2ryx"]
 [ext_resource type="Texture2D" uid="uid://8biuot8rh6et" path="res://Visual/Animations/Враг4 ходьба1.png" id="3_ef54o"]
 [ext_resource type="Texture2D" uid="uid://cg5vy11vlywll" path="res://Visual/Animations/Враг4 ходьба2.png" id="4_l8rh1"]

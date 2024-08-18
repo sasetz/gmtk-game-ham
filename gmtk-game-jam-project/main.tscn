@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ivljoeow546n"]
+[gd_scene load_steps=28 format=3 uid="uid://ivljoeow546n"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
 [ext_resource type="PackedScene" uid="uid://bwym84b4eelp0" path="res://Scenes/tower.tscn" id="1_vyirh"]
@@ -14,6 +14,17 @@
 [ext_resource type="Texture2D" uid="uid://ckk5a4d5anus1" path="res://Visual/Screens/Ветер4.png" id="11_oec58"]
 [ext_resource type="Texture2D" uid="uid://dfjm5jvrl1egt" path="res://Visual/Screens/Ветер5.png" id="12_c7e7a"]
 [ext_resource type="Script" path="res://weather.gd" id="14_gljpk"]
+[ext_resource type="Texture2D" uid="uid://elmo5koikn2f" path="res://Visual/Screens/Дождь1.png" id="14_v0a40"]
+[ext_resource type="Texture2D" uid="uid://b50fpx31aepch" path="res://Visual/Screens/Дождь2.png" id="15_mk5sk"]
+[ext_resource type="Texture2D" uid="uid://b7xsbdj3617vn" path="res://Visual/Screens/Дождь3.png" id="16_aymgt"]
+[ext_resource type="Texture2D" uid="uid://cspmwemk6y1rj" path="res://Visual/Screens/Дождь4.png" id="17_o2wer"]
+[ext_resource type="Texture2D" uid="uid://ii4wvvlf37by" path="res://Visual/Screens/Снег1.png" id="18_pxvee"]
+[ext_resource type="Texture2D" uid="uid://cgpe6h6rolfmi" path="res://Visual/Screens/Снег2.png" id="19_ln2m3"]
+[ext_resource type="Texture2D" uid="uid://dwga18nnb5v7y" path="res://Visual/Screens/Снег3.png" id="20_0cgpw"]
+[ext_resource type="Texture2D" uid="uid://cs62doia1gfee" path="res://Visual/Screens/Снег4.png" id="21_3baj4"]
+[ext_resource type="Texture2D" uid="uid://7mfj1y564rc3" path="res://Visual/Screens/Туман1.png" id="22_mih06"]
+[ext_resource type="Texture2D" uid="uid://b0v6a4h1dyii3" path="res://Visual/Screens/Туман2.png" id="23_g1boh"]
+[ext_resource type="Texture2D" uid="uid://brwx3k183or4b" path="res://Visual/Screens/Туман3.png" id="24_dqelu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
 
@@ -39,8 +50,56 @@ animations = [{
 "texture": ExtResource("12_c7e7a")
 }],
 "loop": true,
-"name": &"default",
+"name": &"Ветер",
 "speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_v0a40")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_mk5sk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_aymgt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_o2wer")
+}],
+"loop": true,
+"name": &"Дождь",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_pxvee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ln2m3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_0cgpw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_3baj4")
+}],
+"loop": true,
+"name": &"Снег",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_mih06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_g1boh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_dqelu")
+}],
+"loop": true,
+"name": &"Туман",
+"speed": 5.0
 }]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("left_spawner", "right_spawner", "health_label", "resource_label", "first_camera", "second_camera", "third_camera")]
@@ -129,11 +188,11 @@ enabled = false
 zoom = Vector2(0.605, 0.605)
 
 [node name="Weather" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(-0.999969, -411)
 scale = Vector2(1.03021, 1)
 sprite_frames = SubResource("SpriteFrames_n30pi")
-frame = 2
+animation = &"Туман"
+frame_progress = 0.811623
 script = ExtResource("14_gljpk")
 
 [node name="Weather_timer" type="Timer" parent="Weather"]
