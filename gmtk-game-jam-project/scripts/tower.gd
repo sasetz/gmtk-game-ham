@@ -1,16 +1,17 @@
 extends Area2D
-class_name tower
+class_name Tower
 @export var TowerPart: PackedScene
 @export var level := 1
 @export var REGENERATION:=0.0
 @export var INCOME_TIME:=2.0
 const ENEMY_DAMAGE := 10
 const FRIEND_DAMAGE := -100
-const Peoples:=1.0
+const Peoples :=1.0
 var health := 200.0
-var maxhealth:=200.0
+var maxhealth :=200.0
 var number_in := 1.0
 var MAIN: main
+
 func _ready() -> void:
 	MAIN=get_parent() as main
 	$Timer.wait_time = 1.0
@@ -18,19 +19,19 @@ func _ready() -> void:
 	$Timer.autostart = true
 	$Timer.start()
 	$Timer.timeout.connect(_regenerate_timeout)
-	level=clamp(number_in / Peoples, 1, 15)
+	level = clamp(number_in / Peoples, 1, 15)
 	update_level()
 	
 func _regenerate_timeout()->void:
-	if health+REGENERATION>=maxhealth:
-		health=maxhealth
+	if health + REGENERATION>=maxhealth:
+		health = maxhealth
 	else:
-		health+=REGENERATION
+		health += REGENERATION
 	MAIN.health_label.text=str("Health:", round(health))
 	$Timer.start()
 
 func update_level():
-	if level+1==clamp(number_in / Peoples, 1, 15):
+	if level + 1 == clamp(number_in / Peoples, 1, 15):
 		add_new_part()
 		health+=100
 		maxhealth+=100
@@ -48,7 +49,9 @@ func add_new_part()->void:
 	add_child(obj)
 	obj.position.y=-64*level-32
 
-func _on_body_entered(body: MobNPC) -> void:
+func _on_body_entered(body: Node) -> void:
+	if not (body is MobNPC):
+		return
 	if body.is_in_group("enemy"):
 		print("Enemy reached the tower!")
 		body.queue_free()
