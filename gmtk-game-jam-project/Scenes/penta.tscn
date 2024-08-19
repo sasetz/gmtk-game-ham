@@ -1,10 +1,40 @@
-[gd_scene load_steps=6 format=3 uid="uid://thktdagjhr0i"]
+[gd_scene load_steps=11 format=3 uid="uid://cvmhrexk7kda4"]
 
 [ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_pgpnd"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_g04ie"]
 [ext_resource type="Texture2D" uid="uid://dy5fwsdi0bdap" path="res://Visual/Backgrounds/Пятиугольник разрушение1.png" id="4_tcs8p"]
 [ext_resource type="Texture2D" uid="uid://db2y7pabisoic" path="res://Visual/Backgrounds/Пятиугольник разрушение2.png" id="5_yefqs"]
 [ext_resource type="Texture2D" uid="uid://djwtv5rr2bnyv" path="res://Visual/Backgrounds/Пятиугольник.png" id="6_0vh2l"]
+[ext_resource type="Texture2D" uid="uid://nq11by705wr1" path="res://Visual/Animations/Пыль.png" id="6_7ny4d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqkiw"]
+atlas = ExtResource("6_7ny4d")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c31k8"]
+atlas = ExtResource("6_7ny4d")
+region = Rect2(224, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50c2y"]
+atlas = ExtResource("6_7ny4d")
+region = Rect2(448, 0, 224, 224)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ydt55"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqkiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c31k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50c2y")
+}],
+"loop": false,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="Ramp" instance=ExtResource("1_pgpnd")]
 collision_mask = 255
@@ -21,3 +51,8 @@ scale = Vector2(0.7, 0.7)
 [node name="Sprite2D" type="Sprite2D" parent="Node2D" index="0"]
 scale = Vector2(0.365, 0.365)
 texture = ExtResource("6_0vh2l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" index="1"]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_ydt55")

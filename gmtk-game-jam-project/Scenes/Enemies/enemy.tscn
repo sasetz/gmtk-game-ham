@@ -1,13 +1,26 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1483ckuquivl"]
+[gd_scene load_steps=18 format=3 uid="uid://d1483ckuquivl"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_atmmb"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_dwrsq"]
-[ext_resource type="PackedScene" uid="uid://d0usxoq1fdj7d" path="res://Scenes/bigenemy.tscn" id="2_m06ms"]
+[ext_resource type="PackedScene" uid="uid://d0usxoq1fdj7d" path="res://Scenes/Enemies/bigenemy.tscn" id="2_m06ms"]
 [ext_resource type="Texture2D" uid="uid://rviema1f0ntf" path="res://Visual/Animations/Враг1 ходьба (2).png" id="3_3ou02"]
+[ext_resource type="Texture2D" uid="uid://dghi33ii2nxen" path="res://Visual/Animations/Кровь.png" id="4_fv235"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
 radius = 16.0
 height = 56.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0ud4"]
+atlas = ExtResource("4_fv235")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4cyt"]
+atlas = ExtResource("4_fv235")
+region = Rect2(224, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oecmf"]
+atlas = ExtResource("4_fv235")
+region = Rect2(448, 0, 224, 224)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rh3k"]
 atlas = ExtResource("3_3ou02")
@@ -39,6 +52,20 @@ region = Rect2(522, 0, 87, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lap3j"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0ud4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4cyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oecmf")
+}],
+"loop": true,
+"name": &"death",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4rh3k")
@@ -87,3 +114,4 @@ shape = SubResource("CapsuleShape2D_x5cul")
 position = Vector2(0, -32)
 scale = Vector2(0.677778, 0.677778)
 sprite_frames = SubResource("SpriteFrames_lap3j")
+animation = &"death"

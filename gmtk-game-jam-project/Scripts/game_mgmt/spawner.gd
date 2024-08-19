@@ -2,10 +2,10 @@ extends Node2D
 
 @export_category("Mobs")
 @export var Friend: PackedScene = preload("res://Scenes/friend.tscn")
-@export var EnemyScene: PackedScene = preload("res://Scenes/enemy.tscn")
-@export var FastEnemyScene: PackedScene = preload("res://Scenes/enemyfast.tscn")
-@export var BigEnemyScene: PackedScene = preload("res://Scenes/bigenemy.tscn")
-@export var FlightEnemyScene: PackedScene = preload("res://Scenes/flightenemy.tscn")
+@export var EnemyScene: PackedScene = preload("res://Scenes/Enemies/enemy.tscn")
+@export var FastEnemyScene: PackedScene = preload("res://Scenes/Enemies/enemyfast.tscn")
+@export var BigEnemyScene: PackedScene = preload("res://Scenes/Enemies/bigenemy.tscn")
+@export var FlightEnemyScene: PackedScene = preload("res://Scenes/Enemies/flightenemy.tscn")
 
 @export_category("Spawning rules")
 @export var IntervalBetweenEntities: float = 0.5

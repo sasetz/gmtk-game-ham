@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0ws345ked20q"]
+[gd_scene load_steps=13 format=3 uid="uid://fwyt0bseuanc"]
 
 [ext_resource type="Script" path="res://Scripts/tower.gd" id="1_nv4hn"]
-[ext_resource type="PackedScene" uid="uid://bean2w58amu6d" path="res://Scenes/towerpart.tscn" id="2_iaeff"]
+[ext_resource type="PackedScene" uid="uid://dx4483odqjbpl" path="res://Scenes/towerpart.tscn" id="2_iaeff"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_l5fj2"]
 [ext_resource type="Texture2D" uid="uid://j6pah4mccdct" path="res://Visual/Backgrounds/Башня фундамент.png" id="3_0av7w"]
 [ext_resource type="Texture2D" uid="uid://br2611hsa012c" path="res://Visual/Backgrounds/Башня верхушка.png" id="4_jc5er"]

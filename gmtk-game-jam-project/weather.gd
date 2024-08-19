@@ -4,7 +4,7 @@ class_name Weather
 @export var background2:CompressedTexture2D=preload("res://Visual/Screens/Задник дождь или снег.png")
 @export var background1:CompressedTexture2D=preload("res://Visual/Backgrounds/Задник.png")
 @export var background3:CompressedTexture2D=preload("res://Visual/Screens/Задник красная луна.png")
-@export var met:PackedScene=preload("res://Scenes/meteor.tscn")
+@export var met:PackedScene=preload("res://Scenes/Projectiles/meteor.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible=false
