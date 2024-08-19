@@ -1,7 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://0noy1dvkmrnb"]
+[gd_scene load_steps=35 format=3 uid="uid://0q75qvtehdq6"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
-[ext_resource type="PackedScene" uid="uid://7jg56sj67duc" path="res://Scenes/tower.tscn" id="1_vyirh"]
+[ext_resource type="PackedScene" uid="uid://c0ws345ked20q" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="2_53yhx"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/spawner.gd" id="4_kkvm3"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/inventory.gd" id="5_bhk52"]
@@ -189,10 +189,10 @@ offset_bottom = -456.0
 
 [node name="HealthLabel" type="RichTextLabel" parent="UI"]
 self_modulate = Color(0.798994, 0, 0.102235, 1)
-offset_left = 414.0
-offset_top = -600.0
-offset_right = 576.0
-offset_bottom = -449.0
+offset_left = 414.2
+offset_top = -603.0
+offset_right = 576.2
+offset_bottom = -452.0
 theme_override_fonts/normal_font = ExtResource("6_rhh1s")
 theme_override_font_sizes/normal_font_size = 35
 text = "Health"

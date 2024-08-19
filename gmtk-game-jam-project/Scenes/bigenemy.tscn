@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://o71brkpir4yb"]
+[gd_scene load_steps=19 format=3 uid="uid://d0usxoq1fdj7d"]
 
 [ext_resource type="Script" path="res://Scripts/bigenemy.gd" id="1_g7em7"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_4t4vt"]
@@ -56,7 +56,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -109,4 +109,5 @@ shape = SubResource("CapsuleShape2D_x5cul")
 position = Vector2(0, -77.135)
 scale = Vector2(0.677778, 0.677778)
 sprite_frames = SubResource("SpriteFrames_lap3j")
-frame_progress = 0.838661
+animation = &"attack"
+frame_progress = 0.0476407

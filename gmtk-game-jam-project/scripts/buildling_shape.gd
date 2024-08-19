@@ -4,6 +4,7 @@ class_name BuildingStructure
 
 @export var INITIAL_HEALTH := 30.0
 @export var Structure_vatiation: Array
+@export var PRICE:=1
 var current_health := INITIAL_HEALTH:
 	set(value):
 		if value <= 0:

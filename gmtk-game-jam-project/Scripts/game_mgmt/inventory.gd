@@ -3,6 +3,7 @@ class_name Inventory
 
 
 class InventoryItem:
+	
 	var text: String
 	var icon: CompressedTexture2D
 	func _init(name: String, img: CompressedTexture2D) -> void:
@@ -23,6 +24,7 @@ class ActionInventoryItem extends InventoryItem:
 
 @export_category("Building structures")
 @export var Ramp: PackedScene = preload("res://Scenes/ramp.tscn")
+@export var Penta: PackedScene = preload("res://Scenes/penta.tscn")
 @export var Cube: PackedScene = preload("res://Scenes/cube.tscn")
 @export var Circle: PackedScene = preload("res://Scenes/circle.tscn")
 @export var Square: PackedScene = preload("res://Scenes/square.tscn")
@@ -48,6 +50,7 @@ var NONE_ITEM = InventoryItem.new("none", null) # currently not holding anything
 @onready var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube", preload("res://Visual/Backgrounds/Квадрат.png"))
 @onready var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle", preload("res://Visual/Backgrounds/Круг.png"))
 @onready var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square", preload("res://Visual/Backgrounds/Прямоугольник.png"))
+@onready var PENTA_ITEM = StructureInventoryItem.new(Penta, "Penta", preload("res://Visual/Backgrounds/Пятиугольник.png"))
 @onready var RESIZE_ITEM = ActionInventoryItem.new("Resize", preload("res://Visual/UI/Размер.png"))
 @onready var ROTATE_ITEM = ActionInventoryItem.new("Rotate", preload("res://Visual/UI/Форма.png"))
 @onready var DELETE_ITEM = ActionInventoryItem.new("Delete", preload("res://Visual/UI/Удалить.png"))
@@ -70,6 +73,7 @@ var _inventory: Array = []
 @onready var _item_roster := [
 	CUBE_ITEM,
 	RAMP_ITEM,
+	PENTA_ITEM,
 	CIRCLE_ITEM,
 	ROTATE_ITEM,
 	SQUARE_ITEM,
@@ -164,7 +168,10 @@ func release_item():
 func _release_and_reset(remove_object: bool = false):
 	if _held_item_object is BuildingStructure:
 		_held_item_object.has_collision = true
+		$"../..".resource-=_held_item_object.PRICE
+		$"../../UI/ResourceLabel/RichTextLabel".text = str($"../..".resource)
 	if remove_object and _held_item_object != null:
+		$"../../UI/ResourceLabel/RichTextLabel".text = str($"../..".resource)
 		_held_item_object.queue_free()
 	_held_item_object = null # we don't delete the shape, we just clear this variable!
 	_scale_iterations = 0
