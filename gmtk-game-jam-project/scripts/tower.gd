@@ -9,10 +9,10 @@ class_name Tower
 @export var SAVEHEALTH:=0.0
 const ENEMY_DAMAGE := 10
 const FRIEND_DAMAGE := -100
-const Peoples :=1.0
+var Peoples :=5.0
 var health := 200.0
 var maxhealth :=200.0
-var number_in := 1.0
+var number_in := 0.0
 var MAIN: main
 
 func _ready() -> void:
@@ -22,7 +22,7 @@ func _ready() -> void:
 	$Timer.autostart = true
 	$Timer.start()
 	$Timer.timeout.connect(_regenerate_timeout)
-	level = clamp(number_in / Peoples, 1, 15)
+	level = 1
 	update_level()
 	
 func _regenerate_timeout()->void:
@@ -30,16 +30,17 @@ func _regenerate_timeout()->void:
 		health = maxhealth
 	else:
 		health += REGENERATION
-	MAIN.health_label.text=str("Health:", round(health),"
-	Saves:",SAVEHEALTH)
+	MAIN.health_label.text=str("Health:", round(health))
 	$Timer.start()
 
 func update_level():
-	if level + 1 == clamp(number_in / Peoples, 1, 15):
+	if Peoples == number_in:
 		add_new_part()
 		health+=100
 		maxhealth+=100
-		level=clamp(number_in / Peoples, 1, 15)
+		number_in-=(level + 4)
+		Peoples+=1
+		level+=1
 	$Collision.scale.y = level
 	$StaticBody2D/CollisionShape2D.scale.y = level
 	$StaticBody2D/Sprite2D2.position.y=-64*level-32

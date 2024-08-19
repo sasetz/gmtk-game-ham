@@ -1,7 +1,7 @@
-[gd_scene load_steps=40 format=3 uid="uid://clwjechkvvqbh"]
+[gd_scene load_steps=44 format=3 uid="uid://c4udwf82p2ldc"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
-[ext_resource type="PackedScene" uid="uid://fwyt0bseuanc" path="res://Scenes/tower.tscn" id="1_vyirh"]
+[ext_resource type="PackedScene" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="2_53yhx"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/spawner.gd" id="4_kkvm3"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/inventory.gd" id="5_bhk52"]
@@ -32,9 +32,13 @@
 [ext_resource type="Texture2D" uid="uid://dwga18nnb5v7y" path="res://Visual/Screens/Снег3.png" id="20_0cgpw"]
 [ext_resource type="Texture2D" uid="uid://cs62doia1gfee" path="res://Visual/Screens/Снег4.png" id="21_3baj4"]
 [ext_resource type="Texture2D" uid="uid://7mfj1y564rc3" path="res://Visual/Screens/Туман1.png" id="22_mih06"]
+[ext_resource type="Texture2D" uid="uid://isx5ak8indxs" path="res://Visual/Screens/Катсцена2 1.png" id="33_7jmd1"]
 [ext_resource type="Texture2D" uid="uid://sqkdhm1kip0c" path="res://Visual/Screens/Катсцена1 1.png" id="33_tsjs1"]
+[ext_resource type="Texture2D" uid="uid://bxhhtjshlh26p" path="res://Visual/Screens/Катсцена2 2.png" id="34_adgc1"]
 [ext_resource type="Texture2D" uid="uid://c2lprq7e2hgm2" path="res://Visual/Screens/Катсцена1 2.png" id="34_i2onw"]
+[ext_resource type="Texture2D" uid="uid://d1qgwkvl0u2sm" path="res://Visual/Screens/Катсцена2 3.png" id="35_5x56o"]
 [ext_resource type="Texture2D" uid="uid://btsd0t2rkekc4" path="res://Visual/Screens/Катсцена1 3.png" id="35_dy52x"]
+[ext_resource type="Texture2D" uid="uid://blggpp3ll7vqk" path="res://Visual/Screens/Катсцена2 4.png" id="36_8yc78"]
 [ext_resource type="Texture2D" uid="uid://xsjyhk1ptyna" path="res://Visual/Screens/Катсцена1 4.png" id="36_gr2uo"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
@@ -147,6 +151,23 @@ animations = [{
 [sub_resource type="SpriteFrames" id="SpriteFrames_i1cw7"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_7jmd1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_adgc1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_5x56o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_8yc78")
+}],
+"loop": true,
+"name": &"End",
+"speed": 1.0
+}, {
+"frames": [{
 "duration": 4.0,
 "texture": ExtResource("33_tsjs1")
 }, {
@@ -160,7 +181,7 @@ animations = [{
 "texture": ExtResource("36_gr2uo")
 }],
 "loop": false,
-"name": &"default",
+"name": &"Start",
 "speed": 1.0
 }]
 
@@ -213,7 +234,7 @@ offset_bottom = -457.0
 [node name="UI" type="Node2D" parent="."]
 
 [node name="HealthLabel" type="RichTextLabel" parent="UI"]
-self_modulate = Color(0.798994, 0, 0.102235, 1)
+self_modulate = Color(0, 0.505882, 0.101961, 1)
 offset_left = 414.2
 offset_top = -603.0
 offset_right = 576.2
@@ -221,6 +242,26 @@ offset_bottom = -452.0
 theme_override_fonts/normal_font = ExtResource("6_rhh1s")
 theme_override_font_sizes/normal_font_size = 35
 text = "Health"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/HealthLabel"]
+self_modulate = Color(0.8, 0, 0.101961, 1)
+layout_mode = 0
+offset_top = 36.0
+offset_right = 162.0
+offset_bottom = 82.0
+theme_override_fonts/normal_font = ExtResource("6_rhh1s")
+theme_override_font_sizes/normal_font_size = 35
+text = "10"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/HealthLabel"]
+self_modulate = Color(0.0588235, 0.0431373, 0.580392, 1)
+layout_mode = 0
+offset_top = 65.0
+offset_right = 162.0
+offset_bottom = 116.0
+theme_override_fonts/normal_font = ExtResource("6_rhh1s")
+theme_override_font_sizes/normal_font_size = 35
+text = "10"
 
 [node name="ResourceLabel" type="RichTextLabel" parent="UI"]
 offset_left = -575.0
@@ -280,10 +321,7 @@ script = ExtResource("14_gljpk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_i1cw7")
-frame = 3
-frame_progress = 1.0
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+animation = &"End"
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="timeout" from="GameManager/Spawner/SpawnTimer" to="GameManager" method="_on_spawn_timeout"]

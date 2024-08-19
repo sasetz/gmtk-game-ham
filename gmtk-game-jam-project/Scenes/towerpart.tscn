@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dx4483odqjbpl"]
+[gd_scene load_steps=17 format=3 uid="uid://w01d7cm4s4h8"]
 
 [ext_resource type="Script" path="res://Scripts/towerpart.gd" id="1_3ldg3"]
 [ext_resource type="Texture2D" uid="uid://dy6xgccqx7ttv" path="res://Visual/Backgrounds/Башня основа.png" id="1_gqg6t"]

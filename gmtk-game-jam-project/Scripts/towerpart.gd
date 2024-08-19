@@ -58,8 +58,8 @@ func _end():
 			tower.REGENERATION+=0.5
 		5:
 			tower.SAVEHEALTH+=1
-			tower.MAIN.health_label.text = str("Health:", round(tower.health),"
-			Saves:",tower.SAVEHEALTH)
+			tower.MAIN.health_label.text = str("Health:", round(tower.health))
+			tower.MAIN.health_label.get_children()[0].text = str("Saves:",tower.SAVEHEALTH)
 	choosing=false
 	$Button.disabled=true
 	$Button.visible=false
