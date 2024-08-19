@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
+uid="uid://dq88ruh1unj73"
+=======
 uid="uid://d05yk4p3qirc6"
+>>>>>>> 312c6b35b2928e0caf01dd2626fcea9fd909db16
 path="res://.godot/imported/Катсцена1 1.png-f74a77c291415f9e274bd05674a6760d.ctex"
 metadata={
 "vram_texture": false
