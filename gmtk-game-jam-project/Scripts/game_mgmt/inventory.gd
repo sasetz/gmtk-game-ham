@@ -132,7 +132,7 @@ func release_item():
 	if _current_item is StructureInventoryItem:
 		_release_and_reset()
 	elif _current_item is ActionInventoryItem:
-		if _held_item_object is BuildingStructure:
+		if _held_item_object is BuildingStructure or not is_instance_valid(_held_item_object):
 			_release_and_reset()
 			return
 		var structures = _held_item_object.get_overlapping_bodies()
@@ -221,7 +221,7 @@ func _inventory_button_pressed(button: InventoryButton):
 		return
 	
 	# switching here
-	if _current_item != NONE_ITEM:
+	if _current_item != NONE_ITEM and is_instance_valid(_held_item_object):
 		if not _can_switch_items:
 			return # do nothing if we can't switch items
 		remove_item(entry_index)
