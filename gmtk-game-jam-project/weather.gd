@@ -4,6 +4,7 @@ class_name Weather
 @export var background2:CompressedTexture2D=preload("res://Visual/Screens/Задник дождь или снег.png")
 @export var background1:CompressedTexture2D=preload("res://Visual/Backgrounds/Задник.png")
 @export var background3:CompressedTexture2D=preload("res://Visual/Screens/Задник красная луна.png")
+@export var met:PackedScene=preload("res://Scenes/meteor.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	visible=false
@@ -11,12 +12,15 @@ func _ready():
 	$Weather_timer.wait_time=5.0
 	$Weather_timer.timeout.connect(_new_weather_timeout)
 	$Weather_timer.start()
+	$Meteor_timer.timeout.connect(_new_meteor)
+	
 	pass # Replace with function body.
 
 func _new_weather_timeout():
+	$Meteor_timer.stop()
 	match randi_range(1,14):
 		1,9:
-			if not visible:
+			if not(type=="Wind2" or type=="Wind1"):
 				match randi_range(1,2):
 					1:
 						flip_h=true
@@ -55,7 +59,7 @@ func _new_weather_timeout():
 			visible=true
 			
 			play("Туман")
-			$"../UI/Background".texture=background2
+			$"../UI/Background".texture=background1
 			$Weather_timer.wait_time=5.0
 			$Weather_timer.start()
 		7:
@@ -67,13 +71,20 @@ func _new_weather_timeout():
 			$Weather_timer.start()
 		8:
 			type="Meteor"
-			print(type)
 			play("Nothing")
 			visible=true
 			$"../UI/Background".texture=background2
+			$Meteor_timer.start()
 			$Weather_timer.wait_time=5.0
 			$Weather_timer.start()
-			
+	print(type)
+func _new_meteor():
+	var meteor:MeteorOnCurve2D
+	meteor=met.instantiate()
+	get_tree().current_scene.add_child(meteor)
+	meteor.position=Vector2(randi_range(-935,935),-1029)
+	meteor.launch(meteor.position,Vector2(randi_range(-935,935),-0),9,1)
+	$Meteor_timer.start()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

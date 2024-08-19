@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://0q75qvtehdq6"]
+[gd_scene load_steps=36 format=3 uid="uid://0q75qvtehdq6"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
 [ext_resource type="PackedScene" uid="uid://c0ws345ked20q" path="res://Scenes/tower.tscn" id="1_vyirh"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c06x8ufn3csv4" path="res://Visual/Screens/Ветер1.png" id="8_qmcxi"]
 [ext_resource type="Texture2D" uid="uid://cxpahns8eiwb1" path="res://Visual/Screens/tuman2.png" id="9_nfmgy"]
 [ext_resource type="Texture2D" uid="uid://bmgfape2jorki" path="res://Visual/Screens/Ветер2.png" id="9_ryh1b"]
+[ext_resource type="PackedScene" uid="uid://f5a60swo65hu" path="res://Scenes/meteor.tscn" id="9_wyldg"]
 [ext_resource type="Texture2D" uid="uid://bmc54i5ckp57h" path="res://Visual/Screens/tuman3.png" id="10_46ot1"]
 [ext_resource type="Texture2D" uid="uid://bkabfumkixux8" path="res://Visual/Screens/Ветер3.png" id="10_jy2cl"]
 [ext_resource type="Texture2D" uid="uid://ckk5a4d5anus1" path="res://Visual/Screens/Ветер4.png" id="11_oec58"]
@@ -223,6 +224,9 @@ z_index = -2
 position = Vector2(0, -417.78)
 texture = ExtResource("7_djedb")
 
+[node name="Meteor" parent="UI" instance=ExtResource("9_wyldg")]
+position = Vector2(-935, -1029)
+
 [node name="Cameras" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="Cameras"]
@@ -248,6 +252,8 @@ animation = &"Туман"
 script = ExtResource("14_gljpk")
 
 [node name="Weather_timer" type="Timer" parent="Weather"]
+
+[node name="Meteor_timer" type="Timer" parent="Weather"]
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="timeout" from="GameManager/Spawner/SpawnTimer" to="GameManager" method="_on_spawn_timeout"]

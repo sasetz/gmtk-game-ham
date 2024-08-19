@@ -1,11 +1,12 @@
 extends Node2D
 class_name ProjectileOnCurve2D
-
 const _speed = 100
 var _gravity: float
 var _velocity: Vector2
 var _stepAmount: int
 
+
+	
 
 func launch(startPos: Vector2, targetPos: Vector2, grav: float, stepAmount: int = 1) -> void:
 	_gravity = grav
@@ -22,5 +23,4 @@ func _physics_process(delta):
 	for i in range(_stepAmount):
 		_velocity.y += _gravity * delta
 		position += _velocity * delta
-		print(position)
 	rotation = _velocity.angle()

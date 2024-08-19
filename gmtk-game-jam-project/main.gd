@@ -50,7 +50,7 @@ func _on_tower_body_entered(_body):
 			$Tower.health+=50
 			$Tower.SAVEHEALTH-=1
 	if $Tower.level >= 10:
-		health_label.position = Vector2(800,-950)
+		health_label.position = Vector2(795,-950)
 		resource_label.position = Vector2(-950,-950)
 		left_spawner.position.x = -1000
 		right_spawner.position.x = 1000
