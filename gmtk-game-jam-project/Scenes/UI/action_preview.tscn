@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfoc6u6fjpcg7"]
+
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_qv1b4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fc7ln"]
+
+[node name="ActionPreview" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.5, 2.5)
+shape = SubResource("CircleShape2D_fc7ln")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+script = ExtResource("1_qv1b4")
+size = Vector2(50, 50)
+circle = true
+style = 1

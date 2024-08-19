@@ -27,6 +27,7 @@ class ActionInventoryItem extends InventoryItem:
 @export var Circle: PackedScene = preload("res://Scenes/circle.tscn")
 @export var Square: PackedScene = preload("res://Scenes/square.tscn")
 @export var Delete: PackedScene = preload("res://Scenes/delete.tscn")
+@export var ActionPreviewScene: PackedScene = preload("res://Scenes/UI/action_preview.tscn")
 
 @export_category("Inventory")
 @export var InventoryButtonScene: PackedScene = preload("res://Scenes/UI/inventory_button.tscn")
@@ -59,6 +60,8 @@ var _held_item_object: Node2D = null
 
 var _is_rotating := false
 var _is_scaling := false
+var _should_hold_structure := true
+var _can_switch_items := true
 
 # first: inventory item
 # second: UI button
@@ -85,7 +88,7 @@ func _ready() -> void:
 	InventoryUIContainer.add_child(_preview_item)
 
 func _process(_delta: float) -> void:
-	if _held_item_object != null:
+	if _held_item_object != null and _should_hold_structure:
 		_held_item_object.position = get_global_mouse_position()
 
 func scale_up():
@@ -106,34 +109,87 @@ func scale_down():
 func rotate_clockwise():
 	if _held_item_object == null or not _is_rotating:
 		return
-	_held_item_object.rotation += Pi / RotationFraction
+	#_held_item_object.rotation += Pi / RotationFraction
+	_held_item_object.rotate_physically(Pi / RotationFraction)
 
 func rotate_counter():
 	if _held_item_object == null or not _is_rotating:
 		return
-	_held_item_object.rotation -= Pi / RotationFraction
+	#_held_item_object.rotation -= Pi / RotationFraction
+	_held_item_object.rotate_physically(-Pi / RotationFraction)
 
+# i want to kill this function with fire
 func release_item():
 	if _held_item_object == null:
 		return
-	_held_item_object.has_collision = true
-	_held_item_object.position = get_global_mouse_position()
+	if _current_item is StructureInventoryItem:
+		_release_and_reset()
+	elif _current_item is ActionInventoryItem:
+		if _held_item_object is BuildingStructure:
+			_release_and_reset()
+			return
+		var structures = _held_item_object.get_overlapping_bodies()
+		var hit_something := false
+		for structure in structures:
+			if not (structure is BuildingStructure):
+				continue
+			hit_something = true
+			match _current_item:
+				DELETE_ITEM:
+					structure.queue_free()
+					# don't break, we're removing each building!
+				ROTATE_ITEM:
+					if _held_item_object != null:
+						_held_item_object.queue_free()
+					_held_item_object = structure
+					_held_item_object.has_collision = false
+					_is_rotating = true
+					_is_scaling = false
+					_should_hold_structure = false
+					_can_switch_items = false
+					return
+				RESIZE_ITEM:
+					if _held_item_object != null:
+						_held_item_object.queue_free()
+					_held_item_object = structure
+					_is_rotating = false
+					_is_scaling = true
+					_should_hold_structure = false
+					_can_switch_items = false
+					return
+		# clean up the decal after action is done
+		if hit_something:
+			_release_and_reset(true)
+
+func _release_and_reset(remove_object: bool = false):
+	if _held_item_object is BuildingStructure:
+		_held_item_object.has_collision = true
+	if remove_object and _held_item_object != null:
+		_held_item_object.queue_free()
 	_held_item_object = null # we don't delete the shape, we just clear this variable!
 	_scale_iterations = 0
 	_is_rotating = false
 	_is_scaling = false
+	_can_switch_items = true
 	_current_item = NONE_ITEM
 
-func add_item(item: InventoryItem):
+
+func add_item(item: InventoryItem, index: int = -1):
 	if _inventory.size() >= InventorySize:
 		return
-	_inventory.append(
+	if index < 0:
+		index += _inventory.size() if _inventory.size() != 0 else 1
+	if _inventory.insert(
+		index,
 		[item, InventoryButtonScene.instantiate()]
-	)
-	# TODO: initialize button here
-	InventoryUIContainer.add_child(_inventory.back()[1])
-	_inventory.back()[1].connect("custom_press", _inventory_button_pressed)
-	_inventory.back()[1].icon = _inventory.back()[0].icon
+	) != OK:
+		print("Error inserting item!!! (Bug)")
+		return
+	var new_item = _inventory[index]
+	InventoryUIContainer.add_child(new_item[1])
+	InventoryUIContainer.move_child(new_item[1], index)
+	new_item[1].connect("custom_press", _inventory_button_pressed)
+	new_item[1].icon = new_item[0].icon
 	# update the preview's position
 	if _preview_item != null:
 		InventoryUIContainer.move_child(_preview_item, -1)
@@ -154,18 +210,21 @@ func _inventory_button_pressed(button: InventoryButton):
 		print("Error! The button pressed was not in the inventory array!")
 		return
 	
+	# switching here
 	if _current_item != NONE_ITEM:
-		add_item(_current_item)
-	
+		if not _can_switch_items:
+			return # do nothing if we can't switch items
+		remove_item(entry_index)
+		add_item(_current_item, entry_index)
+	else:
+		remove_item(entry_index)
+		_add_next_item_from_roster()
+
 	_current_item = inventory_item
 	if inventory_item is StructureInventoryItem:
 		_spawn_preview()
 	elif inventory_item is ActionInventoryItem:
 		_spawn_action_preview()
-
-	remove_item(entry_index)
-
-	_add_next_item_from_roster()
 
 
 func remove_item(index: int):
@@ -194,28 +253,17 @@ func _spawn_object_at_mouse(shape: PackedScene):
 	return obj
 
 func _spawn_action_preview() -> void:
+	_is_scaling = false
+	_is_rotating = false
+	_should_hold_structure = true
 	if _held_item_object != null:
 		_held_item_object.queue_free()
 	if _current_item == NONE_ITEM or not (_current_item is ActionInventoryItem):
 		return
-	print("spawning action prev")
 	
-	var object : BuildingStructure = _spawn_object_at_mouse(Cube) # TODO: change this to pick cubes from the ground
-	object.has_collision = false
+	var object = _spawn_object_at_mouse(ActionPreviewScene)
 	add_child(object)
 	_held_item_object = object
-	match _current_item:
-		DELETE_ITEM:
-			# TODO: remove the block here
-			print("Deleting the block that was picked up!")
-			object.queue_free()
-			_held_item_object = null
-		RESIZE_ITEM:
-			_is_scaling = true
-		ROTATE_ITEM:
-			_is_rotating = true
-		_:
-			print("Unknown action item!")
 
 func _spawn_preview() -> void:
 	if _held_item_object != null:
@@ -226,6 +274,7 @@ func _spawn_preview() -> void:
 		return
 	_is_scaling = true
 	_is_rotating = true
+	_should_hold_structure = true
 	var object : BuildingStructure = _spawn_object_at_mouse(_current_item.scene_to_spawn)
 	object.has_collision = false
 	add_child(object)

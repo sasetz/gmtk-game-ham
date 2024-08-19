@@ -14,6 +14,7 @@ var current_health := INITIAL_HEALTH:
 var has_collision := true :
 	set(value):
 		freeze = not value
+		sleeping = not value
 		if Collision:
 			Collision.disabled = not value
 
@@ -25,3 +26,9 @@ var has_collision := true :
 func _ready() -> void:
 	Collision.disabled = not has_collision
 	freeze = not has_collision
+
+
+func rotate_physically(radians: float):
+	var target = Vector2.from_angle(rotation + radians)
+	look_at(global_position + target)
+
