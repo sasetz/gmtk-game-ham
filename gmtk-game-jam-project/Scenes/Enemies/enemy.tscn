@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d1483ckuquivl"]
+[gd_scene load_steps=20 format=3 uid="uid://d1483ckuquivl"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_atmmb"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_dwrsq"]
@@ -96,6 +96,9 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmv1i"]
+size = Vector2(42, 57)
+
 [node name="Enemy2" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 5
@@ -126,3 +129,11 @@ sprite_frames = SubResource("SpriteFrames_rqmbf")
 animation = &"death"
 frame = 2
 frame_progress = 1.0
+
+[node name="ZombifyArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZombifyArea"]
+position = Vector2(0, -28.5)
+shape = SubResource("RectangleShape2D_mmv1i")
+
+[connection signal="body_entered" from="ZombifyArea" to="." method="_on_mob_collided"]

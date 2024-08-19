@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bxeemshjy25oa"]
 
-[ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_kv5qh"]
+[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_kv5qh"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_fo07c"]
 [ext_resource type="Texture2D" uid="uid://covpbs713r2vj" path="res://Visual/Backgrounds/Квадрат.png" id="4_dem5n"]
 [ext_resource type="Texture2D" uid="uid://cx235gv2rqhu0" path="res://Visual/Backgrounds/Квадрат разрушение1.png" id="4_e67ro"]

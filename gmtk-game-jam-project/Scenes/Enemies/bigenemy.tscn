@@ -122,6 +122,7 @@ animations = [{
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_g7em7")
+HEALTH = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://couju11chbmiq"]
+[gd_scene load_steps=14 format=3 uid="uid://couju11chbmiq"]
 
-[ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_f6uf3"]
-[ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_itf13"]
+[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_f6uf3"]
+[ext_resource type="Script" path="res://Scripts/circle.gd" id="2_1623g"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="3_cy8lw"]
 [ext_resource type="Texture2D" uid="uid://bbmdxxfol3uip" path="res://Visual/Backgrounds/Круг.png" id="4_agcui"]
 [ext_resource type="Texture2D" uid="uid://dgpinumdto1p4" path="res://Visual/Backgrounds/Круг разрушение1.png" id="4_hnb44"]
@@ -40,13 +40,17 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_aqfls"]
+radius = 44.911
+
 [node name="Cube" instance=ExtResource("1_f6uf3")]
-collision_mask = 255
-script = ExtResource("2_itf13")
+collision_mask = 7
+script = ExtResource("2_1623g")
 Structure_vatiation = [ExtResource("4_agcui"), ExtResource("4_hnb44"), ExtResource("5_l1lva")]
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
 shape = SubResource("CircleShape2D_c1dfx")
+disabled = true
 script = ExtResource("3_cy8lw")
 size = Vector2(70, 70)
 style = 2
@@ -64,4 +68,12 @@ sprite_frames = SubResource("SpriteFrames_x4vrj")
 frame = 2
 frame_progress = 1.0
 
+[node name="DeathCollision" type="Area2D" parent="." index="2"]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathCollision" index="0"]
+shape = SubResource("CircleShape2D_aqfls")
+
 [connection signal="animation_finished" from="Node2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="DeathCollision" to="." method="_on_death_collision_body_entered"]

@@ -74,6 +74,9 @@ var _can_switch_items := true
 var _inventory: Array = []
 
 @onready var _item_roster := [
+	CIRCLE_ITEM,
+	CIRCLE_ITEM,
+	CIRCLE_ITEM,
 	CUBE_ITEM,
 	RAMP_ITEM,
 	PENTA_ITEM,
