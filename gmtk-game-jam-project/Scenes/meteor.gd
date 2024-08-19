@@ -1,3 +1,4 @@
+
 extends Area2D
 class_name MeteorOnCurve2D
 var TOWER_DAMAGE:=50
@@ -9,8 +10,7 @@ var _velocity: Vector2
 var _stepAmount: int
 var boom:=false
 func _ready():
-	$AnimatedSprite2D.play("default")
-	
+	$AnimatedSprite2D.play("default")	
 
 func launch(startPos: Vector2, targetPos: Vector2, grav: float, stepAmount: int = 1) -> void:
 	_gravity = grav
