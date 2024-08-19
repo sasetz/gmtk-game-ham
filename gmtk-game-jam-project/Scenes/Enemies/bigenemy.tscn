@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://d0usxoq1fdj7d"]
+[gd_scene load_steps=23 format=3 uid="uid://d0usxoq1fdj7d"]
 
 [ext_resource type="Script" path="res://Scripts/bigenemy.gd" id="1_g7em7"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_4t4vt"]
 [ext_resource type="Texture2D" uid="uid://74jswd460rlj" path="res://Visual/Animations/Враг3 атака(2).png" id="3_wngwu"]
+[ext_resource type="Texture2D" uid="uid://dghi33ii2nxen" path="res://Visual/Animations/Кровь.png" id="4_obiuc"]
 [ext_resource type="Texture2D" uid="uid://du5flsfsklcsf" path="res://Visual/Animations/1.png" id="4_yhwr0"]
 [ext_resource type="Texture2D" uid="uid://bohjwec27ouwi" path="res://Visual/Animations/2.png" id="5_vvx7e"]
 [ext_resource type="Texture2D" uid="uid://cmu3yadcf2gjd" path="res://Visual/Animations/3.png" id="6_483am"]
@@ -36,6 +37,18 @@ region = Rect2(627, 0, 209, 224)
 atlas = ExtResource("3_wngwu")
 region = Rect2(836, 0, 209, 224)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fgpv"]
+atlas = ExtResource("4_obiuc")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jv2mv"]
+atlas = ExtResource("4_obiuc")
+region = Rect2(224, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bvm7"]
+atlas = ExtResource("4_obiuc")
+region = Rect2(448, 0, 224, 224)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_lap3j"]
 animations = [{
 "frames": [{
@@ -57,6 +70,20 @@ animations = [{
 "loop": true,
 "name": &"attack",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fgpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jv2mv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bvm7")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -109,5 +136,6 @@ shape = SubResource("CapsuleShape2D_x5cul")
 position = Vector2(0, -77.135)
 scale = Vector2(0.677778, 0.677778)
 sprite_frames = SubResource("SpriteFrames_lap3j")
-animation = &"attack"
-frame_progress = 0.0476407
+animation = &"death"
+frame = 2
+frame_progress = 1.0

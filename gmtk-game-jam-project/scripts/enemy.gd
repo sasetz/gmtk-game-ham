@@ -2,7 +2,7 @@ extends MobNPC
 class_name Enemy
 
 
-@export var ZombifiedFriendScene = preload("res://Scenes/enemy.tscn")
+@export var ZombifiedFriendScene = preload("res://Scenes/Enemies/enemy.tscn")
 
 func _ready():
 	super._ready()

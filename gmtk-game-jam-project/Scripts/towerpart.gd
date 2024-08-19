@@ -2,7 +2,7 @@ extends Node2D
 class_name Tower_Part
 var choosing: bool
 @export var allvariants: Array
-@export var arrow: PackedScene = preload("res://Scenes/arrow.tscn")
+@export var arrow: PackedScene = preload("res://Scenes/Projectiles/arrow.tscn")
 var i := 0
 var reload := false
 var tower: Tower 

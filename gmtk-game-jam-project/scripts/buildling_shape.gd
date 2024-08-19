@@ -4,11 +4,16 @@ class_name BuildingStructure
 
 @export var INITIAL_HEALTH := 30.0
 @export var Structure_vatiation: Array
+
+@onready var animplayer:AnimatedSprite2D=$Node2D/AnimatedSprite2D
+
 var current_health := INITIAL_HEALTH:
 	set(value):
 		if value <= 0:
 			print("Shape destroying now!")
-			queue_free()
+			animplayer.visible=true
+			animplayer.play("default")
+			animplayer.animation_finished.connect(_die)
 		current_health = value
 
 var has_collision := true :
@@ -33,3 +38,7 @@ func rotate_physically(radians: float):
 	var target = Vector2.from_angle(rotation + radians)
 	look_at(global_position + target)
 	
+
+
+func _die():
+	queue_free()

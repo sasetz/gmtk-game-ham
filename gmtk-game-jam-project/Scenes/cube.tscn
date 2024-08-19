@@ -1,13 +1,43 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckcxgr26sxm72"]
+[gd_scene load_steps=12 format=3 uid="uid://bxeemshjy25oa"]
 
 [ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_kv5qh"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_fo07c"]
 [ext_resource type="Texture2D" uid="uid://covpbs713r2vj" path="res://Visual/Backgrounds/Квадрат.png" id="4_dem5n"]
 [ext_resource type="Texture2D" uid="uid://cx235gv2rqhu0" path="res://Visual/Backgrounds/Квадрат разрушение1.png" id="4_e67ro"]
 [ext_resource type="Texture2D" uid="uid://c76kjqy4rbtpa" path="res://Visual/Backgrounds/Квадрат разрушение2.png" id="5_vsl20"]
+[ext_resource type="Texture2D" uid="uid://nq11by705wr1" path="res://Visual/Animations/Пыль.png" id="6_g5vmg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gyh0e"]
 size = Vector2(70, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqkiw"]
+atlas = ExtResource("6_g5vmg")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c31k8"]
+atlas = ExtResource("6_g5vmg")
+region = Rect2(224, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50c2y"]
+atlas = ExtResource("6_g5vmg")
+region = Rect2(448, 0, 224, 224)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wgkbb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqkiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c31k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50c2y")
+}],
+"loop": false,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="Cube" instance=ExtResource("1_kv5qh")]
 collision_mask = 255
@@ -23,3 +53,8 @@ shape = SubResource("RectangleShape2D_gyh0e")
 [node name="Sprite2D" type="Sprite2D" parent="Node2D" index="0"]
 scale = Vector2(0.365, 0.365)
 texture = ExtResource("4_dem5n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" index="1"]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_wgkbb")

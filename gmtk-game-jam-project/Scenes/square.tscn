@@ -1,14 +1,44 @@
-[gd_scene load_steps=8 format=3 uid="uid://7q53udte71i2"]
+[gd_scene load_steps=13 format=3 uid="uid://dwhfg5rhn78md"]
 
-[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_0pbiq"]
+[ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_0pbiq"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_x2b4c"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="3_k6qqf"]
 [ext_resource type="Texture2D" uid="uid://rgoiqt1a6eae" path="res://Visual/Backgrounds/Прямоугольник.png" id="4_72p4x"]
 [ext_resource type="Texture2D" uid="uid://wwkh25hgoigc" path="res://Visual/Backgrounds/Прямоугольник разрушение1.png" id="4_xbuyx"]
 [ext_resource type="Texture2D" uid="uid://btut705m7rgat" path="res://Visual/Backgrounds/Прямоугольник разрушение2.png" id="5_odeo7"]
+[ext_resource type="Texture2D" uid="uid://nq11by705wr1" path="res://Visual/Animations/Пыль.png" id="7_h3e3y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gyh0e"]
 size = Vector2(140.179, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqkiw"]
+atlas = ExtResource("7_h3e3y")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c31k8"]
+atlas = ExtResource("7_h3e3y")
+region = Rect2(224, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50c2y"]
+atlas = ExtResource("7_h3e3y")
+region = Rect2(448, 0, 224, 224)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4j0em"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqkiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c31k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50c2y")
+}],
+"loop": false,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="Cube" instance=ExtResource("1_0pbiq")]
 collision_mask = 255
@@ -28,3 +58,9 @@ style = 2
 [node name="Sprite2D" type="Sprite2D" parent="Node2D" index="0"]
 scale = Vector2(0.365, 0.365)
 texture = ExtResource("4_72p4x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" index="1"]
+visible = false
+position = Vector2(5, 0)
+scale = Vector2(0.75, 0.5)
+sprite_frames = SubResource("SpriteFrames_4j0em")

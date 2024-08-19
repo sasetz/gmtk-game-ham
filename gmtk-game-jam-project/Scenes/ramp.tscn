@@ -1,10 +1,40 @@
-[gd_scene load_steps=6 format=3 uid="uid://xp4y6rmalp2m"]
+[gd_scene load_steps=11 format=3 uid="uid://21u7pnxjtdvi"]
 
-[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_r2i5y"]
+[ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_r2i5y"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_htoe6"]
 [ext_resource type="Texture2D" uid="uid://c4a1aeqmniw30" path="res://Visual/Backgrounds/Треугольник.png" id="3_rwr7d"]
 [ext_resource type="Texture2D" uid="uid://3vdso0knu814" path="res://Visual/Backgrounds/Треугольник разрушение1.png" id="4_wkq8f"]
 [ext_resource type="Texture2D" uid="uid://bw5usyel1qvc7" path="res://Visual/Backgrounds/Треугольник разрушение2.png" id="5_figtg"]
+[ext_resource type="Texture2D" uid="uid://nq11by705wr1" path="res://Visual/Animations/Пыль.png" id="6_pdod5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqkiw"]
+atlas = ExtResource("6_pdod5")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c31k8"]
+atlas = ExtResource("6_pdod5")
+region = Rect2(224, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50c2y"]
+atlas = ExtResource("6_pdod5")
+region = Rect2(448, 0, 224, 224)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_duiq2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqkiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c31k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50c2y")
+}],
+"loop": false,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="Ramp" instance=ExtResource("1_r2i5y")]
 collision_mask = 255
@@ -19,3 +49,8 @@ polygon = PackedVector2Array(36, 35, -35, -36, -35, 35)
 [node name="Sprite2D" type="Sprite2D" parent="Node2D" index="0"]
 scale = Vector2(0.365, 0.365)
 texture = ExtResource("3_rwr7d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" index="1"]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_duiq2")

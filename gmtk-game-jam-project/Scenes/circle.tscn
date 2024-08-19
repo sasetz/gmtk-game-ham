@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cosgt6uhyrnn5"]
+[gd_scene load_steps=13 format=3 uid="uid://couju11chbmiq"]
 
 [ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_f6uf3"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_itf13"]
@@ -6,9 +6,39 @@
 [ext_resource type="Texture2D" uid="uid://bbmdxxfol3uip" path="res://Visual/Backgrounds/Круг.png" id="4_agcui"]
 [ext_resource type="Texture2D" uid="uid://dgpinumdto1p4" path="res://Visual/Backgrounds/Круг разрушение1.png" id="4_hnb44"]
 [ext_resource type="Texture2D" uid="uid://nessps66h6t4" path="res://Visual/Backgrounds/Круг разрушение2.png" id="5_l1lva"]
+[ext_resource type="Texture2D" uid="uid://nq11by705wr1" path="res://Visual/Animations/Пыль.png" id="7_dert5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1dfx"]
 radius = 35.0143
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqkiw"]
+atlas = ExtResource("7_dert5")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c31k8"]
+atlas = ExtResource("7_dert5")
+region = Rect2(224, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50c2y"]
+atlas = ExtResource("7_dert5")
+region = Rect2(448, 0, 224, 224)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x4vrj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqkiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c31k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50c2y")
+}],
+"loop": false,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="Cube" instance=ExtResource("1_f6uf3")]
 collision_mask = 255
@@ -26,3 +56,12 @@ style = 2
 [node name="Sprite2D" type="Sprite2D" parent="Node2D" index="0"]
 scale = Vector2(0.365, 0.365)
 texture = ExtResource("4_agcui")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" index="1"]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_x4vrj")
+frame = 2
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="Node2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
