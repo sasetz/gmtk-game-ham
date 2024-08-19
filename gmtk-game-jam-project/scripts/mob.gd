@@ -55,7 +55,7 @@ func _ready() -> void:
 	
 	death_collision_timer = Timer.new()
 	add_child(death_collision_timer)
-	death_collision_timer.wait_time = 0.2
+	death_collision_timer.wait_time = 0.1
 	death_collision_timer.one_shot = true
 	death_collision_timer.autostart = false
 	death_collision_timer.timeout.connect(func(): collision_layer = 0)

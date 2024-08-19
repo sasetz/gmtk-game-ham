@@ -17,8 +17,8 @@ var current_health := INITIAL_HEALTH:
 
 var has_collision := true :
 	set(value):
-		freeze = not value
-		sleeping = not value
+		call_deferred("set_freeze_enabled", not value)
+		call_deferred("set_sleeping", not value)
 		if Collision:
 			Collision.call_deferred("set_disabled", not value)
 
