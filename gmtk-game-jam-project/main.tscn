@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://clwjechkvvqbh"]
+[gd_scene load_steps=40 format=3 uid="uid://clwjechkvvqbh"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
 [ext_resource type="PackedScene" uid="uid://fwyt0bseuanc" path="res://Scenes/tower.tscn" id="1_vyirh"]
@@ -32,6 +32,10 @@
 [ext_resource type="Texture2D" uid="uid://dwga18nnb5v7y" path="res://Visual/Screens/Снег3.png" id="20_0cgpw"]
 [ext_resource type="Texture2D" uid="uid://cs62doia1gfee" path="res://Visual/Screens/Снег4.png" id="21_3baj4"]
 [ext_resource type="Texture2D" uid="uid://7mfj1y564rc3" path="res://Visual/Screens/Туман1.png" id="22_mih06"]
+[ext_resource type="Texture2D" uid="uid://sqkdhm1kip0c" path="res://Visual/Screens/Катсцена1 1.png" id="33_tsjs1"]
+[ext_resource type="Texture2D" uid="uid://c2lprq7e2hgm2" path="res://Visual/Screens/Катсцена1 2.png" id="34_i2onw"]
+[ext_resource type="Texture2D" uid="uid://btsd0t2rkekc4" path="res://Visual/Screens/Катсцена1 3.png" id="35_dy52x"]
+[ext_resource type="Texture2D" uid="uid://xsjyhk1ptyna" path="res://Visual/Screens/Катсцена1 4.png" id="36_gr2uo"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
 
@@ -138,6 +142,26 @@ animations = [{
 "loop": true,
 "name": &"Туман",
 "speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i1cw7"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": ExtResource("33_tsjs1")
+}, {
+"duration": 4.0,
+"texture": ExtResource("34_i2onw")
+}, {
+"duration": 4.0,
+"texture": ExtResource("35_dy52x")
+}, {
+"duration": 4.0,
+"texture": ExtResource("36_gr2uo")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
 }]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("left_spawner", "right_spawner", "health_label", "resource_label", "first_camera", "second_camera", "third_camera")]
@@ -251,6 +275,12 @@ script = ExtResource("14_gljpk")
 [node name="Weather_timer" type="Timer" parent="Weather"]
 
 [node name="Meteor_timer" type="Timer" parent="Weather"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_i1cw7")
+frame = 3
+frame_progress = 1.0
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="timeout" from="GameManager/Spawner/SpawnTimer" to="GameManager" method="_on_spawn_timeout"]
