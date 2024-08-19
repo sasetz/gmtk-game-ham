@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://couju11chbmiq"]
+[gd_scene load_steps=14 format=3 uid="uid://bkhbjoy05eli5"]
 
-[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_f6uf3"]
+[ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_f6uf3"]
 [ext_resource type="Script" path="res://Scripts/circle.gd" id="2_1623g"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="3_cy8lw"]
 [ext_resource type="Texture2D" uid="uid://bbmdxxfol3uip" path="res://Visual/Backgrounds/Круг.png" id="4_agcui"]
@@ -46,6 +46,7 @@ radius = 44.911
 [node name="Cube" instance=ExtResource("1_f6uf3")]
 collision_mask = 7
 script = ExtResource("2_1623g")
+INITIAL_HEALTH = 60.0
 Structure_vatiation = [ExtResource("4_agcui"), ExtResource("4_hnb44"), ExtResource("5_l1lva")]
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]

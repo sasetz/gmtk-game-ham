@@ -42,6 +42,10 @@ func _on_tower_body_entered(_body):
 	health_label.text = str("Health:", round($Tower.health))
 	$UI/HealthLabel/RichTextLabel.text = str("Saves:",$Tower.SAVEHEALTH)
 	$UI/HealthLabel/RichTextLabel2.text = str("Foor:",$Tower.number_in,"/",$Tower.Peoples)
+	if $Tower.level==17:
+		var obj : Control = game_end.instantiate()
+		add_child(obj)
+		get_tree().paused = true
 	if $Tower.health<=0:
 		if $Tower.SAVEHEALTH==0:
 			var obj : Control = game_end.instantiate()

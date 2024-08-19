@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://c4udwf82p2ldc"]
+[gd_scene load_steps=44 format=3 uid="uid://d0ha2oack7o3e"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
 [ext_resource type="PackedScene" path="res://Scenes/tower.tscn" id="1_vyirh"]
@@ -285,7 +285,6 @@ theme_override_font_sizes/normal_font_size = 42
 text = "10"
 
 [node name="Background" type="Sprite2D" parent="UI"]
-visible = false
 z_index = -2
 position = Vector2(0, -417.78)
 texture = ExtResource("7_djedb")

@@ -16,13 +16,13 @@ func _process(_delta):
 	if choosing==true:
 		if Input.is_action_just_released("MWU"):
 			i=i+1
-			if i>len(allvariants)-1:
+			if i>tower.leng-1:
 				i=0
 			$Sprite2D.texture=allvariants[i]
 		if Input.is_action_just_released("MWD"):
 			i=i-1
 			if i<0:
-				i=len(allvariants)-1
+				i=tower.leng-1
 			$Sprite2D.texture=allvariants[i]
 		if Input.is_action_just_pressed("mouse1"):
 			_end()
@@ -36,12 +36,12 @@ func _on_button_pressed():
 		
 func _end():
 	match i:
-		0:
+		4:
 			tower.SPEED_UPGRADE+=25
 		1:
 			tower.get_parent().inventory.InventorySize+=1
 			tower.get_parent().inventory._add_next_item_from_roster()
-		2:
+		5:
 			$AnimatedSprite2D.visible=true
 			$AnimatedSprite2D.play("default")
 			$AnimatedSprite2D2.visible=true
@@ -51,12 +51,12 @@ func _end():
 			$Timer.autostart = true
 			$Timer.start()
 			$Timer.timeout.connect(fire_timeout)
-		3:
+		0:
 			tower.INCOME_TIME-=0.2
 			print(tower.INCOME_TIME)
-		4:
+		3:
 			tower.REGENERATION+=0.5
-		5:
+		2:
 			tower.SAVEHEALTH+=1
 			tower.MAIN.health_label.text = str("Health:", round(tower.health))
 			tower.MAIN.health_label.get_children()[0].text = str("Saves:",tower.SAVEHEALTH)

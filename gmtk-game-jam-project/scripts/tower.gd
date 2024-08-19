@@ -33,6 +33,8 @@ func _regenerate_timeout()->void:
 	MAIN.health_label.text=str("Health:", round(health))
 	$Timer.start()
 
+var leng=2
+
 func update_level():
 	if Peoples == number_in:
 		add_new_part()
@@ -41,6 +43,25 @@ func update_level():
 		number_in-=(level + 4)
 		Peoples+=1
 		level+=1
+		$"../GameManager/Inventory".add_to_roster(level)
+		$"../GameManager/Spawner".add_to_pull(level)
+		match level:
+			3:
+				$"../Weather"._weathers.append("Snow")
+				leng+=1
+			5:
+				$"../Weather"._weathers.append("Rain")
+			8:$"../Weather"._weathers.append("Smoke")
+			11:$"../Weather"._weathers.append("Moon")
+			12:$"../Weather"._weathers.append("Meteor")
+			14:$"../Weather"._weathers.append("Dragon")
+			4:
+				leng+=1
+			7:
+				leng+=1
+			10:
+				leng+=1
+		
 	$Collision.scale.y = level
 	$StaticBody2D/CollisionShape2D.scale.y = level
 	$StaticBody2D/Sprite2D2.position.y=-64*level-32

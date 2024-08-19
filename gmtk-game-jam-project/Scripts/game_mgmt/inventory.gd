@@ -74,18 +74,18 @@ var _can_switch_items := true
 var _inventory: Array = []
 
 @onready var _item_roster := [
-	CIRCLE_ITEM,
-	CIRCLE_ITEM,
-	CIRCLE_ITEM,
-	CUBE_ITEM,
-	RAMP_ITEM,
 	PENTA_ITEM,
-	CIRCLE_ITEM,
-	ROTATE_ITEM,
-	SQUARE_ITEM,
-	RESIZE_ITEM,
-	DELETE_ITEM,
+	CUBE_ITEM,
 ]
+func add_to_roster(level):
+	match level:
+		2:_item_roster.append(DELETE_ITEM)
+		3:_item_roster.append(SQUARE_ITEM)
+		4:_item_roster.append(RESIZE_ITEM)
+		5:_item_roster.append(RAMP_ITEM)
+		6:
+			_item_roster.append(CIRCLE_ITEM)
+			_item_roster.append(ROTATE_ITEM)
 var _next_roster_index := 0
 var _preview_item: BaseButton 
 

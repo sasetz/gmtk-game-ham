@@ -6,10 +6,16 @@ class_name Weather
 @export var background3:CompressedTexture2D=preload("res://Visual/Screens/Задник красная луна.png")
 @export var met:PackedScene=preload("res://Scenes/Projectiles/meteor.tscn")
 # Called when the node enters the scene tree for the first time.
+
+var _weathers=[
+	"Wind",
+	"None",
+	"None",
+]
 func _ready():
 	visible=false
 	type="None"
-	$Weather_timer.wait_time=5.0
+	$Weather_timer.wait_time=15.0
 	$Weather_timer.timeout.connect(_new_weather_timeout)
 	$Weather_timer.start()
 	$Meteor_timer.timeout.connect(_new_meteor)
@@ -17,9 +23,10 @@ func _ready():
 	pass # Replace with function body.
 
 func _new_weather_timeout():
+	var weather_picked=_weathers.pick_random()
 	$Meteor_timer.stop()
-	match randi_range(1,14):
-		1,9:
+	match weather_picked:
+		"Wind":
 			if not(type=="Wind2" or type=="Wind1"):
 				match randi_range(1,2):
 					1:
@@ -31,50 +38,57 @@ func _new_weather_timeout():
 			visible=true
 			play("Ветер")
 			$"../UI/Background".texture=background1
-			$Weather_timer.wait_time=5.0
+			$Weather_timer.wait_time=10.0
 			$Weather_timer.start()
-		2,3,10:
+		"None":
 			play("Nothing")
 			type="None"
 			visible=false
 			$"../UI/Background".texture=background1
 			$Weather_timer.wait_time=10.0
 			$Weather_timer.start()
-		4:
+		"Rain":
 			type="Rain"
 			visible=true
 			play("Дождь")
 			$"../UI/Background".texture=background2
-			$Weather_timer.wait_time=5.0
+			$Weather_timer.wait_time=15.0
 			$Weather_timer.start()
-		5:
+		"Snow":
 			type="Snow"
 			visible=true
 			play("Снег")
 			$"../UI/Background".texture=background2
-			$Weather_timer.wait_time=5.0
+			$Weather_timer.wait_time=15.0
 			$Weather_timer.start()
-		6:
+		"Smoke":
 			type="Smoke"
 			visible=true
 			
 			play("Туман")
 			$"../UI/Background".texture=background1
-			$Weather_timer.wait_time=5.0
+			$Weather_timer.wait_time=10.0
 			$Weather_timer.start()
-		7:
+		"Moon":
 			type="Moon"
 			visible=true
 			play("Nothing")
 			$"../UI/Background".texture=background3
-			$Weather_timer.wait_time=5.0
+			$Weather_timer.wait_time=20.0
 			$Weather_timer.start()
-		8,11,12,13,14:
+		"Meteor":
 			type="Meteor"
 			play("Nothing")
-			visible=true
+			visible=false
 			$"../UI/Background".texture=background2
 			$Meteor_timer.start()
+			$Weather_timer.wait_time=5.0
+			$Weather_timer.start()
+		"Dragon":
+			type="Dragon"
+			play("Nothing")
+			visible=false
+			$"../UI/Background".texture=background1
 			$Weather_timer.wait_time=5.0
 			$Weather_timer.start()
 	print(type)

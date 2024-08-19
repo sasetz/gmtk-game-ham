@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://21u7pnxjtdvi"]
+[gd_scene load_steps=11 format=3 uid="uid://dtup3fv82jr0b"]
 
 [ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_r2i5y"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_htoe6"]
@@ -39,6 +39,7 @@ animations = [{
 [node name="Ramp" instance=ExtResource("1_r2i5y")]
 collision_mask = 255
 script = ExtResource("2_htoe6")
+INITIAL_HEALTH = 50.0
 Structure_vatiation = [ExtResource("3_rwr7d"), ExtResource("4_wkq8f"), ExtResource("5_figtg")]
 
 [node name="Collision" type="CollisionPolygon2D" parent="." index="0"]
