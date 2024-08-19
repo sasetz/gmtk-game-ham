@@ -46,7 +46,7 @@ func _end():
 			$AnimatedSprite2D.play("default")
 			$AnimatedSprite2D2.visible=true
 			$AnimatedSprite2D2.play("default")
-			$Timer.wait_time = 1.8
+			$Timer.wait_time = 3.8
 			$Timer.one_shot = true
 			$Timer.autostart = true
 			$Timer.start()
@@ -66,9 +66,35 @@ func _end():
 	
 func fire_timeout():
 	var projectile:= arrow.instantiate()
-	add_child(projectile)
-	print($AnimatedSprite2D.get_global_position()," ",get_global_mouse_position())
-	projectile.launch($AnimatedSprite2D.get_global_position(),
-	get_global_mouse_position(),9.0,1)
-	$Timer.wait_time = 12.5
+	var maxdis:=100000.0
+	var a:Vector2
+	var marked:Enemy
+	var b:float
+	for enem in get_tree().current_scene.get_children():
+		if enem is Enemy:
+			a=enem.position-$AnimatedSprite2D.get_global_position()
+			b=sqrt(pow(a.x, 2) + pow(a.y, 2))
+			if b<maxdis and enem.position.x>0:
+				maxdis=sqrt(pow(a.x, 2) + pow(a.y, 2))
+				marked=enem
+	if marked!=null:
+		get_tree().current_scene.add_child(projectile)
+		projectile.launch($AnimatedSprite2D.get_global_position(),
+		marked.position,18.0,3)
+		
+	projectile= arrow.instantiate()	
+	maxdis=100000.0	
+	marked=null
+	for enem in get_tree().current_scene.get_children():
+		if enem is Enemy:
+			a=enem.position-$AnimatedSprite2D2.get_global_position()
+			b=sqrt(pow(a.x, 2) + pow(a.y, 2))
+			if b<maxdis and enem.position.x<0:
+				maxdis=sqrt(pow(a.x, 2) + pow(a.y, 2))
+				marked=enem
+	if marked!=null:
+		get_tree().current_scene.add_child(projectile)
+		projectile.launch($AnimatedSprite2D2.get_global_position(),
+		marked.position,18.0,3)
+	$Timer.wait_time = 5
 	$Timer.start()
