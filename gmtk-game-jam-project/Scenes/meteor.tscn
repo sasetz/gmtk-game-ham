@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqo1uma7rssk1"]
+[gd_scene load_steps=9 format=3 uid="uid://cqo1uma7rssk1"]
 
 [ext_resource type="Script" path="res://Scenes/meteor.gd" id="1_rt4hx"]
 [ext_resource type="Texture2D" uid="uid://bexrsgdaqpfae" path="res://Visual/Animations/Метеорит.png" id="2_5a3gr"]
@@ -36,6 +36,10 @@ animations = [{
 radius = 27.0
 height = 108.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v2r6f"]
+radius = 82.0
+height = 164.0
+
 [node name="Meteor" type="Area2D"]
 collision_layer = 255
 collision_mask = 255
@@ -50,3 +54,13 @@ visibility_layer = 1023
 position = Vector2(12, 0)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_f7tc7")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" groups=["enemy"]]
+position = Vector2(58, -1)
+shape = SubResource("CapsuleShape2D_v2r6f")
+disabled = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

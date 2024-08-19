@@ -74,7 +74,6 @@ func _physics_process(delta: float) -> void:
 			print("Damaging the shape! Its health: %d" % c.get_collider().current_health)
 			c.get_collider().current_health -= DAMAGE
 			var perc:float=c.get_collider().current_health/c.get_collider().INITIAL_HEALTH
-			print(perc)
 			if perc>=0.7:
 				c.get_collider().sprite.texture=c.get_collider().Structure_vatiation[0]
 			elif perc>=0.4:

@@ -180,6 +180,7 @@ script = ExtResource("5_bhk52")
 InventoryUIContainer = NodePath("InventoryUI")
 
 [node name="InventoryUI" type="HBoxContainer" parent="GameManager/Inventory"]
+z_index = 2
 offset_left = -571.0
 offset_top = -529.0
 offset_right = -341.0
