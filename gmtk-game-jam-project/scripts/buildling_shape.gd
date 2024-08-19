@@ -10,9 +10,9 @@ class_name BuildingStructure
 var current_health := INITIAL_HEALTH:
 	set(value):
 		if value <= 0:
-			animplayer.visible=true
+			has_collision = false
+			animplayer.visible = true
 			animplayer.play("default")
-			animplayer.animation_finished.connect(queue_free)
 		current_health = value
 
 var has_collision := true :
@@ -20,7 +20,7 @@ var has_collision := true :
 		freeze = not value
 		sleeping = not value
 		if Collision:
-			Collision.disabled = not value
+			Collision.call_deferred("set_disabled", not value)
 
 		has_collision = value
 
@@ -30,6 +30,7 @@ var has_collision := true :
 func _ready() -> void:
 	Collision.disabled = not has_collision
 	freeze = not has_collision
+	animplayer.animation_finished.connect(queue_free)
 
 
 func rotate_physically(radians: float):

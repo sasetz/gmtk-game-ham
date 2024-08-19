@@ -16,7 +16,7 @@ func _on_mob_collided(entity: Node2D):
 	if not entity.is_in_group("friend"):
 		return
 	var mob = entity as MobNPC
-	if true or weath.type == "Moon":
+	if weath.type == "Moon":
 		var new_enemy = ZombifiedFriendScene.instantiate()
 		new_enemy.position = mob.position
 		new_enemy.DIRECTION = mob.DIRECTION

@@ -33,13 +33,13 @@ func _physics_process(delta):
 
 
 func _on_body_entered(bod):
-	$Area2D/CollisionShape2D2.disabled=false
+	$Area2D/CollisionShape2D2.call_deferred("set_disabled", false)
 	_on_area_2d_body_entered(bod)
 	for body in get_overlapping_bodies():
 		if (body is MobNPC):
 			body.die()
 		elif (body is BuildingStructure):
-			body.current_health -= (TOWER_DAMAGE / 2)
+			body.current_health -= int(TOWER_DAMAGE / 2.0)
 			var perc:float=body.current_health/body.INITIAL_HEALTH
 			if perc>=0.7:
 				body.sprite.texture=body.Structure_vatiation[0]
@@ -54,7 +54,7 @@ func _on_area_2d_body_entered(_bod):
 		if (body is MobNPC):
 			body.die()
 		elif (body is BuildingStructure):
-			body.current_health -= (TOWER_DAMAGE/2)
+			body.current_health -= int(TOWER_DAMAGE / 2.0)
 			var perc:float=body.current_health/body.INITIAL_HEALTH
 			if perc>=0.7:
 				body.sprite.texture=body.Structure_vatiation[0]
@@ -62,4 +62,4 @@ func _on_area_2d_body_entered(_bod):
 				body.sprite.texture=body.Structure_vatiation[1]
 			elif perc>0.0:
 				body.sprite.texture=body.Structure_vatiation[2]
-	$".".queue_free()
+	queue_free()

@@ -16,6 +16,7 @@ class_name MobNPC
 var die_timer: Timer
 var damage_timer: Timer
 var slide_timer: Timer
+var death_collision_timer: Timer
 var should_damage := true
 var weath: Weather
 var tower: Tower
@@ -25,6 +26,7 @@ var tower: Tower
 		if value <= 0:
 			value = 0
 			die()
+var frozen := false
 
 func _ready() -> void:
 	weath=$"../Weather" as Weather
@@ -51,6 +53,15 @@ func _ready() -> void:
 	damage_timer.start()
 	damage_timer.timeout.connect(_on_damage_interval_timeout)
 	
+	death_collision_timer = Timer.new()
+	add_child(death_collision_timer)
+	death_collision_timer.wait_time = 0.2
+	death_collision_timer.one_shot = true
+	death_collision_timer.autostart = false
+	death_collision_timer.timeout.connect(func(): collision_layer = 0)
+
+	$AnimatedSprite2D2.animation_finished.connect(queue_free)
+	
 func _on_die_interval_timeout() -> void:
 	print("Mob died!")
 	die()
@@ -67,7 +78,8 @@ func _physics_process(delta: float) -> void:
 	wall_check()
 		
 	weather_check()
-	move_and_slide()
+	if not frozen:
+		move_and_slide()
 
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
@@ -122,7 +134,8 @@ func dir_check():
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
 func die():
+	death_collision_timer.start()
+	frozen = true
 	$AnimatedSprite2D.visible=false
 	$AnimatedSprite2D2.visible=true
 	$AnimatedSprite2D2.play("death")
-	$AnimatedSprite2D2.animation_finished.connect(queue_free)
