@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name MobNPC
 
 
+signal on_mob_collision(mob: MobNPC)
+
 @export var SPEED = 100.0
 @export var VERTICALSPEED = 100.0
 @export var JUMP_VELOCITY = -400.0
@@ -65,7 +67,9 @@ func _physics_process(delta: float) -> void:
 
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
-		if c.get_collider() is BuildingStructure and \
+		if c.get_collider() is MobNPC:
+			on_mob_collision.emit(c.get_collider())
+		elif c.get_collider() is BuildingStructure and \
 		should_damage and \
 		(SHOULD_DAMAGE_WHEN_ON_TOP or is_on_wall()):
 			print("Damaging the shape! Its health: %d" % c.get_collider().current_health)
