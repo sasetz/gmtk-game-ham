@@ -19,10 +19,11 @@ var damage_timer: Timer
 var slide_timer: Timer
 var should_damage := true
 var weath: Weather
+var tower: Tower
 func _ready() -> void:
 	
 	weath=$"../Weather" as Weather
-	
+	tower=$"../Tower" as Tower
 	slide_timer=Timer.new()
 	slide_timer.wait_time=100.0
 	add_child(slide_timer)
@@ -55,10 +56,8 @@ func _on_damage_interval_timeout() -> void:
 func _physics_process(delta: float) -> void:
 	floor_check(delta)
 
-	if DIRECTION:
-		velocity.x = DIRECTION * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	dir_check()
+	
 
 	wall_check()
 		
@@ -114,3 +113,9 @@ func wall_check():
 func floor_check(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
+func dir_check():
+	if DIRECTION:
+		velocity.x = DIRECTION * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)

@@ -5,6 +5,8 @@ class_name Tower
 @export var REGENERATION:=0.0
 @export var INCOME_TIME:=2.0
 @export var fundation:Array
+@export var SPEED_UPGRADE:=0.0
+@export var SAVEHEALTH:=0.0
 const ENEMY_DAMAGE := 10
 const FRIEND_DAMAGE := -100
 const Peoples :=1.0
@@ -28,7 +30,8 @@ func _regenerate_timeout()->void:
 		health = maxhealth
 	else:
 		health += REGENERATION
-	MAIN.health_label.text=str("Health:", round(health))
+	MAIN.health_label.text=str("Health:", round(health),"
+	Saves:",SAVEHEALTH)
 	$Timer.start()
 
 func update_level():

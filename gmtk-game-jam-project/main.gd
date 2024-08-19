@@ -10,15 +10,17 @@ class_name main
 @export var first_camera: Camera2D
 @export var second_camera: Camera2D
 @export var third_camera: Camera2D
-
+@onready var inventory:=$GameManager/Inventory
 var LIFE_TIME_MODIFICATOR:=1.0
 var _resource_timer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	resource_label.text = str("Resource:", resource)
 	
-	health_label.text = str("Health:", round($Tower.health))
+	$UI/ResourceLabel/RichTextLabel.text = str(resource)
+	
+	health_label.text = str("Health:", round($Tower.health),"
+	Saves:",$Tower.SAVEHEALTH)
 	add_resource()
 
 func add_resource():
@@ -32,16 +34,21 @@ func add_resource():
 	
 func _on_add_interval_timeout():
 	resource += 1
-	resource_label.text = str("Resource:", resource)
+	$UI/ResourceLabel/RichTextLabel.text = str(resource)
 	_resource_timer.start()
 
 
 func _on_tower_body_entered(_body):
-	health_label.text = str("Health:", round($Tower.health))
+	health_label.text = str("Health:", round($Tower.health),"
+	Saves:",$Tower.SAVEHEALTH)
 	if $Tower.health<=0:
-		var obj : Control = game_end.instantiate()
-		add_child(obj)
-		get_tree().paused = true
+		if $Tower.SAVEHEALTH==0:
+			var obj : Control = game_end.instantiate()
+			add_child(obj)
+			get_tree().paused = true
+		else:
+			$Tower.health+=50
+			$Tower.SAVEHEALTH-=1
 	if $Tower.level >= 10:
 		health_label.position = Vector2(850,-950)
 		resource_label.position = Vector2(-950,-950)

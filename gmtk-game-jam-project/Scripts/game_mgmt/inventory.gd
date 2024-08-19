@@ -32,7 +32,7 @@ class ActionInventoryItem extends InventoryItem:
 @export_category("Inventory")
 @export var InventoryButtonScene: PackedScene = preload("res://Scenes/UI/inventory_button.tscn")
 @export var InventoryPreviewScene: PackedScene = preload("res://Scenes/UI/inventory_button.tscn")
-@export var InventorySize: int = 5
+@export var InventorySize: int = 2
 @export var InventoryUIContainer: HBoxContainer
 
 @export_category("Actions settings")

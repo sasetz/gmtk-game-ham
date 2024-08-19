@@ -36,6 +36,11 @@ func _on_button_pressed():
 		
 func _end():
 	match i:
+		0:
+			tower.SPEED_UPGRADE+=25
+		1:
+			tower.get_parent().inventory.InventorySize+=1
+			tower.get_parent().inventory._add_next_item_from_roster()
 		2:
 			$AnimatedSprite2D.visible=true
 			$AnimatedSprite2D.play("default")
@@ -51,6 +56,10 @@ func _end():
 			print(tower.INCOME_TIME)
 		4:
 			tower.REGENERATION+=0.5
+		5:
+			tower.SAVEHEALTH+=1
+			tower.MAIN.health_label.text = str("Health:", round(tower.health),"
+			Saves:",tower.SAVEHEALTH)
 	choosing=false
 	$Button.disabled=true
 	$Button.visible=false

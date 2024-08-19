@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://0noy1dvkmrnb"]
+[gd_scene load_steps=35 format=3 uid="uid://0noy1dvkmrnb"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
 [ext_resource type="PackedScene" uid="uid://7jg56sj67duc" path="res://Scenes/tower.tscn" id="1_vyirh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/game_mgmt/spawner.gd" id="4_kkvm3"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/inventory.gd" id="5_bhk52"]
 [ext_resource type="Texture2D" uid="uid://bg5sju7pyil7" path="res://Visual/UI/Монетки.png" id="6_a1i2i"]
+[ext_resource type="FontFile" uid="uid://c18a4x8oe4gie" path="res://Visual/Alice in Wonderland.ttf" id="6_rhh1s"]
 [ext_resource type="Texture2D" uid="uid://dtnwnqe1ng4rx" path="res://Visual/Backgrounds/Задник.png" id="7_djedb"]
 [ext_resource type="Texture2D" uid="uid://c8t2iuciwksii" path="res://Visual/Screens/Ветер6.png" id="7_xeqyv"]
 [ext_resource type="Texture2D" uid="uid://b8cxytnwf2e1y" path="res://Visual/Screens/tuman1.png" id="8_cv15u"]
@@ -179,18 +180,21 @@ script = ExtResource("5_bhk52")
 InventoryUIContainer = NodePath("InventoryUI")
 
 [node name="InventoryUI" type="HBoxContainer" parent="GameManager/Inventory"]
-offset_left = -517.0
-offset_top = -502.0
-offset_right = -477.0
-offset_bottom = -462.0
+offset_left = -571.0
+offset_top = -529.0
+offset_right = -341.0
+offset_bottom = -456.0
 
 [node name="UI" type="Node2D" parent="."]
 
 [node name="HealthLabel" type="RichTextLabel" parent="UI"]
-offset_left = 450.0
+self_modulate = Color(0.798994, 0, 0.102235, 1)
+offset_left = 414.0
 offset_top = -600.0
-offset_right = 545.0
-offset_bottom = -559.0
+offset_right = 576.0
+offset_bottom = -449.0
+theme_override_fonts/normal_font = ExtResource("6_rhh1s")
+theme_override_font_sizes/normal_font_size = 35
 text = "Health"
 
 [node name="ResourceLabel" type="RichTextLabel" parent="UI"]
@@ -198,11 +202,21 @@ offset_left = -575.0
 offset_top = -600.0
 offset_right = -436.0
 offset_bottom = -537.0
-text = "Resource"
 
 [node name="Sprite2D" type="Sprite2D" parent="UI/ResourceLabel"]
 position = Vector2(36.18, 30.52)
 texture = ExtResource("6_a1i2i")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/ResourceLabel"]
+self_modulate = Color(1, 0.772549, 0.14902, 1)
+layout_mode = 0
+offset_left = 72.0
+offset_top = 5.0
+offset_right = 152.0
+offset_bottom = 56.0
+theme_override_fonts/normal_font = ExtResource("6_rhh1s")
+theme_override_font_sizes/normal_font_size = 42
+text = "10"
 
 [node name="Background" type="Sprite2D" parent="UI"]
 z_index = -2
