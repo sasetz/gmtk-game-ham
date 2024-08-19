@@ -4,7 +4,6 @@ class_name BuildingStructure
 
 @export var INITIAL_HEALTH := 30.0
 @export var Structure_vatiation: Array
-@export var PRICE:=1
 var current_health := INITIAL_HEALTH:
 	set(value):
 		if value <= 0:
@@ -33,3 +32,4 @@ func _ready() -> void:
 func rotate_physically(radians: float):
 	var target = Vector2.from_angle(rotation + radians)
 	look_at(global_position + target)
+	

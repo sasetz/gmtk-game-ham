@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/2d_shapes/plugin.cfg", "res://addons/ProjectileOnCurve2DPlugin/plugin.cfg")
+enabled=PackedStringArray("res://addons/ProjectileOnCurve2DPlugin/plugin.cfg")
 
 [input]
 

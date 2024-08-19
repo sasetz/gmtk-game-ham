@@ -54,7 +54,7 @@ func add_new_part()->void:
 	obj.position.y=-64*level-32
 
 func _on_body_entered(body: Node) -> void:
-	if not (body is MobNPC):
+	if not (body is MobNPC or body is MeteorOnCurve2D):
 		return
 	if body.is_in_group("enemy"):
 		print("Enemy reached the tower!")
@@ -79,3 +79,24 @@ func _on_body_entered(body: Node) -> void:
 		number_in+=1
 		update_level()
 	print("Current health: %d" % health)
+
+
+func _on_area_entered(area):
+	if not (area is MobNPC or area is MeteorOnCurve2D):
+		return
+	print("Enemy reached the tower!")
+	area.queue_free()
+	health -= area.TOWER_DAMAGE
+	var percentage:float= health/maxhealth
+	if percentage>=0.9:
+		$StaticBody2D/Sprite2D.texture=fundation[0]
+	elif percentage>=0.75:
+		$StaticBody2D/Sprite2D.texture=fundation[1]
+	elif percentage>=0.50:
+		$StaticBody2D/Sprite2D.texture=fundation[2]
+	elif percentage>=0.25:
+		$StaticBody2D/Sprite2D.texture=fundation[3]
+	elif percentage>=0.0:
+		$StaticBody2D/Sprite2D.texture=fundation[4]
+	update_level()
+	pass # Replace with function body.

@@ -33,7 +33,7 @@ func _new_weather_timeout():
 			$"../UI/Background".texture=background1
 			$Weather_timer.wait_time=5.0
 			$Weather_timer.start()
-		2,3,10,11,12,13,14:
+		2,3,10:
 			play("Nothing")
 			type="None"
 			visible=false
@@ -69,7 +69,7 @@ func _new_weather_timeout():
 			$"../UI/Background".texture=background3
 			$Weather_timer.wait_time=20.0
 			$Weather_timer.start()
-		8:
+		8,11,12,13,14:
 			type="Meteor"
 			play("Nothing")
 			visible=true

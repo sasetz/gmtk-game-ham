@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://7q53udte71i2"]
 
-[ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_0pbiq"]
+[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_0pbiq"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_x2b4c"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="3_k6qqf"]
 [ext_resource type="Texture2D" uid="uid://rgoiqt1a6eae" path="res://Visual/Backgrounds/Прямоугольник.png" id="4_72p4x"]
