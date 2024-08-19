@@ -27,6 +27,7 @@ class ActionInventoryItem extends InventoryItem:
 
 @export_category("Building structures")
 @export var Ramp: PackedScene = preload("res://Scenes/ramp.tscn")
+@export var Eg: PackedScene = preload("res://Scenes/eg.tscn")
 @export var Penta: PackedScene = preload("res://Scenes/penta.tscn")
 @export var Cube: PackedScene = preload("res://Scenes/cube.tscn")
 @export var Circle: PackedScene = preload("res://Scenes/circle.tscn")
@@ -54,6 +55,7 @@ var NONE_ITEM = InventoryItem.new("none", null,1) # currently not holding anythi
 @onready var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle", preload("res://Visual/Backgrounds/Круг.png"),1)
 @onready var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square", preload("res://Visual/Backgrounds/Прямоугольник.png"),1)
 @onready var PENTA_ITEM = StructureInventoryItem.new(Penta, "Penta", preload("res://Visual/Backgrounds/Пятиугольник.png"),1)
+@onready var EG_ITEM = StructureInventoryItem.new(Eg, "Eg", preload("res://Visual/Backgrounds/Деревянный еж.png"),1)
 @onready var RESIZE_ITEM = ActionInventoryItem.new("Resize", preload("res://Visual/UI/Размер.png"),1)
 @onready var ROTATE_ITEM = ActionInventoryItem.new("Rotate", preload("res://Visual/UI/Форма.png"),1)
 @onready var DELETE_ITEM = ActionInventoryItem.new("Delete", preload("res://Visual/UI/Удалить.png"),1)
@@ -86,6 +88,7 @@ func add_to_roster(level):
 		6:
 			_item_roster.append(CIRCLE_ITEM)
 			_item_roster.append(ROTATE_ITEM)
+		8:_item_roster.append(EG_ITEM)
 var _next_roster_index := 0
 var _preview_item: BaseButton 
 

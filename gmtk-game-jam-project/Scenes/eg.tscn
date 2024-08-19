@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://dm6yalrih21bq"]
+
+[ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_aqp8o"]
+[ext_resource type="Script" path="res://Scripts/eg.gd" id="2_xs2uj"]
+[ext_resource type="Texture2D" uid="uid://msaervt6585" path="res://Visual/Backgrounds/Деревянный еж.png" id="3_qvwua"]
+[ext_resource type="Texture2D" uid="uid://nq11by705wr1" path="res://Visual/Animations/Пыль.png" id="6_xo4pj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyh0e"]
+size = Vector2(49, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqkiw"]
+atlas = ExtResource("6_xo4pj")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c31k8"]
+atlas = ExtResource("6_xo4pj")
+region = Rect2(224, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_50c2y"]
+atlas = ExtResource("6_xo4pj")
+region = Rect2(448, 0, 224, 224)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wgkbb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqkiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c31k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_50c2y")
+}],
+"loop": false,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cixgq"]
+size = Vector2(59, 50)
+
+[node name="Cube" instance=ExtResource("1_aqp8o")]
+collision_mask = 255
+script = ExtResource("2_xs2uj")
+INITIAL_HEALTH = 20.0
+Structure_vatiation = [ExtResource("3_qvwua"), ExtResource("3_qvwua"), ExtResource("3_qvwua")]
+
+[node name="Collision" type="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_gyh0e")
+
+[node name="Node2D" type="Node2D" parent="." index="1"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" index="0"]
+position = Vector2(9.53674e-07, 2.38419e-07)
+scale = Vector2(1.36, 1.36)
+texture = ExtResource("3_qvwua")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" index="1"]
+visible = false
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_wgkbb")
+
+[node name="DeathCollision" type="Area2D" parent="." index="2"]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathCollision" index="0"]
+shape = SubResource("RectangleShape2D_cixgq")

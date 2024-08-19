@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://cqo1uma7rssk1"]
 
-[ext_resource type="Script" path="res://Scenes/meteor.gd" id="1_u2syw"]
+[ext_resource type="Script" path="res://Scripts/meteor.gd" id="1_u2syw"]
 [ext_resource type="Texture2D" uid="uid://bexrsgdaqpfae" path="res://Visual/Animations/Метеорит.png" id="2_2i1ml"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6gs4t"]

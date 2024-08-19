@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://fqkic1nbxvpi"]
+[gd_scene load_steps=18 format=3 uid="uid://fqkic1nbxvpi"]
 
+[ext_resource type="Script" path="res://Scenes/Projectiles/dragon.gd" id="1_bfqwm"]
 [ext_resource type="Texture2D" uid="uid://087qvei21jek" path="res://Visual/Animations/Дракон1.png" id="1_r75jn"]
 [ext_resource type="Texture2D" uid="uid://ccfqe6ktcb1o6" path="res://Visual/Animations/Дракон2.png" id="2_tgnbk"]
 
@@ -103,10 +104,11 @@ animations = [{
 }]
 
 [node name="Dragon" type="Area2D"]
+script = ExtResource("1_bfqwm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-3, -3, -5, 6, 4, 7, 5, -5)
+polygon = PackedVector2Array(-125, -359, -251, 467, 233, 447, 67, -336)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6tcil")
-frame_progress = 0.826306
+frame_progress = 0.174938

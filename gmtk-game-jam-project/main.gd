@@ -19,8 +19,7 @@ func _ready():
 	
 	$UI/ResourceLabel/RichTextLabel.text = str(resource)
 	
-	health_label.text = str("Health:", round($Tower.health),"
-	Saves:",$Tower.SAVEHEALTH)
+	health_label.text = str("Health:", round($Tower.health))
 	add_resource()
 
 func add_resource():

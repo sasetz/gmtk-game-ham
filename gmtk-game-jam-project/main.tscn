@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://d0ha2oack7o3e"]
+[gd_scene load_steps=45 format=3 uid="uid://d0ha2oack7o3e"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
 [ext_resource type="PackedScene" path="res://Scenes/tower.tscn" id="1_vyirh"]
@@ -40,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://btsd0t2rkekc4" path="res://Visual/Screens/Катсцена1 3.png" id="35_dy52x"]
 [ext_resource type="Texture2D" uid="uid://blggpp3ll7vqk" path="res://Visual/Screens/Катсцена2 4.png" id="36_8yc78"]
 [ext_resource type="Texture2D" uid="uid://xsjyhk1ptyna" path="res://Visual/Screens/Катсцена1 4.png" id="36_gr2uo"]
+[ext_resource type="PackedScene" uid="uid://fqkic1nbxvpi" path="res://Scenes/Projectiles/Dragon.tscn" id="41_ao17e"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
 
@@ -321,6 +322,9 @@ script = ExtResource("14_gljpk")
 visible = false
 sprite_frames = SubResource("SpriteFrames_i1cw7")
 animation = &"End"
+
+[node name="Dragon" parent="." instance=ExtResource("41_ao17e")]
+position = Vector2(-299, -421)
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="timeout" from="GameManager/Spawner/SpawnTimer" to="GameManager" method="_on_spawn_timeout"]
