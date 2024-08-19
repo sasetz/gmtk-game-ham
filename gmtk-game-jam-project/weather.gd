@@ -85,6 +85,3 @@ func _new_meteor():
 	meteor.position=Vector2(randi_range(-935,935),-1029)
 	meteor.launch(meteor.position,Vector2(randi_range(-935,935),-0),9,1)
 	$Meteor_timer.start()
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

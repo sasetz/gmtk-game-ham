@@ -11,9 +11,11 @@ func _ready():
 	self.VERTICALSPEED = 100
 	self.SPEED=100
 	$AnimatedSprite2D.play("default")
-	on_mob_collision.connect(_on_mob_collided)
 
-func _on_mob_collided(mob: MobNPC):
+func _on_mob_collided(entity: Node2D):
+	if not entity.is_in_group("friend"):
+		return
+	var mob = entity as MobNPC
 	if weath.type == "Moon":
 		var new_enemy = ZombifiedFriendScene.instantiate()
 		new_enemy.position = mob.position
@@ -21,4 +23,4 @@ func _on_mob_collided(mob: MobNPC):
 		new_enemy.scale.x = mob.scale.x
 		print("zonbufied")
 		get_tree().current_scene.add_child(new_enemy)
-		mob.anim_die()
+		mob.die()

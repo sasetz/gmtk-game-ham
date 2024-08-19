@@ -8,7 +8,7 @@ func _ready():
 	$Timer.timeout.connect(_dir_change)
 	$Timer.start()
 
-func floor_check(delta: float) -> void:
+func floor_check(_delta: float) -> void:
 	if not is_on_floor():
 		velocity.y=VERTICALSPEED*mod_dir
 		velocity.x=SPEED

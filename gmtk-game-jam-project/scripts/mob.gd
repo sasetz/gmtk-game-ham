@@ -2,8 +2,6 @@ extends CharacterBody2D
 class_name MobNPC
 
 
-signal on_mob_collision(mob: MobNPC)
-
 @export var SPEED = 100.0
 @export var VERTICALSPEED = 100.0
 @export var JUMP_VELOCITY = -400.0
@@ -13,15 +11,24 @@ signal on_mob_collision(mob: MobNPC)
 @export var TOWER_DAMAGE := 10
 @export var LIFE_TIME := 10.0
 @export var SHOULD_DAMAGE_WHEN_ON_TOP := false
+@export var HEALTH := 1
 
 var die_timer: Timer
 var damage_timer: Timer
 var slide_timer: Timer
+var death_collision_timer: Timer
 var should_damage := true
 var weath: Weather
 var tower: Tower
+@onready var health := HEALTH:
+	set(value):
+		health = value
+		if value <= 0:
+			value = 0
+			die()
+var frozen := false
+
 func _ready() -> void:
-	
 	weath=$"../Weather" as Weather
 	tower=$"../Tower" as Tower
 	slide_timer=Timer.new()
@@ -46,9 +53,18 @@ func _ready() -> void:
 	damage_timer.start()
 	damage_timer.timeout.connect(_on_damage_interval_timeout)
 	
+	death_collision_timer = Timer.new()
+	add_child(death_collision_timer)
+	death_collision_timer.wait_time = 0.1
+	death_collision_timer.one_shot = true
+	death_collision_timer.autostart = false
+	death_collision_timer.timeout.connect(func(): collision_layer = 0)
+
+	$AnimatedSprite2D2.animation_finished.connect(queue_free)
+	
 func _on_die_interval_timeout() -> void:
 	print("Mob died!")
-	anim_die()
+	die()
 
 func _on_damage_interval_timeout() -> void:
 	should_damage = true
@@ -62,16 +78,14 @@ func _physics_process(delta: float) -> void:
 	wall_check()
 		
 	weather_check()
-	move_and_slide()
+	if not frozen:
+		move_and_slide()
 
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
-		if c.get_collider() is MobNPC:
-			on_mob_collision.emit(c.get_collider())
-		elif c.get_collider() is BuildingStructure and \
+		if c.get_collider() is BuildingStructure and \
 		should_damage and \
 		(SHOULD_DAMAGE_WHEN_ON_TOP or is_on_wall()):
-			print("Damaging the shape! Its health: %d" % c.get_collider().current_health)
 			c.get_collider().current_health -= DAMAGE
 			var perc:float=c.get_collider().current_health/c.get_collider().INITIAL_HEALTH
 			if perc>=0.7:
@@ -119,11 +133,9 @@ func dir_check():
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		
-func anim_die():
+func die():
+	death_collision_timer.start()
+	frozen = true
 	$AnimatedSprite2D.visible=false
 	$AnimatedSprite2D2.visible=true
 	$AnimatedSprite2D2.play("death")
-	$AnimatedSprite2D2.animation_finished.connect(die)
-	
-func die():
-	queue_free()
