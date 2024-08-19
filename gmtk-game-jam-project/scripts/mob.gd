@@ -48,7 +48,7 @@ func _ready() -> void:
 	
 func _on_die_interval_timeout() -> void:
 	print("Mob died!")
-	queue_free()
+	anim_die()
 
 func _on_damage_interval_timeout() -> void:
 	should_damage = true
@@ -118,3 +118,12 @@ func dir_check():
 		velocity.x = DIRECTION * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
+func anim_die():
+	$AnimatedSprite2D.visible=false
+	$AnimatedSprite2D2.visible=true
+	$AnimatedSprite2D2.play("death")
+	$AnimatedSprite2D2.animation_finished.connect(die)
+	
+func die():
+	queue_free()

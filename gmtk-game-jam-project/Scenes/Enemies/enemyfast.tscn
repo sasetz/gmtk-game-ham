@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ddabt65wf10kk"]
+[gd_scene load_steps=15 format=3 uid="uid://ddabt65wf10kk"]
 
 [ext_resource type="Script" path="res://Scripts/fastenemy.gd" id="1_oct7h"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_p5blc"]
@@ -8,18 +8,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
 radius = 16.0
 height = 56.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i0ud4"]
-atlas = ExtResource("3_kmbr1")
-region = Rect2(0, 0, 224, 224)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g4cyt"]
-atlas = ExtResource("3_kmbr1")
-region = Rect2(224, 0, 224, 224)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oecmf"]
-atlas = ExtResource("3_kmbr1")
-region = Rect2(448, 0, 224, 224)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a0pcn"]
 atlas = ExtResource("3_nyjro")
@@ -41,20 +29,6 @@ region = Rect2(138, 0, 46, 63)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i0ud4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g4cyt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oecmf")
-}],
-"loop": false,
-"name": &"death",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_a0pcn")
 }, {
 "duration": 1.0,
@@ -69,6 +43,35 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp6bq"]
+atlas = ExtResource("3_kmbr1")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odnnb"]
+atlas = ExtResource("3_kmbr1")
+region = Rect2(224, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwia2"]
+atlas = ExtResource("3_kmbr1")
+region = Rect2(448, 0, 224, 224)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pmjiy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp6bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odnnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwia2")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
 }]
 
 [node name="Enemy2" type="CharacterBody2D" groups=["enemy"]]
@@ -91,4 +94,10 @@ shape = SubResource("CapsuleShape2D_x5cul")
 position = Vector2(0, -21)
 scale = Vector2(0.677778, 0.677778)
 sprite_frames = SubResource("SpriteFrames_lap3j")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-1, -21.5)
+scale = Vector2(0.25, 0.272321)
+sprite_frames = SubResource("SpriteFrames_pmjiy")
 animation = &"death"

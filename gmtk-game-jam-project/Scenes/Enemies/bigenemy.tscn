@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d0usxoq1fdj7d"]
+[gd_scene load_steps=24 format=3 uid="uid://d0usxoq1fdj7d"]
 
 [ext_resource type="Script" path="res://Scripts/bigenemy.gd" id="1_g7em7"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_4t4vt"]
@@ -37,18 +37,6 @@ region = Rect2(627, 0, 209, 224)
 atlas = ExtResource("3_wngwu")
 region = Rect2(836, 0, 209, 224)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8fgpv"]
-atlas = ExtResource("4_obiuc")
-region = Rect2(0, 0, 224, 224)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jv2mv"]
-atlas = ExtResource("4_obiuc")
-region = Rect2(224, 0, 224, 224)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7bvm7"]
-atlas = ExtResource("4_obiuc")
-region = Rect2(448, 0, 224, 224)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_lap3j"]
 animations = [{
 "frames": [{
@@ -70,20 +58,6 @@ animations = [{
 "loop": true,
 "name": &"attack",
 "speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8fgpv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jv2mv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7bvm7")
-}],
-"loop": false,
-"name": &"death",
-"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -115,6 +89,35 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp6bq"]
+atlas = ExtResource("4_obiuc")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odnnb"]
+atlas = ExtResource("4_obiuc")
+region = Rect2(224, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwia2"]
+atlas = ExtResource("4_obiuc")
+region = Rect2(448, 0, 224, 224)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2pytg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp6bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odnnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwia2")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}]
+
 [node name="Enemy3" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 5
@@ -136,6 +139,11 @@ shape = SubResource("CapsuleShape2D_x5cul")
 position = Vector2(0, -77.135)
 scale = Vector2(0.677778, 0.677778)
 sprite_frames = SubResource("SpriteFrames_lap3j")
+animation = &"attack"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0.499999, -74.5)
+scale = Vector2(0.674107, 0.745536)
+sprite_frames = SubResource("SpriteFrames_2pytg")
 animation = &"death"
-frame = 2
-frame_progress = 1.0

@@ -21,4 +21,4 @@ func _on_mob_collided(mob: MobNPC):
 		new_enemy.scale.x = mob.scale.x
 		print("zonbufied")
 		get_tree().current_scene.add_child(new_enemy)
-		mob.queue_free()
+		mob.anim_die()

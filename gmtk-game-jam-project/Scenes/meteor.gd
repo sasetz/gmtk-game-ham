@@ -37,7 +37,7 @@ func _on_body_entered(bod):
 	_on_area_2d_body_entered(bod)
 	for body in get_overlapping_bodies():
 		if (body is MobNPC):
-			body.queue_free()
+			body.anim_die()
 		elif (body is BuildingStructure):
 			body.current_health-=(TOWER_DAMAGE/2)
 			var perc:float=body.current_health/body.INITIAL_HEALTH
@@ -52,7 +52,7 @@ func _on_body_entered(bod):
 func _on_area_2d_body_entered(bod):
 	for body in get_overlapping_bodies():
 		if (body is MobNPC):
-			body.queue_free()
+			body.anim_die()
 		elif (body is BuildingStructure):
 			body.current_health-=(TOWER_DAMAGE/2)
 			var perc:float=body.current_health/body.INITIAL_HEALTH
