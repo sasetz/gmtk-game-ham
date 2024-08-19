@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3i8ydc1p40q1"]
+[gd_scene load_steps=6 format=3 uid="uid://cln7d2furf2gx"]
 
-[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_r2i5y"]
+[ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_r2i5y"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_htoe6"]
 [ext_resource type="Texture2D" uid="uid://c4a1aeqmniw30" path="res://Visual/Backgrounds/Треугольник.png" id="3_rwr7d"]
+[ext_resource type="Texture2D" uid="uid://3vdso0knu814" path="res://Visual/Backgrounds/Треугольник разрушение1.png" id="4_wkq8f"]
+[ext_resource type="Texture2D" uid="uid://bw5usyel1qvc7" path="res://Visual/Backgrounds/Треугольник разрушение2.png" id="5_figtg"]
 
 [node name="Ramp" instance=ExtResource("1_r2i5y")]
 collision_mask = 255
 script = ExtResource("2_htoe6")
+Structure_vatiation = [ExtResource("3_rwr7d"), ExtResource("4_wkq8f"), ExtResource("5_figtg")]
 
 [node name="Collision" type="CollisionPolygon2D" parent="." index="0"]
 polygon = PackedVector2Array(36, 35, -35, -36, -35, 35)

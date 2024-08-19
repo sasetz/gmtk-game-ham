@@ -14,8 +14,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _new_weather_timeout():
-	self_modulate.a=1
-	match randi_range(1,9):
+	match randi_range(1,14):
 		1,9:
 			if not visible:
 				match randi_range(1,2):
@@ -31,7 +30,7 @@ func _new_weather_timeout():
 			$Weather_timer.wait_time=5.0
 			$Weather_timer.start()
 		2,3:
-			stop()
+			play("Nothing")
 			type="None"
 			visible=false
 			$"../UI/Background".texture=background1
@@ -54,22 +53,22 @@ func _new_weather_timeout():
 		6:
 			type="Smoke"
 			visible=true
+			
 			play("Туман")
-			self_modulate.a=0.8
 			$"../UI/Background".texture=background2
 			$Weather_timer.wait_time=5.0
 			$Weather_timer.start()
-		7:
+		7,10,11,12,13,14:
 			type="Moon"
-			stop()
 			visible=true
+			play("Nothing")
 			$"../UI/Background".texture=background3
-			$Weather_timer.wait_time=5.0
+			$Weather_timer.wait_time=20.0
 			$Weather_timer.start()
 		8:
 			type="Meteor"
 			print(type)
-			stop()
+			play("Nothing")
 			visible=true
 			$"../UI/Background".texture=background2
 			$Weather_timer.wait_time=5.0

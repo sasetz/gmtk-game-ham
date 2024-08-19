@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b02itdh4us3eu"]
+[gd_scene load_steps=19 format=3 uid="uid://o71brkpir4yb"]
 
 [ext_resource type="Script" path="res://Scripts/bigenemy.gd" id="1_g7em7"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_4t4vt"]

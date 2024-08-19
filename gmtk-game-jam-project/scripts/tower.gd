@@ -4,6 +4,7 @@ class_name Tower
 @export var level := 1
 @export var REGENERATION:=0.0
 @export var INCOME_TIME:=2.0
+@export var fundation:Array
 const ENEMY_DAMAGE := 10
 const FRIEND_DAMAGE := -100
 const Peoples :=1.0
@@ -56,6 +57,17 @@ func _on_body_entered(body: Node) -> void:
 		print("Enemy reached the tower!")
 		body.queue_free()
 		health -= body.TOWER_DAMAGE
+		var percentage:float= health/maxhealth
+		if percentage>=0.9:
+			$StaticBody2D/Sprite2D.texture=fundation[0]
+		elif percentage>=0.75:
+			$StaticBody2D/Sprite2D.texture=fundation[1]
+		elif percentage>=0.50:
+			$StaticBody2D/Sprite2D.texture=fundation[2]
+		elif percentage>=0.25:
+			$StaticBody2D/Sprite2D.texture=fundation[3]
+		elif percentage>=0.0:
+			$StaticBody2D/Sprite2D.texture=fundation[4]
 		update_level()
 	
 	if body.is_in_group("friend"):

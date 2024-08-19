@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dff2oe11a5eir"]
+[gd_scene load_steps=10 format=3 uid="uid://pt10eljgqlf7"]
 
 [ext_resource type="Script" path="res://Scripts/flightenemy.gd" id="1_uu4ww"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_a2ryx"]

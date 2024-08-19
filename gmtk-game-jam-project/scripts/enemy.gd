@@ -18,5 +18,7 @@ func _on_mob_collided(mob: MobNPC):
 		var new_enemy = ZombifiedFriendScene.instantiate()
 		new_enemy.position = mob.position
 		new_enemy.DIRECTION = mob.DIRECTION
-		get_tree().add_child(new_enemy)
+		new_enemy.scale.x = mob.scale.x
+		print("zonbufied")
+		get_tree().current_scene.add_child(new_enemy)
 		mob.queue_free()

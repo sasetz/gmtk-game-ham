@@ -1,7 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://ivljoeow546n"]
+[gd_scene load_steps=34 format=3 uid="uid://0noy1dvkmrnb"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
-[ext_resource type="PackedScene" uid="uid://bwym84b4eelp0" path="res://Scenes/tower.tscn" id="1_vyirh"]
+[ext_resource type="PackedScene" uid="uid://7jg56sj67duc" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="2_53yhx"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/spawner.gd" id="4_kkvm3"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/inventory.gd" id="5_bhk52"]
@@ -31,13 +31,19 @@
 [ext_resource type="Texture2D" uid="uid://dwga18nnb5v7y" path="res://Visual/Screens/Снег3.png" id="20_0cgpw"]
 [ext_resource type="Texture2D" uid="uid://cs62doia1gfee" path="res://Visual/Screens/Снег4.png" id="21_3baj4"]
 [ext_resource type="Texture2D" uid="uid://7mfj1y564rc3" path="res://Visual/Screens/Туман1.png" id="22_mih06"]
-[ext_resource type="Texture2D" uid="uid://b0v6a4h1dyii3" path="res://Visual/Screens/Туман2.png" id="23_g1boh"]
-[ext_resource type="Texture2D" uid="uid://brwx3k183or4b" path="res://Visual/Screens/Туман3.png" id="24_dqelu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yfavc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n30pi"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"Nothing",
+"speed": 1.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("8_cv15u")
@@ -127,12 +133,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("22_mih06")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_g1boh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("24_dqelu")
 }],
 "loop": true,
 "name": &"Туман",
@@ -230,8 +230,7 @@ z_index = 1
 position = Vector2(-0.999969, -411)
 scale = Vector2(1.03021, 1)
 sprite_frames = SubResource("SpriteFrames_n30pi")
-animation = &"Tuman"
-frame_progress = 0.088136
+animation = &"Туман"
 script = ExtResource("14_gljpk")
 
 [node name="Weather_timer" type="Timer" parent="Weather"]

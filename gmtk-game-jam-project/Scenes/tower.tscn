@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwym84b4eelp0"]
+[gd_scene load_steps=13 format=3 uid="uid://7jg56sj67duc"]
 
 [ext_resource type="Script" path="res://Scripts/tower.gd" id="1_nv4hn"]
-[ext_resource type="PackedScene" uid="uid://cwnj7yfvtyp4y" path="res://Scenes/towerpart.tscn" id="2_iaeff"]
+[ext_resource type="PackedScene" uid="uid://d2nwlk2e6vgsn" path="res://Scenes/towerpart.tscn" id="2_iaeff"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_l5fj2"]
 [ext_resource type="Texture2D" uid="uid://j6pah4mccdct" path="res://Visual/Backgrounds/Башня фундамент.png" id="3_0av7w"]
 [ext_resource type="Texture2D" uid="uid://br2611hsa012c" path="res://Visual/Backgrounds/Башня верхушка.png" id="4_jc5er"]
+[ext_resource type="Texture2D" uid="uid://gfd6boq2bqpe" path="res://Visual/Backgrounds/Башня фундамент разрушение1.png" id="4_uyotg"]
+[ext_resource type="Texture2D" uid="uid://btctfrqy3k0qe" path="res://Visual/Backgrounds/Башня фундамент разрушение2.png" id="5_oy1k1"]
+[ext_resource type="Texture2D" uid="uid://4n7ddina5jcp" path="res://Visual/Backgrounds/Башня фундамент разрушение3.png" id="6_hkgxb"]
+[ext_resource type="Texture2D" uid="uid://b2s7aw3n3qrw8" path="res://Visual/Backgrounds/Башня фундамент разрушение4.png" id="7_4yeix"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_62g58"]
 
@@ -18,6 +22,7 @@ size = Vector2(121, 108)
 collision_mask = 255
 script = ExtResource("1_nv4hn")
 TowerPart = ExtResource("2_iaeff")
+fundation = [ExtResource("3_0av7w"), ExtResource("4_uyotg"), ExtResource("5_oy1k1"), ExtResource("6_hkgxb"), ExtResource("7_4yeix")]
 
 [node name="Rectangle" type="Sprite2D" parent="."]
 visible = false

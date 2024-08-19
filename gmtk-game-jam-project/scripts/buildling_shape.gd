@@ -2,8 +2,8 @@ extends RigidBody2D
 class_name BuildingStructure
 
 
-@export var INITIAL_HEALTH := 30
-
+@export var INITIAL_HEALTH := 30.0
+@export var Structure_vatiation: Array
 var current_health := INITIAL_HEALTH:
 	set(value):
 		if value <= 0:
@@ -22,6 +22,7 @@ var has_collision := true :
 
 @onready var Collision = $Collision
 
+@onready var sprite=$Node2D/Sprite2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Collision.disabled = not has_collision
@@ -31,4 +32,3 @@ func _ready() -> void:
 func rotate_physically(radians: float):
 	var target = Vector2.from_angle(rotation + radians)
 	look_at(global_position + target)
-

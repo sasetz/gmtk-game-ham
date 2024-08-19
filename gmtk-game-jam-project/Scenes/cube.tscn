@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://djyp8ncns1cce"]
+[gd_scene load_steps=7 format=3 uid="uid://cc7kf0puke8kf"]
 
-[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_kv5qh"]
+[ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_kv5qh"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_fo07c"]
 [ext_resource type="Texture2D" uid="uid://covpbs713r2vj" path="res://Visual/Backgrounds/Квадрат.png" id="4_dem5n"]
+[ext_resource type="Texture2D" uid="uid://cx235gv2rqhu0" path="res://Visual/Backgrounds/Квадрат разрушение1.png" id="4_e67ro"]
+[ext_resource type="Texture2D" uid="uid://c76kjqy4rbtpa" path="res://Visual/Backgrounds/Квадрат разрушение2.png" id="5_vsl20"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gyh0e"]
 size = Vector2(70, 70)
@@ -10,6 +12,7 @@ size = Vector2(70, 70)
 [node name="Cube" instance=ExtResource("1_kv5qh")]
 collision_mask = 255
 script = ExtResource("2_fo07c")
+Structure_vatiation = [ExtResource("4_dem5n"), ExtResource("4_e67ro"), ExtResource("5_vsl20")]
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
 visible = false
