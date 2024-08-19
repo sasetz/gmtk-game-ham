@@ -205,10 +205,10 @@ InventoryUIContainer = NodePath("InventoryUI")
 
 [node name="InventoryUI" type="HBoxContainer" parent="GameManager/Inventory"]
 z_index = 2
-offset_left = -571.0
-offset_top = -529.0
-offset_right = -341.0
-offset_bottom = -456.0
+offset_left = -575.0
+offset_top = -530.0
+offset_right = -345.0
+offset_bottom = -457.0
 
 [node name="UI" type="Node2D" parent="."]
 
@@ -244,6 +244,7 @@ theme_override_font_sizes/normal_font_size = 42
 text = "10"
 
 [node name="Background" type="Sprite2D" parent="UI"]
+visible = false
 z_index = -2
 position = Vector2(0, -417.78)
 texture = ExtResource("7_djedb")
@@ -281,6 +282,8 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_i1cw7")
 frame = 3
 frame_progress = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="timeout" from="GameManager/Spawner/SpawnTimer" to="GameManager" method="_on_spawn_timeout"]

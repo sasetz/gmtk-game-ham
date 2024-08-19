@@ -50,8 +50,9 @@ func _on_tower_body_entered(_body):
 			$Tower.health+=50
 			$Tower.SAVEHEALTH-=1
 	if $Tower.level >= 10:
-		health_label.position = Vector2(795,-950)
+		health_label.position = Vector2(785,-950)
 		resource_label.position = Vector2(-950,-950)
+		$GameManager/Inventory/InventoryUI.position=Vector2(-950,-880)
 		left_spawner.position.x = -1000
 		right_spawner.position.x = 1000
 		second_camera.enabled = false
@@ -60,6 +61,7 @@ func _on_tower_body_entered(_body):
 	elif $Tower.level >= 5:
 		health_label.position = Vector2(601,-800)
 		resource_label.position = Vector2(-760,-800)
+		$GameManager/Inventory/InventoryUI.position=Vector2(-760,-730)
 		left_spawner.position.x = -825
 		right_spawner.position.x = 825
 		first_camera.enabled = false
