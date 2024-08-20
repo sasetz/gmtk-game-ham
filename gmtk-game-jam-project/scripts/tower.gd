@@ -8,10 +8,11 @@ class_name Tower
 @export var SAVEHEALTH:=0.0
 const ENEMY_DAMAGE := 10
 const FRIEND_DAMAGE := -100
-#var Peoples :=5.0
-var Peoples :=1.0
-var health := 20000.0
-#var health := 200.0
+
+#var Peoples :=1.0
+var Peoples :=5.0
+#var health := 20000.0
+var health := 200.0
 var maxhealth :=health
 var number_in := 0.0
 var MAIN: main
@@ -51,7 +52,7 @@ func update_level():
 		health+=100
 		maxhealth+=100
 		number_in=0
-		#Peoples+=1
+		Peoples+=1
 		$AudioStreamPlayer.play()
 		level+=1
 		$"../GameManager/Inventory".add_to_roster(level)
