@@ -25,21 +25,21 @@ class ActionInventoryItem extends InventoryItem:
 	pass
 	
 
-@export_category("Building structures")
-@export var Ramp: PackedScene = preload("res://Scenes/ramp.tscn")
-@export var Eg: PackedScene = preload("res://Scenes/eg.tscn")
-@export var Penta: PackedScene = preload("res://Scenes/penta.tscn")
-@export var Cube: PackedScene = preload("res://Scenes/cube.tscn")
-@export var Circle: PackedScene = preload("res://Scenes/circle.tscn")
-@export var Square: PackedScene = preload("res://Scenes/square.tscn")
-@export var Delete: PackedScene = preload("res://Scenes/delete.tscn")
-@export var ActionPreviewScene: PackedScene = preload("res://Scenes/UI/action_preview.tscn")
+static var Ramp: PackedScene = preload("res://Scenes/ramp.tscn")
+static var Eg: PackedScene = preload("res://Scenes/eg.tscn")
+static var Penta: PackedScene = preload("res://Scenes/penta.tscn")
+static var Cube: PackedScene = preload("res://Scenes/cube.tscn")
+static var Circle: PackedScene = preload("res://Scenes/circle.tscn")
+static var Square: PackedScene = preload("res://Scenes/square.tscn")
+static var Delete: PackedScene = preload("res://Scenes/delete.tscn")
+static var ActionPreviewScene: PackedScene = preload("res://Scenes/UI/action_preview.tscn")
 
 @export_category("Inventory")
 @export var InventoryButtonScene: PackedScene = preload("res://Scenes/UI/inventory_button.tscn")
 @export var InventoryPreviewScene: PackedScene = preload("res://Scenes/UI/inventory_button.tscn")
 @export var InventorySize: int = 3
 @export var InventoryUIContainer: HBoxContainer
+@export var ActionInventoryUIContainer: HBoxContainer
 
 @export_category("Actions settings")
 @export var ScaleMax: int = 20
@@ -49,16 +49,16 @@ class ActionInventoryItem extends InventoryItem:
 
 # Inventory item definitions (singletons)
 
-var NONE_ITEM = InventoryItem.new("none", null,1) # currently not holding anything
-@onready var RAMP_ITEM = StructureInventoryItem.new(Ramp, "Ramp", preload("res://Visual/Backgrounds/Треугольник.png"),2)
-@onready var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube", preload("res://Visual/Backgrounds/Квадрат.png"),2)
-@onready var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle", preload("res://Visual/Backgrounds/Круг.png"),4)
-@onready var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square", preload("res://Visual/Backgrounds/Прямоугольник.png"),3)
-@onready var PENTA_ITEM = StructureInventoryItem.new(Penta, "Penta", preload("res://Visual/Backgrounds/Пятиугольник.png"),1)
-@onready var EG_ITEM = StructureInventoryItem.new(Eg, "Eg", preload("res://Visual/Backgrounds/Деревянный еж.png"),4)
-@onready var RESIZE_ITEM = ActionInventoryItem.new("Resize", preload("res://Visual/UI/Размер.png"),2)
-@onready var ROTATE_ITEM = ActionInventoryItem.new("Rotate", preload("res://Visual/UI/Форма.png"),2)
-@onready var DELETE_ITEM = ActionInventoryItem.new("Delete", preload("res://Visual/UI/Удалить.png"),1)
+static var NONE_ITEM = InventoryItem.new("none", null,1) # currently not holding anything
+static var RAMP_ITEM = StructureInventoryItem.new(Ramp, "Ramp", preload("res://Visual/Backgrounds/Треугольник.png"),2)
+static var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube", preload("res://Visual/Backgrounds/Квадрат.png"),2)
+static var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle", preload("res://Visual/Backgrounds/Круг.png"),4)
+static var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square", preload("res://Visual/Backgrounds/Прямоугольник.png"),3)
+static var PENTA_ITEM = StructureInventoryItem.new(Penta, "Penta", preload("res://Visual/Backgrounds/Пятиугольник.png"),1)
+static var EG_ITEM = StructureInventoryItem.new(Eg, "Eg", preload("res://Visual/Backgrounds/Деревянный еж.png"),4)
+static var RESIZE_ITEM = ActionInventoryItem.new("Resize", preload("res://Visual/UI/Размер.png"),2)
+static var ROTATE_ITEM = ActionInventoryItem.new("Rotate", preload("res://Visual/UI/Форма.png"),2)
+static var DELETE_ITEM = ActionInventoryItem.new("Delete", preload("res://Visual/UI/Удалить.png"),1)
 
 const Pi := 3.14
 
@@ -74,20 +74,22 @@ var _can_switch_items := true
 # first: inventory item
 # second: UI button
 var _inventory: Array = []
+# same strcture as inventory
+var _action_inventory: Array = [
+]
 
 @onready var _item_roster := [
 	PENTA_ITEM,
 	CUBE_ITEM,
-	DELETE_ITEM
 ]
 func add_to_roster(level):
 	match level:
 		3:_item_roster.append(SQUARE_ITEM)
-		4:_item_roster.append(RESIZE_ITEM)
+		4:add_action(RESIZE_ITEM)
 		5:_item_roster.append(RAMP_ITEM)
 		6:
 			_item_roster.append(CIRCLE_ITEM)
-			_item_roster.append(ROTATE_ITEM)
+			add_action(ROTATE_ITEM)
 		8:_item_roster.append(EG_ITEM)
 var _next_roster_index := 0
 var _preview_item: BaseButton 
@@ -95,6 +97,7 @@ var _preview_item: BaseButton
 func _ready() -> void:
 	for i in _item_roster.size():
 		_add_next_item_from_roster()
+	add_action(DELETE_ITEM)
 	_preview_item = InventoryPreviewScene.instantiate()
 	_preview_item.icon = _get_next_roster_item().icon
 	_preview_item.disabled = true
@@ -136,6 +139,11 @@ func release_item():
 	if _held_item_object == null:
 		return
 	if _current_item is StructureInventoryItem:
+		if $"../..".resource - _current_item.price < 0:
+			_release_and_reset(true)
+			return
+		$"../..".resource -= _current_item.price
+		$"../../UI/ResourceLabel/RichTextLabel".text = str($"../..".resource)
 		_release_and_reset()
 	elif _current_item is ActionInventoryItem:
 		if _held_item_object is BuildingStructure or not is_instance_valid(_held_item_object):
@@ -152,15 +160,7 @@ func release_item():
 					structure.queue_free()
 					# don't break, we're removing each building!
 				ROTATE_ITEM:
-					if _held_item_object != null:
-						_held_item_object.queue_free()
-					_held_item_object = structure
-					_held_item_object.has_collision = false
-					_is_rotating = true
-					_is_scaling = false
-					_should_hold_structure = false
-					_can_switch_items = false
-					return
+					structure.current_health = structure.INITIAL_HEALTH
 				RESIZE_ITEM:
 					if _held_item_object != null:
 						_held_item_object.queue_free()
@@ -170,17 +170,16 @@ func release_item():
 					_should_hold_structure = false
 					_can_switch_items = false
 					return
+		if hit_something:
+			$"../..".resource-=_current_item.price
+			$"../../UI/ResourceLabel/RichTextLabel".text = str($"../..".resource)
 		# clean up the decal after action is done
 		_release_and_reset(true)
 
 func _release_and_reset(remove_object: bool = false):
-	if _held_item_object is BuildingStructure:
+	if _held_item_object is BuildingStructure and not remove_object:
 		_held_item_object.has_collision = true
-		$"../..".resource-=_current_item.price
-		$"../../UI/ResourceLabel/RichTextLabel".text = str($"../..".resource)
 	if remove_object and _held_item_object != null:
-		$"../..".resource-=_current_item.price
-		$"../../UI/ResourceLabel/RichTextLabel".text = str($"../..".resource)
 		_held_item_object.queue_free()
 	_held_item_object = null # we don't delete the shape, we just clear this variable!
 	_scale_iterations = 0
@@ -211,6 +210,17 @@ func add_item(item: InventoryItem, index: int = -1):
 		InventoryUIContainer.move_child(_preview_item, -1)
 		_preview_item.icon = _get_next_roster_item().icon
 
+func add_action(item: ActionInventoryItem):
+	if _action_inventory.size() >= InventorySize:
+		return
+	_action_inventory.append(
+		[item, InventoryButtonScene.instantiate()]
+	)
+	var new_item = _action_inventory.back()
+	ActionInventoryUIContainer.add_child(new_item[1])
+	new_item[1].connect("custom_press", _action_inventory_button_pressed)
+	new_item[1].icon = new_item[0].icon
+
 func select_item(index: int):
 	if index < 0 or index >= _inventory.size():
 		return
@@ -232,7 +242,7 @@ func _inventory_button_pressed(button: InventoryButton):
 		return
 	
 	# switching here
-	if _current_item != NONE_ITEM and is_instance_valid(_held_item_object):
+	if _current_item != NONE_ITEM and is_instance_valid(_held_item_object) and _current_item is StructureInventoryItem:
 		if not _can_switch_items:
 			return # do nothing if we can't switch items
 		remove_item(entry_index)
@@ -248,6 +258,34 @@ func _inventory_button_pressed(button: InventoryButton):
 		_spawn_preview()
 	elif inventory_item is ActionInventoryItem:
 		_spawn_action_preview()
+
+
+func _action_inventory_button_pressed(button: InventoryButton):
+	# find the button's entry
+	var inventory_item = null
+	for i in _action_inventory.size():
+		var e = _action_inventory[i]
+		if e[1] == button:
+			inventory_item = e[0]
+			break
+	
+	if inventory_item == null:
+		print("Error! The button pressed was not in the inventory array!")
+		return
+	
+	# switch structure to an action
+	if _current_item is StructureInventoryItem and is_instance_valid(_held_item_object):
+		if not _can_switch_items:
+			return # do nothing if we can't switch items
+		var saved_item = _current_item
+		_release_and_reset(true)
+		add_item(saved_item)
+	elif _current_item != null and is_instance_valid(_held_item_object):
+		# switch action to action
+		_release_and_reset(true)
+
+	_current_item = inventory_item
+	_spawn_action_preview()
 
 
 func remove_item(index: int):

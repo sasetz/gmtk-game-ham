@@ -3,27 +3,26 @@ class_name Tower_Part
 var choosing: bool
 @export var allvariants: Array
 @export var arrow: PackedScene = preload("res://Scenes/Projectiles/arrow.tscn")
-var i := 0
+var variant := 0
 var reload := false
 var tower: Tower 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	tower = get_parent() as Tower
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if choosing==true:
 		if Input.is_action_just_released("MWU"):
-			i=i+1
-			if i>tower.leng-1:
-				i=0
-			$Sprite2D.texture=allvariants[i]
+			variant=variant+1
+			if variant>tower.leng-1:
+				variant=0
+			$Sprite2D.texture=allvariants[variant]
 		if Input.is_action_just_released("MWD"):
-			i=i-1
-			if i<0:
-				i=tower.leng-1
-			$Sprite2D.texture=allvariants[i]
+			variant=variant-1
+			if variant<0:
+				variant=tower.leng-1
+			$Sprite2D.texture=allvariants[variant]
 		if Input.is_action_just_pressed("mouse1"):
 			_end()
 			
@@ -35,7 +34,7 @@ func _on_button_pressed():
 		_end()
 		
 func _end():
-	match i:
+	match variant:
 		4:
 			tower.SPEED_UPGRADE+=25
 		1:
@@ -51,9 +50,6 @@ func _end():
 			$Timer.autostart = true
 			$Timer.start()
 			$Timer.timeout.connect(fire_timeout)
-		0:
-			tower.INCOME_TIME-=0.2
-			print(tower.INCOME_TIME)
 		3:
 			tower.REGENERATION+=0.5
 		2:

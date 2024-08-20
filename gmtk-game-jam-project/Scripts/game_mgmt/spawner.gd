@@ -1,13 +1,13 @@
+class_name MobSpawner
 extends Node2D
 
-@export_category("Mobs")
-@export var Friend: PackedScene = preload("res://Scenes/friend.tscn")
-@export var EnemyScene: PackedScene = preload("res://Scenes/Enemies/enemy.tscn")
-@export var FastEnemyScene: PackedScene = preload("res://Scenes/Enemies/enemyfast.tscn")
-@export var BigEnemyScene: PackedScene = preload("res://Scenes/Enemies/bigenemy.tscn")
-@export var FlightEnemyScene: PackedScene = preload("res://Scenes/Enemies/flightenemy.tscn")
-@export var KillEnemyScene: PackedScene = preload("res://Scenes/Enemies/killerenemy.tscn")
-@export var ArmoredEnemyScene: PackedScene= preload("res://Scenes/Enemies/armorenemy.tscn")
+static var Friend: PackedScene = preload("res://Scenes/friend.tscn")
+static var EnemyScene: PackedScene = preload("res://Scenes/Enemies/enemy.tscn")
+static var FastEnemyScene: PackedScene = preload("res://Scenes/Enemies/enemyfast.tscn")
+static var BigEnemyScene: PackedScene = preload("res://Scenes/Enemies/bigenemy.tscn")
+static var FlightEnemyScene: PackedScene = preload("res://Scenes/Enemies/flightenemy.tscn")
+static var KillEnemyScene: PackedScene = preload("res://Scenes/Enemies/killerenemy.tscn")
+static var ArmoredEnemyScene: PackedScene = preload("res://Scenes/Enemies/armorenemy.tscn")
 
 @export_category("Spawning rules")
 @export var IntervalBetweenEntities: float = 0.25
@@ -72,28 +72,28 @@ func _ready() -> void:
 var bigcount:=0
 func _on_spawn_interval_timeout() -> void:
 	_batch_left -= 1
-	var bonus:=0
+	var y_spawn_offset := 0
 	var entity: MobNPC
 	var entity_scene:PackedScene
 	if _spawning_enemies:
-		entity_scene=_enemies.pick_random()
-		if entity_scene==BigEnemyScene:
+		entity_scene = _enemies.pick_random()
+		if entity_scene == BigEnemyScene:
 			bigcount+=1
 			if bigcount>round(BatchSize/5.0):
-				entity=EnemyScene.instantiate()
+				entity = EnemyScene.instantiate()
 			else:
-				entity=entity_scene.instantiate()
-		elif entity_scene==FlightEnemyScene:
-			bonus=250
-			entity=entity_scene.instantiate()
+				entity = entity_scene.instantiate()
+		elif entity_scene == FlightEnemyScene:
+			y_spawn_offset = 250
+			entity = entity_scene.instantiate()
 		else:
-			entity=entity_scene.instantiate()
+			entity = entity_scene.instantiate()
 	else:
 		entity = Friend.instantiate()
 	
-	entity.position = Vector2(_current_spawner.position.x,_current_spawner.position.y-bonus)
+	entity.position = Vector2(_current_spawner.position.x, _current_spawner.position.y - y_spawn_offset)
 	
-	entity.LIFE_TIME=entity.LIFE_TIME*$"../..".LIFE_TIME_MODIFICATOR
+	entity.LIFE_TIME = entity.LIFE_TIME * $"../..".LIFE_TIME_MODIFICATOR
 	if _current_spawner == _spawner1:
 		entity.DIRECTION = 1
 		entity.scale.x = 1
