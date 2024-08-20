@@ -139,7 +139,10 @@ func release_item():
 	if _held_item_object == null:
 		return
 	if _current_item is StructureInventoryItem:
-		$"../..".resource-=_current_item.price
+		if $"../..".resource - _current_item.price < 0:
+			_release_and_reset(true)
+			return
+		$"../..".resource -= _current_item.price
 		$"../../UI/ResourceLabel/RichTextLabel".text = str($"../..".resource)
 		_release_and_reset()
 	elif _current_item is ActionInventoryItem:
@@ -157,15 +160,7 @@ func release_item():
 					structure.queue_free()
 					# don't break, we're removing each building!
 				ROTATE_ITEM:
-					if _held_item_object != null:
-						_held_item_object.queue_free()
-					_held_item_object = structure
-					_held_item_object.has_collision = false
-					_is_rotating = true
-					_is_scaling = false
-					_should_hold_structure = false
-					_can_switch_items = false
-					return
+					structure.current_health = structure.INITIAL_HEALTH
 				RESIZE_ITEM:
 					if _held_item_object != null:
 						_held_item_object.queue_free()
