@@ -1,10 +1,9 @@
 extends Area2D
 class_name Tower
-@export var TowerPart: PackedScene
+@export var TowerPartScene: PackedScene
 @export var level := 1
+@export var FoundationSprites: Array
 @export var REGENERATION:=0.0
-@export var INCOME_TIME:=2.0
-@export var fundation:Array
 @export var SPEED_UPGRADE:=0.0
 @export var SAVEHEALTH:=0.0
 const ENEMY_DAMAGE := 10
@@ -16,6 +15,14 @@ var health := 20000.0
 var maxhealth :=health
 var number_in := 0.0
 var MAIN: main
+
+enum TowerPart {
+	InventoryUpgrade,
+	SaveUpgrade,
+	RegenerationUpgrade,
+	SpeedUpgrade,
+	ArrowUpgrade,
+}
 
 func _ready() -> void:
 	MAIN=get_parent() as main
@@ -71,11 +78,7 @@ func update_level():
 	$StaticBody2D/Sprite2D2.position.y=-64*level-32
 	
 func add_new_part()->void:
-	var obj : Node2D = TowerPart.instantiate()
-	#if randi_range(1,2)==1:
-		#sprite.texture = load("res://Visual/Backgrounds/Башня основа.png")
-	#else:
-		#sprite.texture = load("res://Visual/Backgrounds/Башня окно.png")
+	var obj : Node2D = TowerPartScene.instantiate()
 	add_child(obj)
 	obj.position.y=-64*level-32
 
@@ -87,15 +90,15 @@ func _on_body_entered(body: Node) -> void:
 		health -= body.TOWER_DAMAGE
 		var percentage:float= health/maxhealth
 		if percentage>=0.9:
-			$StaticBody2D/Sprite2D.texture=fundation[0]
+			$StaticBody2D/Sprite2D.texture=FoundationSprites[0]
 		elif percentage>=0.75:
-			$StaticBody2D/Sprite2D.texture=fundation[1]
+			$StaticBody2D/Sprite2D.texture=FoundationSprites[1]
 		elif percentage>=0.50:
-			$StaticBody2D/Sprite2D.texture=fundation[2]
+			$StaticBody2D/Sprite2D.texture=FoundationSprites[2]
 		elif percentage>=0.25:
-			$StaticBody2D/Sprite2D.texture=fundation[3]
+			$StaticBody2D/Sprite2D.texture=FoundationSprites[3]
 		elif percentage>=0.0:
-			$StaticBody2D/Sprite2D.texture=fundation[4]
+			$StaticBody2D/Sprite2D.texture=FoundationSprites[4]
 		update_level()
 	
 	if body.is_in_group("friend"):
@@ -112,14 +115,14 @@ func _on_area_entered(area):
 	health -= area.TOWER_DAMAGE
 	var percentage:float= health/maxhealth
 	if percentage>=0.9:
-		$StaticBody2D/Sprite2D.texture=fundation[0]
+		$StaticBody2D/Sprite2D.texture=FoundationSprites[0]
 	elif percentage>=0.75:
-		$StaticBody2D/Sprite2D.texture=fundation[1]
+		$StaticBody2D/Sprite2D.texture=FoundationSprites[1]
 	elif percentage>=0.50:
-		$StaticBody2D/Sprite2D.texture=fundation[2]
+		$StaticBody2D/Sprite2D.texture=FoundationSprites[2]
 	elif percentage>=0.25:
-		$StaticBody2D/Sprite2D.texture=fundation[3]
+		$StaticBody2D/Sprite2D.texture=FoundationSprites[3]
 	elif percentage>=0.0:
-		$StaticBody2D/Sprite2D.texture=fundation[4]
+		$StaticBody2D/Sprite2D.texture=FoundationSprites[4]
 	update_level()
 	pass # Replace with function body.

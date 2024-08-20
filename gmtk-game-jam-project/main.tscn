@@ -1,13 +1,19 @@
-[gd_scene load_steps=66 format=3 uid="uid://d0ha2oack7o3e"]
+[gd_scene load_steps=72 format=3 uid="uid://d0ha2oack7o3e"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
 [ext_resource type="PackedScene" uid="uid://tdt515ueewlb" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="2_53yhx"]
+[ext_resource type="Texture2D" uid="uid://j6pah4mccdct" path="res://Visual/Backgrounds/Башня фундамент.png" id="3_ems3d"]
+[ext_resource type="PackedScene" uid="uid://dx4483odqjbpl" path="res://Scenes/towerpart.tscn" id="3_jg44h"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/spawner.gd" id="4_kkvm3"]
+[ext_resource type="Texture2D" uid="uid://gfd6boq2bqpe" path="res://Visual/Backgrounds/Башня фундамент разрушение1.png" id="4_u6dwv"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/inventory.gd" id="5_bhk52"]
+[ext_resource type="Texture2D" uid="uid://btctfrqy3k0qe" path="res://Visual/Backgrounds/Башня фундамент разрушение2.png" id="5_sf6y7"]
+[ext_resource type="Texture2D" uid="uid://4n7ddina5jcp" path="res://Visual/Backgrounds/Башня фундамент разрушение3.png" id="6_3hv1h"]
 [ext_resource type="Texture2D" uid="uid://bg5sju7pyil7" path="res://Visual/UI/Монетки.png" id="6_a1i2i"]
 [ext_resource type="FontFile" uid="uid://c18a4x8oe4gie" path="res://Visual/Alice in Wonderland.ttf" id="6_rhh1s"]
 [ext_resource type="Texture2D" uid="uid://dtnwnqe1ng4rx" path="res://Visual/Backgrounds/Задник.png" id="7_djedb"]
+[ext_resource type="Texture2D" uid="uid://b2s7aw3n3qrw8" path="res://Visual/Backgrounds/Башня фундамент разрушение4.png" id="7_gucge"]
 [ext_resource type="Texture2D" uid="uid://c8t2iuciwksii" path="res://Visual/Screens/Ветер6.png" id="7_xeqyv"]
 [ext_resource type="Texture2D" uid="uid://b8cxytnwf2e1y" path="res://Visual/Screens/tuman1.png" id="8_cv15u"]
 [ext_resource type="Texture2D" uid="uid://c06x8ufn3csv4" path="res://Visual/Screens/Ветер1.png" id="8_qmcxi"]
@@ -270,7 +276,9 @@ collision_mask = 255
 shape = SubResource("WorldBoundaryShape2D_yfavc")
 
 [node name="Tower" parent="." instance=ExtResource("1_vyirh")]
+TowerPartScene = ExtResource("3_jg44h")
 level = 2
+FoundationSprites = [ExtResource("3_ems3d"), ExtResource("4_u6dwv"), ExtResource("5_sf6y7"), ExtResource("6_3hv1h"), ExtResource("7_gucge")]
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("2_53yhx")

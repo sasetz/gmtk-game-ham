@@ -25,15 +25,14 @@ class ActionInventoryItem extends InventoryItem:
 	pass
 	
 
-@export_category("Building structures")
-@export var Ramp: PackedScene = preload("res://Scenes/ramp.tscn")
-@export var Eg: PackedScene = preload("res://Scenes/eg.tscn")
-@export var Penta: PackedScene = preload("res://Scenes/penta.tscn")
-@export var Cube: PackedScene = preload("res://Scenes/cube.tscn")
-@export var Circle: PackedScene = preload("res://Scenes/circle.tscn")
-@export var Square: PackedScene = preload("res://Scenes/square.tscn")
-@export var Delete: PackedScene = preload("res://Scenes/delete.tscn")
-@export var ActionPreviewScene: PackedScene = preload("res://Scenes/UI/action_preview.tscn")
+static var Ramp: PackedScene = preload("res://Scenes/ramp.tscn")
+static var Eg: PackedScene = preload("res://Scenes/eg.tscn")
+static var Penta: PackedScene = preload("res://Scenes/penta.tscn")
+static var Cube: PackedScene = preload("res://Scenes/cube.tscn")
+static var Circle: PackedScene = preload("res://Scenes/circle.tscn")
+static var Square: PackedScene = preload("res://Scenes/square.tscn")
+static var Delete: PackedScene = preload("res://Scenes/delete.tscn")
+static var ActionPreviewScene: PackedScene = preload("res://Scenes/UI/action_preview.tscn")
 
 @export_category("Inventory")
 @export var InventoryButtonScene: PackedScene = preload("res://Scenes/UI/inventory_button.tscn")
@@ -49,16 +48,16 @@ class ActionInventoryItem extends InventoryItem:
 
 # Inventory item definitions (singletons)
 
-var NONE_ITEM = InventoryItem.new("none", null,1) # currently not holding anything
-@onready var RAMP_ITEM = StructureInventoryItem.new(Ramp, "Ramp", preload("res://Visual/Backgrounds/Треугольник.png"),2)
-@onready var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube", preload("res://Visual/Backgrounds/Квадрат.png"),2)
-@onready var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle", preload("res://Visual/Backgrounds/Круг.png"),4)
-@onready var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square", preload("res://Visual/Backgrounds/Прямоугольник.png"),3)
-@onready var PENTA_ITEM = StructureInventoryItem.new(Penta, "Penta", preload("res://Visual/Backgrounds/Пятиугольник.png"),1)
-@onready var EG_ITEM = StructureInventoryItem.new(Eg, "Eg", preload("res://Visual/Backgrounds/Деревянный еж.png"),4)
-@onready var RESIZE_ITEM = ActionInventoryItem.new("Resize", preload("res://Visual/UI/Размер.png"),2)
-@onready var ROTATE_ITEM = ActionInventoryItem.new("Rotate", preload("res://Visual/UI/Форма.png"),2)
-@onready var DELETE_ITEM = ActionInventoryItem.new("Delete", preload("res://Visual/UI/Удалить.png"),1)
+static var NONE_ITEM = InventoryItem.new("none", null,1) # currently not holding anything
+static var RAMP_ITEM = StructureInventoryItem.new(Ramp, "Ramp", preload("res://Visual/Backgrounds/Треугольник.png"),2)
+static var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube", preload("res://Visual/Backgrounds/Квадрат.png"),2)
+static var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle", preload("res://Visual/Backgrounds/Круг.png"),4)
+static var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square", preload("res://Visual/Backgrounds/Прямоугольник.png"),3)
+static var PENTA_ITEM = StructureInventoryItem.new(Penta, "Penta", preload("res://Visual/Backgrounds/Пятиугольник.png"),1)
+static var EG_ITEM = StructureInventoryItem.new(Eg, "Eg", preload("res://Visual/Backgrounds/Деревянный еж.png"),4)
+static var RESIZE_ITEM = ActionInventoryItem.new("Resize", preload("res://Visual/UI/Размер.png"),2)
+static var ROTATE_ITEM = ActionInventoryItem.new("Rotate", preload("res://Visual/UI/Форма.png"),2)
+static var DELETE_ITEM = ActionInventoryItem.new("Delete", preload("res://Visual/UI/Удалить.png"),1)
 
 const Pi := 3.14
 
