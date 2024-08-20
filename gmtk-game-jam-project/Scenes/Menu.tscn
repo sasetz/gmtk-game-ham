@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://507eamowxd26"]
+[gd_scene load_steps=60 format=3 uid="uid://507eamowxd26"]
 
 [ext_resource type="Texture2D" uid="uid://w4pfo4qg4y5h" path="res://Visual/Screens/Проигрыш.png" id="1_3c1t6"]
 [ext_resource type="Script" path="res://Scenes/menu.gd" id="1_o2xkf"]
@@ -33,6 +33,7 @@
 [ext_resource type="FontFile" uid="uid://c18a4x8oe4gie" path="res://Visual/Alice in Wonderland.ttf" id="30_23o3x"]
 [ext_resource type="Texture2D" uid="uid://5k44os2ktm4g" path="res://Visual/UI/Кнопка меню.png" id="31_k4tox"]
 [ext_resource type="Script" path="res://Scripts/startplay.gd" id="32_qdurj"]
+[ext_resource type="Script" path="res://Scenes/button.gd" id="34_6hwod"]
 [ext_resource type="Script" path="res://Scenes/button_2.gd" id="34_fy3gk"]
 [ext_resource type="PackedScene" uid="uid://wkop00wh4iib" path="res://Scenes/UI/inventory_button.tscn" id="34_juflj"]
 [ext_resource type="Texture2D" uid="uid://blewbvpwabwad" path="res://Visual/UI/Форма.png" id="35_2xejd"]
@@ -63,21 +64,21 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("1_3c1t6")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 1.0
 }, {
 "frames": [{
-"duration": 4.0,
+"duration": 2.0,
 "texture": ExtResource("2_spayj")
 }, {
-"duration": 4.0,
+"duration": 2.0,
 "texture": ExtResource("3_2qym2")
 }, {
-"duration": 4.0,
+"duration": 2.0,
 "texture": ExtResource("4_ec1vc")
 }, {
-"duration": 4.0,
+"duration": 2.0,
 "texture": ExtResource("5_2rff3")
 }],
 "loop": false,
@@ -93,16 +94,16 @@ animations = [{
 "speed": 1.0
 }, {
 "frames": [{
-"duration": 4.0,
+"duration": 2.0,
 "texture": ExtResource("7_kwoje")
 }, {
-"duration": 4.0,
+"duration": 2.0,
 "texture": ExtResource("8_3yp0l")
 }, {
-"duration": 4.0,
+"duration": 2.0,
 "texture": ExtResource("9_wo40l")
 }, {
-"duration": 4.0,
+"duration": 2.0,
 "texture": ExtResource("10_ab0hw")
 }],
 "loop": false,
@@ -156,7 +157,7 @@ script = ExtResource("1_o2xkf")
 z_index = -2
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_8y5vd")
-animation = &"Menu"
+animation = &"End"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamSynchronized_5yi7k")
@@ -164,6 +165,30 @@ autoplay = true
 script = ExtResource("29_453b5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Button4" type="Button" parent="."]
+visible = false
+z_index = -2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -86.0
+offset_right = 278.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.655, 0.655)
+pivot_offset = Vector2(278, 87)
+theme_override_colors/font_color = Color(0.000113828, 0.000113828, 0.000113828, 1)
+theme_override_fonts/font = ExtResource("30_23o3x")
+theme_override_font_sizes/font_size = 100
+text = "Menu"
+icon = ExtResource("31_k4tox")
+icon_alignment = 1
+script = ExtResource("34_6hwod")
 
 [node name="Button" type="Button" parent="."]
 z_index = -2
@@ -274,6 +299,7 @@ offset_bottom = 237.0
 
 [node name="InventoryButton4" parent="ColorRect" instance=ExtResource("34_juflj")]
 z_index = 1
+layout_mode = 0
 offset_left = 262.0
 offset_top = 102.0
 offset_right = 326.0
@@ -284,6 +310,7 @@ icon = ExtResource("37_3u6r7")
 
 [node name="InventoryButton5" parent="ColorRect" instance=ExtResource("34_juflj")]
 z_index = 1
+layout_mode = 0
 offset_left = 188.0
 offset_top = 102.0
 offset_right = 252.0
@@ -293,6 +320,7 @@ icon = ExtResource("38_iu5ne")
 
 [node name="InventoryButton6" parent="ColorRect" instance=ExtResource("34_juflj")]
 z_index = 1
+layout_mode = 0
 offset_left = 116.0
 offset_top = 102.0
 offset_right = 180.0
@@ -302,6 +330,7 @@ icon = ExtResource("39_22lbo")
 
 [node name="InventoryButton7" parent="ColorRect" instance=ExtResource("34_juflj")]
 z_index = 1
+layout_mode = 0
 offset_left = 44.0
 offset_top = 102.0
 offset_right = 108.0
@@ -310,6 +339,7 @@ icon = ExtResource("40_s88wo")
 
 [node name="HealthLabel" type="RichTextLabel" parent="ColorRect"]
 self_modulate = Color(0, 0.505882, 0.101961, 1)
+layout_mode = 0
 offset_left = 1020.0
 offset_top = 22.0
 offset_right = 1182.0
@@ -424,6 +454,7 @@ texture = ExtResource("49_bdoai")
 
 [node name="ResourceLabel" type="RichTextLabel" parent="ColorRect"]
 z_index = 1
+layout_mode = 0
 offset_left = 34.0
 offset_top = 22.0
 offset_right = 173.0
@@ -450,6 +481,7 @@ scale = Vector2(0.599448, 0.599447)
 texture = ExtResource("53_ec18j")
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 914.0
 offset_top = 400.0
 offset_right = 1147.0
@@ -458,6 +490,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Most of enemies will try to climb over the block, the blocks are breaking little by little by this"
 
 [node name="RichTextLabel15" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 480.0
 offset_top = 606.0
 offset_right = 746.0
@@ -466,6 +499,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Modificate floor posible only  once. To do this click to floor and choose type by mouse wheel and click second time."
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 940.0
 offset_top = 138.0
 offset_right = 1173.0
@@ -474,6 +508,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Value FLOOR show how much left to save allies  to the next floor"
 
 [node name="RichTextLabel14" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 673.0
 offset_top = 161.0
 offset_right = 830.0
@@ -483,6 +518,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Floor create provides SAVES"
 
 [node name="RichTextLabel13" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 417.0
 offset_top = 220.0
 offset_right = 574.0
@@ -492,6 +528,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Floor create two balistas that shoot in nearest enemy"
 
 [node name="RichTextLabel12" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 669.0
 offset_top = 281.0
 offset_right = 790.0
@@ -501,6 +538,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Floor provides additional speed for allies"
 
 [node name="RichTextLabel11" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 458.0
 offset_top = 346.0
 offset_right = 579.0
@@ -510,6 +548,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Floor provides restoration of tower HEALTH"
 
 [node name="RichTextLabel10" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 663.0
 offset_top = 411.0
 offset_right = 784.0
@@ -519,6 +558,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Floor provides additional  slot for block choose"
 
 [node name="RichTextLabel9" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 462.0
 offset_top = 484.0
 offset_right = 570.0
@@ -528,6 +568,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Floor provides speed of coins farm"
 
 [node name="RichTextLabel8" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 83.0
 offset_top = 605.0
 offset_right = 351.0
@@ -536,6 +577,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Enemies and allies go  from  both  sides, time of their life limited. So they won't survive the long journey."
 
 [node name="RichTextLabel7" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 170.0
 offset_top = 458.0
 offset_right = 438.0
@@ -544,6 +586,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "You target block and destroy enemies, while try to  save most of allies"
 
 [node name="RichTextLabel6" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 757.0
 offset_top = 607.0
 offset_right = 990.0
@@ -552,6 +595,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Some will try to broke it"
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 797.0
 offset_top = 28.0
 offset_right = 1007.0
@@ -565,6 +609,7 @@ scale = Vector2(0.635417, 0.635417)
 texture = ExtResource("40_s88wo")
 
 [node name="RichTextLabel20" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 332.0
 offset_top = 117.0
 offset_right = 496.0
@@ -573,6 +618,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "On build blocks can  be resized by mouse wheel and rotated by A and D"
 
 [node name="RichTextLabel18" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 324.0
 offset_top = 42.0
 offset_right = 488.0
@@ -581,6 +627,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Last icon shows next  block  which will be allowed"
 
 [node name="RichTextLabel19" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 41.0
 offset_top = 242.0
 offset_right = 266.0
@@ -593,6 +640,7 @@ text = "Abilities can be used any times, but same as blocks cost money.
 Dont try to  drag simply  click and than click  on  place"
 
 [node name="RichTextLabel16" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 168.0
 offset_top = 35.0
 offset_right = 319.0
@@ -601,6 +649,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Coins spended for blocks and abilities "
 
 [node name="RichTextLabel17" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 521.0
 offset_top = 52.0
 offset_right = 720.0
@@ -609,6 +658,7 @@ theme_override_font_sizes/normal_font_size = 14
 text = "Final floor are 17. Content is unlocked on each floor, so be careful."
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 827.0
 offset_top = 83.0
 offset_right = 1007.0
@@ -627,6 +677,7 @@ pivot_offset = Vector2(-610, -344)
 color = Color(0.14902, 0.14902, 0.14902, 0.964706)
 
 [node name="RichTextLabel13" type="RichTextLabel" parent="Credits"]
+layout_mode = 0
 offset_left = 36.0
 offset_top = 20.0
 offset_right = 1180.0
@@ -670,9 +721,36 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("41_sh5ih")
 
+[node name="Button5" type="Button" parent="."]
+visible = false
+z_index = -2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 158.0
+offset_top = 191.0
+offset_right = 714.0
+offset_bottom = 365.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.41, 0.41)
+pivot_offset = Vector2(278, 87)
+theme_override_colors/font_color = Color(0.000113828, 0.000113828, 0.000113828, 1)
+theme_override_fonts/font = ExtResource("30_23o3x")
+theme_override_font_sizes/font_size = 100
+text = "Skip"
+icon = ExtResource("31_k4tox")
+icon_alignment = 1
+script = ExtResource("34_fy3gk")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="ColorRect/Button3" to="ColorRect/Button3" method="_on_pressed"]
 [connection signal="pressed" from="Credits/Button3" to="Credits/Button3" method="_on_pressed"]
+[connection signal="pressed" from="Button5" to="." method="_on_button_5_pressed"]

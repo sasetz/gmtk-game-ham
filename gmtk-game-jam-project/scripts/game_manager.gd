@@ -47,13 +47,6 @@ class StorySettings extends GameSettings:
 		[Inventory.PENTA_ITEM, Inventory.CUBE_ITEM, Inventory.DELETE_ITEM, Inventory.SQUARE_ITEM, Inventory.RESIZE_ITEM, Inventory.RAMP_ITEM,
 		Inventory.CIRCLE_ITEM, Inventory.ROTATE_ITEM, Inventory.EG_ITEM], # 8+ lvl
 	]
-	var _enemies = [
-		[MobSpawner.EnemyScene], # 1-3 lvl
-		[MobSpawner.EnemyScene, MobSpawner.FastEnemyScene], # 4-6 lvl
-		[MobSpawner.EnemyScene, MobSpawner.FastEnemyScene, MobSpawner.BigEnemyScene], # 7-8 lvl
-		[MobSpawner.EnemyScene, MobSpawner.FastEnemyScene, MobSpawner.BigEnemyScene, MobSpawner.FlightEnemyScene], # 9-10 lvl
-		[MobSpawner.EnemyScene, MobSpawner.FastEnemyScene, MobSpawner.BigEnemyScene, MobSpawner.FlightEnemyScene, MobSpawner.KillEnemyScene], # 11+ lvl
-	]
 	var _weather = [
 		["Wind", "None", "None"], # 1-2 lvl
 		["Wind", "None", "None", "Snow"], # 3-4 lvl
@@ -116,18 +109,7 @@ class StorySettings extends GameSettings:
 		return _items[5]
 	
 	# returns the whole list of enemies that can spawn at the current level
-	func get_enemy_pool(level: int) -> Array:
-		if _wrong(level):
-			return _enemies[-1]
-		if level < 4:
-			return _enemies[0]
-		if level < 7:
-			return _enemies[1]
-		if level < 9:
-			return _enemies[2]
-		if level < 11:
-			return _enemies[3]
-		return _enemies[4]
+
 	
 	# returns the whole list of weather conditions that can occur at the current level
 	func get_weather_pool(level: int) -> Array:

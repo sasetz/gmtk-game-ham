@@ -1,10 +1,10 @@
-[gd_scene load_steps=71 format=3 uid="uid://d0ha2oack7o3e"]
+[gd_scene load_steps=71 format=3 uid="uid://c6y6gk75211af"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
-[ext_resource type="PackedScene" uid="uid://tdt515ueewlb" path="res://Scenes/tower.tscn" id="1_vyirh"]
+[ext_resource type="PackedScene" uid="uid://xqmfh4w1eqo0" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="2_53yhx"]
 [ext_resource type="Texture2D" uid="uid://j6pah4mccdct" path="res://Visual/Backgrounds/Башня фундамент.png" id="3_ems3d"]
-[ext_resource type="PackedScene" uid="uid://dx4483odqjbpl" path="res://Scenes/towerpart.tscn" id="3_jg44h"]
+[ext_resource type="PackedScene" path="res://Scenes/towerpart.tscn" id="3_jg44h"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/spawner.gd" id="4_kkvm3"]
 [ext_resource type="Texture2D" uid="uid://gfd6boq2bqpe" path="res://Visual/Backgrounds/Башня фундамент разрушение1.png" id="4_u6dwv"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/inventory.gd" id="5_bhk52"]

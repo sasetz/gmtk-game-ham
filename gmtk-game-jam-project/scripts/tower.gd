@@ -11,7 +11,7 @@ const FRIEND_DAMAGE := -100
 
 #var Peoples :=1.0
 var Peoples :=5.0
-#var health := 20000.0
+#var health := 1.0
 var health := 200.0
 var maxhealth :=health
 var number_in := 0.0

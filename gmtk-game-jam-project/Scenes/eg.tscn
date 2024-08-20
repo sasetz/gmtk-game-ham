@@ -44,7 +44,7 @@ size = Vector2(69, 57)
 [node name="Cube" instance=ExtResource("1_aqp8o")]
 collision_mask = 255
 script = ExtResource("2_xs2uj")
-INITIAL_HEALTH = 20.0
+INITIAL_HEALTH = 20
 Structure_vatiation = [ExtResource("3_qvwua"), ExtResource("3_qvwua"), ExtResource("3_qvwua")]
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]

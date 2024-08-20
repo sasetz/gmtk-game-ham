@@ -172,6 +172,8 @@ size = Vector2(72, 71)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_deatw")
+LIFE_TIME = 15.0
+HEALTH = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
