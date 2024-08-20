@@ -9,6 +9,13 @@ class_name BuildingStructure
 
 var current_health := INITIAL_HEALTH:
 	set(value):
+		var perc:float=value/INITIAL_HEALTH
+		if perc>=0.7:
+			$Node2D/Sprite2D.texture=Structure_vatiation[0]
+		elif perc>=0.4:
+			$Node2D/Sprite2D.texture=Structure_vatiation[1]
+		elif perc>0.0:
+			$Node2D/Sprite2D.texture=Structure_vatiation[2]
 		if value <= 0:
 			has_collision = false
 			animplayer.visible = true

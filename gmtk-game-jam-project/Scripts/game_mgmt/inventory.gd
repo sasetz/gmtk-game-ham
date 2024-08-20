@@ -57,9 +57,9 @@ static var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle", preload("r
 static var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square", preload("res://Visual/Backgrounds/Прямоугольник.png"),3)
 static var PENTA_ITEM = StructureInventoryItem.new(Penta, "Penta", preload("res://Visual/Backgrounds/Пятиугольник.png"),1)
 static var EG_ITEM = StructureInventoryItem.new(Eg, "Eg", preload("res://Visual/Backgrounds/Деревянный еж.png"),4)
-static var RESIZE_ITEM = ActionInventoryItem.new("Resize", preload("res://Visual/UI/Размер.png"),2)
+static var RESIZE_ITEM = ActionInventoryItem.new("Resize", preload("res://Visual/UI/Размер.png"),3)
 static var ROTATE_ITEM = ActionInventoryItem.new("Rotate", preload("res://Visual/UI/Форма.png"),2)
-static var DELETE_ITEM = ActionInventoryItem.new("Delete", preload("res://Visual/UI/Удалить.png"),1)
+static var DELETE_ITEM = ActionInventoryItem.new("Delete", preload("res://Visual/UI/Удалить.png"),3)
 
 const Pi := 3.14
 
