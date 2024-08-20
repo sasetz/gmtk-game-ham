@@ -171,8 +171,7 @@ func release_item():
 					_can_switch_items = false
 					return
 		# clean up the decal after action is done
-		if hit_something:
-			_release_and_reset(true)
+		_release_and_reset(true)
 
 func _release_and_reset(remove_object: bool = false):
 	if _held_item_object is BuildingStructure:
@@ -211,6 +210,11 @@ func add_item(item: InventoryItem, index: int = -1):
 		InventoryUIContainer.move_child(_preview_item, -1)
 		_preview_item.icon = _get_next_roster_item().icon
 
+func select_item(index: int):
+	if index < 0 or index >= _inventory.size():
+		return
+	_inventory_button_pressed(_inventory[index][1])
+
 func _inventory_button_pressed(button: InventoryButton):
 	# find the button's entry
 	var inventory_item = null
@@ -231,7 +235,9 @@ func _inventory_button_pressed(button: InventoryButton):
 		if not _can_switch_items:
 			return # do nothing if we can't switch items
 		remove_item(entry_index)
-		add_item(_current_item, entry_index)
+		var saved_item = _current_item
+		_release_and_reset(true)
+		add_item(saved_item, entry_index)
 	else:
 		remove_item(entry_index)
 		_add_next_item_from_roster()

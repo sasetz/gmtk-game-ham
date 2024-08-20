@@ -63,7 +63,6 @@ func _ready() -> void:
 	$AnimatedSprite2D2.animation_finished.connect(queue_free)
 	
 func _on_die_interval_timeout() -> void:
-	print("Mob died!")
 	die()
 
 func _on_damage_interval_timeout() -> void:

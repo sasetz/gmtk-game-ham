@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqo1uma7rssk1"]
+[gd_scene load_steps=14 format=3 uid="uid://cqo1uma7rssk1"]
 
 [ext_resource type="Script" path="res://Scripts/meteor.gd" id="1_u2syw"]
 [ext_resource type="Texture2D" uid="uid://bexrsgdaqpfae" path="res://Visual/Animations/Метеорит.png" id="2_2i1ml"]
+[ext_resource type="Texture2D" uid="uid://ciporu8tk3wx6" path="res://Visual/Animations/Огонь.png" id="3_ufgfe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6gs4t"]
 atlas = ExtResource("2_2i1ml")
@@ -40,6 +41,35 @@ height = 108.0
 radius = 82.0
 height = 164.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_o30k3"]
+atlas = ExtResource("3_ufgfe")
+region = Rect2(0, 0, 632, 964)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fx3b"]
+atlas = ExtResource("3_ufgfe")
+region = Rect2(632, 0, 632, 964)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdy61"]
+atlas = ExtResource("3_ufgfe")
+region = Rect2(1264, 0, 632, 964)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tltmo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o30k3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fx3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdy61")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 5.0
+}]
+
 [node name="Meteor" type="Area2D"]
 collision_layer = 255
 collision_mask = 255
@@ -48,6 +78,7 @@ script = ExtResource("1_u2syw")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["enemy"]]
 rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_gi7iy")
+frame_progress = 0.292889
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy"]]
 visibility_layer = 1023
@@ -61,6 +92,16 @@ shape = SubResource("CapsuleShape2D_f7tc7")
 position = Vector2(58, -1)
 shape = SubResource("CapsuleShape2D_v2r6f")
 disabled = true
+
+[node name="ExplosionAnimatedSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -78)
+rotation = -3.14159
+scale = Vector2(0.182475, 0.182475)
+sprite_frames = SubResource("SpriteFrames_tltmo")
+animation = &"explosion"
+frame = 2
+frame_progress = 1.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

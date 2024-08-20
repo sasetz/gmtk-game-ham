@@ -12,6 +12,9 @@ extends Node2D
 @export var SpawnInterval: float = 3
 @export var BatchSize: int = 4
 
+@export_category("Spawners")
+@export var TowerNode: Tower
+
 @onready var _current_spawner : Marker2D = $LeftSpawner
 @onready var _spawner1 : Marker2D = $LeftSpawner
 @onready var _spawner2 : Marker2D = $RightSpawner
@@ -92,17 +95,17 @@ func _on_spawn_interval_timeout() -> void:
 
 func _on_spawn_timeout() -> void:
 	bigcount=0
-	_spawn_timer.wait_time =data[$"../../Tower".level][6]
+	_spawn_timer.wait_time =data[TowerNode.level][6]
 	var i:=0
-	if (randi_range(1,int(data[$"../../Tower".level][4]+data[$"../../Tower".level][5])) <= data[$"../../Tower".level][4]) or i==5:
+	if (randi_range(1,int(data[TowerNode.level][4]+data[TowerNode.level][5])) <= data[TowerNode.level][4]) or i==5:
 		_spawning_enemies = false
-		_batch_left = randi_range(data[$"../../Tower".level][0],data[$"../../Tower".level][1])
+		_batch_left = randi_range(data[TowerNode.level][0],data[TowerNode.level][1])
 		BatchSize=_batch_left
 		i=0
 	else:
 		i+=1
 		_spawning_enemies = true
-		_batch_left = randi_range(data[$"../../Tower".level][2],data[$"../../Tower".level][3])
+		_batch_left = randi_range(data[TowerNode.level][2],data[TowerNode.level][3])
 		BatchSize=_batch_left
 	if randi_range(1,2) == 1:
 		_current_spawner = _spawner1
@@ -110,7 +113,7 @@ func _on_spawn_timeout() -> void:
 		_current_spawner = _spawner2
 	_between_timer.start()
 	
-func add_to_pull(level):
+func add_to_pool(level):
 	if level==4:
 		_enemies.append(FastEnemyScene)
 	elif level==7:
