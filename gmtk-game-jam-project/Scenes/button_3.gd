@@ -1,9 +1,8 @@
-extends Node2D
-class_name menu
-var back:AnimatedSprite2D
+extends Button
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AnimatedSprite2D.play(Global.Scene)
 	pass # Replace with function body.
 
 
@@ -12,9 +11,5 @@ func _process(delta):
 	pass
 
 
-func _on_button_2_pressed():
-	$ColorRect.visible=true
-
-
-func _on_button_3_pressed():
-	$Credits.visible=true
+func _on_pressed():
+	$"..".visible=false

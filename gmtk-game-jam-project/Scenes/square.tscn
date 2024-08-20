@@ -44,7 +44,7 @@ animations = [{
 [node name="Cube" instance=ExtResource("1_0pbiq")]
 collision_mask = 255
 script = ExtResource("2_x2b4c")
-INITIAL_HEALTH = 90.0
+INITIAL_HEALTH = 120.0
 Structure_vatiation = [ExtResource("4_72p4x"), ExtResource("4_xbuyx"), ExtResource("5_odeo7")]
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]

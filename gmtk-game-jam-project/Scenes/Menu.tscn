@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://507eamowxd26"]
+[gd_scene load_steps=59 format=3 uid="uid://507eamowxd26"]
 
 [ext_resource type="Texture2D" uid="uid://w4pfo4qg4y5h" path="res://Visual/Screens/Проигрыш.png" id="1_3c1t6"]
 [ext_resource type="Script" path="res://Scenes/menu.gd" id="1_o2xkf"]
@@ -33,6 +33,29 @@
 [ext_resource type="FontFile" uid="uid://c18a4x8oe4gie" path="res://Visual/Alice in Wonderland.ttf" id="30_23o3x"]
 [ext_resource type="Texture2D" uid="uid://5k44os2ktm4g" path="res://Visual/UI/Кнопка меню.png" id="31_k4tox"]
 [ext_resource type="Script" path="res://Scripts/startplay.gd" id="32_qdurj"]
+[ext_resource type="Script" path="res://Scenes/button_2.gd" id="34_fy3gk"]
+[ext_resource type="PackedScene" uid="uid://wkop00wh4iib" path="res://Scenes/UI/inventory_button.tscn" id="34_juflj"]
+[ext_resource type="Texture2D" uid="uid://blewbvpwabwad" path="res://Visual/UI/Форма.png" id="35_2xejd"]
+[ext_resource type="Texture2D" uid="uid://dqrvmhtf61hdn" path="res://Visual/UI/Размер.png" id="36_oaxrr"]
+[ext_resource type="Texture2D" uid="uid://msaervt6585" path="res://Visual/Backgrounds/Деревянный еж.png" id="37_3u6r7"]
+[ext_resource type="Texture2D" uid="uid://bbmdxxfol3uip" path="res://Visual/Backgrounds/Круг.png" id="38_iu5ne"]
+[ext_resource type="Texture2D" uid="uid://c4a1aeqmniw30" path="res://Visual/Backgrounds/Треугольник.png" id="39_22lbo"]
+[ext_resource type="Texture2D" uid="uid://covpbs713r2vj" path="res://Visual/Backgrounds/Квадрат.png" id="40_s88wo"]
+[ext_resource type="Texture2D" uid="uid://bg5sju7pyil7" path="res://Visual/UI/Монетки.png" id="41_r4qi3"]
+[ext_resource type="Script" path="res://Scenes/button_3.gd" id="41_sh5ih"]
+[ext_resource type="Texture2D" uid="uid://j6pah4mccdct" path="res://Visual/Backgrounds/Башня фундамент.png" id="41_yixb8"]
+[ext_resource type="Texture2D" uid="uid://br2611hsa012c" path="res://Visual/Backgrounds/Башня верхушка.png" id="42_u0lxn"]
+[ext_resource type="Texture2D" uid="uid://dlqhlnpd388nj" path="res://Visual/Backgrounds/Башня добыча.png" id="43_rlq75"]
+[ext_resource type="Texture2D" uid="uid://bg8rml5csv82v" path="res://Visual/Backgrounds/Башня допжизнь.png" id="44_6fnyb"]
+[ext_resource type="Texture2D" uid="uid://iy6ja2xowq2n" path="res://Visual/Backgrounds/Башня склад.png" id="45_bu172"]
+[ext_resource type="Texture2D" uid="uid://bwwab10tj8i8x" path="res://Visual/Backgrounds/Башня строительство.png" id="46_o0jva"]
+[ext_resource type="Texture2D" uid="uid://b4mn2fb1c426a" path="res://Visual/Backgrounds/Башня ускорение.png" id="47_6em27"]
+[ext_resource type="Texture2D" uid="uid://ca5we5t1xb0gn" path="res://Visual/Backgrounds/Башня атака.png" id="48_3nixg"]
+[ext_resource type="Texture2D" uid="uid://bysod6cfolkir" path="res://Visual/Animations/Враг1 болванка.png" id="49_bdoai"]
+[ext_resource type="Texture2D" uid="uid://b702eudfmq7t" path="res://Visual/Animations/Друг1 ходьба.png" id="50_yuw3h"]
+[ext_resource type="Texture2D" uid="uid://cdmuxapo8jja1" path="res://Visual/Animations/Друг2 ходьба.png" id="51_itrv4"]
+[ext_resource type="Texture2D" uid="uid://db2y7pabisoic" path="res://Visual/Backgrounds/Пятиугольник разрушение2.png" id="53_ec18j"]
+[ext_resource type="FontFile" uid="uid://bxvrco6diy3g1" path="res://Visual/ttf/cinzel-latin-900-normal.ttf" id="56_kn4so"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8y5vd"]
 animations = [{
@@ -130,6 +153,7 @@ stream_17/volume = -60.0
 script = ExtResource("1_o2xkf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -2
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_8y5vd")
 animation = &"Menu"
@@ -142,6 +166,7 @@ script = ExtResource("29_453b5")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Button" type="Button" parent="."]
+z_index = -2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -164,6 +189,7 @@ icon_alignment = 1
 script = ExtResource("32_qdurj")
 
 [node name="Button2" type="Button" parent="."]
+z_index = -2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -183,9 +209,10 @@ theme_override_font_sizes/font_size = 100
 text = "Tutorial"
 icon = ExtResource("31_k4tox")
 icon_alignment = 1
-script = ExtResource("32_qdurj")
+script = ExtResource("34_fy3gk")
 
 [node name="Button3" type="Button" parent="."]
+z_index = -2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -209,6 +236,7 @@ script = ExtResource("32_qdurj")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
+z_index = -2
 offset_left = -610.0
 offset_top = -344.0
 offset_right = 620.0
@@ -216,7 +244,435 @@ offset_bottom = 332.0
 pivot_offset = Vector2(-610, -344)
 color = Color(0.14902, 0.14902, 0.14902, 0.964706)
 
+[node name="InventoryButton3" parent="ColorRect" instance=ExtResource("34_juflj")]
+z_index = 1
+layout_mode = 0
+offset_left = 188.0
+offset_top = 173.0
+offset_right = 252.0
+offset_bottom = 237.0
+button_mask = 0
+icon = ExtResource("35_2xejd")
+
+[node name="InventoryButton" parent="ColorRect" instance=ExtResource("34_juflj")]
+z_index = 1
+layout_mode = 0
+offset_left = 116.0
+offset_top = 173.0
+offset_right = 180.0
+offset_bottom = 237.0
+button_mask = 0
+icon = ExtResource("36_oaxrr")
+
+[node name="InventoryButton2" parent="ColorRect" instance=ExtResource("34_juflj")]
+z_index = 1
+layout_mode = 0
+offset_left = 44.0
+offset_top = 173.0
+offset_right = 108.0
+offset_bottom = 237.0
+
+[node name="InventoryButton4" parent="ColorRect" instance=ExtResource("34_juflj")]
+z_index = 1
+offset_left = 262.0
+offset_top = 102.0
+offset_right = 326.0
+offset_bottom = 166.0
+disabled = true
+button_mask = 0
+icon = ExtResource("37_3u6r7")
+
+[node name="InventoryButton5" parent="ColorRect" instance=ExtResource("34_juflj")]
+z_index = 1
+offset_left = 188.0
+offset_top = 102.0
+offset_right = 252.0
+offset_bottom = 166.0
+button_mask = 0
+icon = ExtResource("38_iu5ne")
+
+[node name="InventoryButton6" parent="ColorRect" instance=ExtResource("34_juflj")]
+z_index = 1
+offset_left = 116.0
+offset_top = 102.0
+offset_right = 180.0
+offset_bottom = 166.0
+button_mask = 0
+icon = ExtResource("39_22lbo")
+
+[node name="InventoryButton7" parent="ColorRect" instance=ExtResource("34_juflj")]
+z_index = 1
+offset_left = 44.0
+offset_top = 102.0
+offset_right = 108.0
+offset_bottom = 166.0
+icon = ExtResource("40_s88wo")
+
+[node name="HealthLabel" type="RichTextLabel" parent="ColorRect"]
+self_modulate = Color(0, 0.505882, 0.101961, 1)
+offset_left = 1020.0
+offset_top = 22.0
+offset_right = 1182.0
+offset_bottom = 173.0
+theme_override_fonts/normal_font = ExtResource("30_23o3x")
+theme_override_font_sizes/normal_font_size = 35
+text = "Health:200"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/HealthLabel"]
+self_modulate = Color(0.8, 0, 0.101961, 1)
+layout_mode = 0
+offset_top = 36.0
+offset_right = 162.0
+offset_bottom = 82.0
+theme_override_fonts/normal_font = ExtResource("30_23o3x")
+theme_override_font_sizes/normal_font_size = 35
+text = "Saves:0"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ColorRect/HealthLabel"]
+self_modulate = Color(0.0588235, 0.0431373, 0.580392, 1)
+layout_mode = 0
+offset_top = 65.0
+offset_right = 162.0
+offset_bottom = 116.0
+theme_override_fonts/normal_font = ExtResource("30_23o3x")
+theme_override_font_sizes/normal_font_size = 35
+text = "Floor:1/10"
+
+[node name="Button3" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 229.0
+offset_top = 220.0
+offset_right = 646.0
+offset_bottom = 356.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.41, 0.41)
+pivot_offset = Vector2(278, 87)
+theme_override_colors/font_color = Color(0.000113828, 0.000113828, 0.000113828, 1)
+theme_override_fonts/font = ExtResource("30_23o3x")
+theme_override_font_sizes/font_size = 100
+text = "Back"
+icon = ExtResource("31_k4tox")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("41_sh5ih")
+
+[node name="БашняФундамент" type="Sprite2D" parent="ColorRect"]
+position = Vector2(610, 572)
+texture = ExtResource("41_yixb8")
+
+[node name="БашняВерхушка" type="Sprite2D" parent="ColorRect"]
+position = Vector2(610, 124)
+texture = ExtResource("42_u0lxn")
+
+[node name="БашняДобыча" type="Sprite2D" parent="ColorRect"]
+position = Vector2(610, 508)
+texture = ExtResource("43_rlq75")
+
+[node name="БашняДопжизнь" type="Sprite2D" parent="ColorRect"]
+position = Vector2(610, 188)
+texture = ExtResource("44_6fnyb")
+
+[node name="БашняСклад" type="Sprite2D" parent="ColorRect"]
+position = Vector2(610, 444)
+texture = ExtResource("45_bu172")
+
+[node name="БашняСтроительство" type="Sprite2D" parent="ColorRect"]
+position = Vector2(610, 380)
+texture = ExtResource("46_o0jva")
+
+[node name="БашняУскорение" type="Sprite2D" parent="ColorRect"]
+position = Vector2(610, 316)
+texture = ExtResource("47_6em27")
+
+[node name="БашняАтака" type="Sprite2D" parent="ColorRect"]
+position = Vector2(610, 252)
+texture = ExtResource("48_3nixg")
+
+[node name="Враг1Болванка" type="Sprite2D" parent="ColorRect"]
+position = Vector2(862, 554)
+texture = ExtResource("49_bdoai")
+
+[node name="Враг1Болванка3" type="Sprite2D" parent="ColorRect"]
+position = Vector2(327, 546)
+texture = ExtResource("49_bdoai")
+flip_h = true
+
+[node name="Друг1Ходьба" type="Sprite2D" parent="ColorRect"]
+position = Vector2(113, 557)
+texture = ExtResource("50_yuw3h")
+hframes = 4
+
+[node name="Друг2Ходьба" type="Sprite2D" parent="ColorRect"]
+position = Vector2(158, 557)
+texture = ExtResource("51_itrv4")
+hframes = 4
+
+[node name="Враг1Болванка4" type="Sprite2D" parent="ColorRect"]
+position = Vector2(251, 546)
+texture = ExtResource("49_bdoai")
+flip_h = true
+
+[node name="Враг1Болванка2" type="Sprite2D" parent="ColorRect"]
+position = Vector2(1087, 502)
+texture = ExtResource("49_bdoai")
+
+[node name="ResourceLabel" type="RichTextLabel" parent="ColorRect"]
+z_index = 1
+offset_left = 34.0
+offset_top = 22.0
+offset_right = 173.0
+offset_bottom = 85.0
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect/ResourceLabel"]
+position = Vector2(36.18, 30.52)
+texture = ExtResource("41_r4qi3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/ResourceLabel"]
+self_modulate = Color(1, 0.772549, 0.14902, 1)
+layout_mode = 0
+offset_left = 72.0
+offset_top = 5.0
+offset_right = 152.0
+offset_bottom = 56.0
+theme_override_fonts/normal_font = ExtResource("30_23o3x")
+theme_override_font_sizes/normal_font_size = 42
+text = "10"
+
+[node name="ПятиугольникРазрушение1" type="Sprite2D" parent="ColorRect"]
+position = Vector2(764, 551)
+scale = Vector2(0.599448, 0.599447)
+texture = ExtResource("53_ec18j")
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="ColorRect"]
+offset_left = 914.0
+offset_top = 400.0
+offset_right = 1147.0
+offset_bottom = 462.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Most of enemies will try to climb over the block, the blocks are breaking little by little by this"
+
+[node name="RichTextLabel15" type="RichTextLabel" parent="ColorRect"]
+offset_left = 480.0
+offset_top = 606.0
+offset_right = 746.0
+offset_bottom = 687.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Modificate floor posible only  once. To do this click to floor and choose type by mouse wheel and click second time."
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="ColorRect"]
+offset_left = 940.0
+offset_top = 138.0
+offset_right = 1173.0
+offset_bottom = 182.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Value FLOOR show how much left to save allies  to the next floor"
+
+[node name="RichTextLabel14" type="RichTextLabel" parent="ColorRect"]
+offset_left = 673.0
+offset_top = 161.0
+offset_right = 830.0
+offset_bottom = 225.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 14
+text = "Floor create provides SAVES"
+
+[node name="RichTextLabel13" type="RichTextLabel" parent="ColorRect"]
+offset_left = 417.0
+offset_top = 220.0
+offset_right = 574.0
+offset_bottom = 284.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 14
+text = "Floor create two balistas that shoot in nearest enemy"
+
+[node name="RichTextLabel12" type="RichTextLabel" parent="ColorRect"]
+offset_left = 669.0
+offset_top = 281.0
+offset_right = 790.0
+offset_bottom = 345.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 14
+text = "Floor provides additional speed for allies"
+
+[node name="RichTextLabel11" type="RichTextLabel" parent="ColorRect"]
+offset_left = 458.0
+offset_top = 346.0
+offset_right = 579.0
+offset_bottom = 410.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 14
+text = "Floor provides restoration of tower HEALTH"
+
+[node name="RichTextLabel10" type="RichTextLabel" parent="ColorRect"]
+offset_left = 663.0
+offset_top = 411.0
+offset_right = 784.0
+offset_bottom = 475.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 14
+text = "Floor provides additional  slot for block choose"
+
+[node name="RichTextLabel9" type="RichTextLabel" parent="ColorRect"]
+offset_left = 462.0
+offset_top = 484.0
+offset_right = 570.0
+offset_bottom = 549.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 14
+text = "Floor provides speed of coins farm"
+
+[node name="RichTextLabel8" type="RichTextLabel" parent="ColorRect"]
+offset_left = 83.0
+offset_top = 605.0
+offset_right = 351.0
+offset_bottom = 665.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Enemies and allies go  from  both  sides, time of their life limited. So they won't survive the long journey."
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="ColorRect"]
+offset_left = 170.0
+offset_top = 458.0
+offset_right = 438.0
+offset_bottom = 500.0
+theme_override_font_sizes/normal_font_size = 14
+text = "You target block and destroy enemies, while try to  save most of allies"
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="ColorRect"]
+offset_left = 757.0
+offset_top = 607.0
+offset_right = 990.0
+offset_bottom = 651.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Some will try to broke it"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="ColorRect"]
+offset_left = 797.0
+offset_top = 28.0
+offset_right = 1007.0
+offset_bottom = 79.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Value HEALTH max value increase with number of floors"
+
+[node name="Квадрат" type="Sprite2D" parent="ColorRect"]
+position = Vector2(1000, 547)
+scale = Vector2(0.635417, 0.635417)
+texture = ExtResource("40_s88wo")
+
+[node name="RichTextLabel20" type="RichTextLabel" parent="ColorRect"]
+offset_left = 332.0
+offset_top = 117.0
+offset_right = 496.0
+offset_bottom = 203.0
+theme_override_font_sizes/normal_font_size = 14
+text = "On build blocks can  be resized by mouse wheel and rotated by A and D"
+
+[node name="RichTextLabel18" type="RichTextLabel" parent="ColorRect"]
+offset_left = 324.0
+offset_top = 42.0
+offset_right = 488.0
+offset_bottom = 104.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Last icon shows next  block  which will be allowed"
+
+[node name="RichTextLabel19" type="RichTextLabel" parent="ColorRect"]
+offset_left = 41.0
+offset_top = 242.0
+offset_right = 266.0
+offset_bottom = 386.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Abilities can be used any times, but same as blocks cost money. 
+1.Destroy block
+2.Resize block
+3.Repair block
+Dont try to  drag simply  click and than click  on  place"
+
+[node name="RichTextLabel16" type="RichTextLabel" parent="ColorRect"]
+offset_left = 168.0
+offset_top = 35.0
+offset_right = 319.0
+offset_bottom = 79.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Coins spended for blocks and abilities "
+
+[node name="RichTextLabel17" type="RichTextLabel" parent="ColorRect"]
+offset_left = 521.0
+offset_top = 52.0
+offset_right = 720.0
+offset_bottom = 126.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Final floor are 17. Content is unlocked on each floor, so be careful."
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ColorRect"]
+offset_left = 827.0
+offset_top = 83.0
+offset_right = 1007.0
+offset_bottom = 143.0
+theme_override_font_sizes/normal_font_size = 14
+text = "Value SAVES indicate how many times will you be saved from death."
+
+[node name="Credits" type="ColorRect" parent="."]
+visible = false
+z_index = -2
+offset_left = -610.0
+offset_top = -344.0
+offset_right = 620.0
+offset_bottom = 332.0
+pivot_offset = Vector2(-610, -344)
+color = Color(0.14902, 0.14902, 0.14902, 0.964706)
+
+[node name="RichTextLabel13" type="RichTextLabel" parent="Credits"]
+offset_left = 36.0
+offset_top = 20.0
+offset_right = 1180.0
+offset_bottom = 666.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("56_kn4so")
+theme_override_font_sizes/normal_font_size = 46
+bbcode_enabled = true
+text = "[center] Team  leader, game design -
+Lev \"GrimGutz\" Subbota [/center]
+
+[center]Code - Sasetz[/center]
+
+[center]Design,Animations - Skogreb[/center]
+
+[center]Audio - A1ice[/center]
+
+Created for GMTKJam 2024"
+
+[node name="Button3" type="Button" parent="Credits"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 229.0
+offset_top = 220.0
+offset_right = 646.0
+offset_bottom = 356.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.41, 0.41)
+pivot_offset = Vector2(278, 87)
+theme_override_colors/font_color = Color(0.000113828, 0.000113828, 0.000113828, 1)
+theme_override_fonts/font = ExtResource("30_23o3x")
+theme_override_font_sizes/font_size = 100
+text = "Back"
+icon = ExtResource("31_k4tox")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("41_sh5ih")
+
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
-[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
-[connection signal="pressed" from="Button3" to="Button3" method="_on_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="ColorRect/Button3" to="ColorRect/Button3" method="_on_pressed"]
+[connection signal="pressed" from="Credits/Button3" to="Credits/Button3" method="_on_pressed"]
