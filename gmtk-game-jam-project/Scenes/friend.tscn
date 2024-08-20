@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxldi5a5m3diy"]
+[gd_scene load_steps=21 format=3 uid="uid://d3ykbqrwfwbfm"]
 
 [ext_resource type="Script" path="res://Scripts/friend.gd" id="1_kyjyt"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_xqyqq"]
