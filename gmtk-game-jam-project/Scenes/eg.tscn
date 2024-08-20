@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dm6yalrih21bq"]
 
-[ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_aqp8o"]
+[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_aqp8o"]
 [ext_resource type="Script" path="res://Scripts/eg.gd" id="2_xs2uj"]
 [ext_resource type="Texture2D" uid="uid://msaervt6585" path="res://Visual/Backgrounds/Деревянный еж.png" id="3_qvwua"]
 [ext_resource type="Texture2D" uid="uid://nq11by705wr1" path="res://Visual/Animations/Пыль.png" id="6_xo4pj"]

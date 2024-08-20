@@ -6,6 +6,7 @@ extends Node2D
 @export var FastEnemyScene: PackedScene = preload("res://Scenes/Enemies/enemyfast.tscn")
 @export var BigEnemyScene: PackedScene = preload("res://Scenes/Enemies/bigenemy.tscn")
 @export var FlightEnemyScene: PackedScene = preload("res://Scenes/Enemies/flightenemy.tscn")
+@export var KillEnemyScene: PackedScene = preload("res://Scenes/Enemies/killerenemy.tscn")
 
 @export_category("Spawning rules")
 @export var IntervalBetweenEntities: float = 0.25
@@ -27,6 +28,7 @@ var _spawn_timer: Timer
 var _spawning_enemies := true
 var _batch_left := BatchSize
 var data = [
+	[2.0, 4.0, 1.0, 3.0, 1.0, 1.0, 4.0],
 	[2.0, 4.0, 1.0, 3.0, 1.0, 1.0, 4.0],
 	[2.0, 4.0, 2.0, 3.0, 3.0, 4.0, 3.9],
 	[3.0, 5.0, 2.0, 4.0, 3.0, 4.0, 3.9],
@@ -95,17 +97,17 @@ func _on_spawn_interval_timeout() -> void:
 
 func _on_spawn_timeout() -> void:
 	bigcount=0
-	_spawn_timer.wait_time =data[TowerNode.level][6]
+	_spawn_timer.wait_time =data[TowerNode.level-1][6]
 	var i:=0
-	if (randi_range(1,int(data[TowerNode.level][4]+data[TowerNode.level][5])) <= data[TowerNode.level][4]) or i==5:
+	if (randi_range(1,int(data[TowerNode.level-1][4]+data[TowerNode.level-1][5])) <= data[TowerNode.level-1][4]) or i==5:
 		_spawning_enemies = false
-		_batch_left = randi_range(data[TowerNode.level][0],data[TowerNode.level][1])
+		_batch_left = randi_range(data[TowerNode.level-1][0],data[TowerNode.level-1][1])
 		BatchSize=_batch_left
 		i=0
 	else:
 		i+=1
 		_spawning_enemies = true
-		_batch_left = randi_range(data[TowerNode.level][2],data[TowerNode.level][3])
+		_batch_left = randi_range(data[TowerNode.level-1][2],data[TowerNode.level-1][3])
 		BatchSize=_batch_left
 	if randi_range(1,2) == 1:
 		_current_spawner = _spawner1
@@ -120,4 +122,6 @@ func add_to_pool(level):
 		_enemies.append(BigEnemyScene)
 	elif level==9:
 		_enemies.append(FlightEnemyScene)
+	elif level==11:
+		_enemies.append(KillEnemyScene)
 		

@@ -1,0 +1,167 @@
+[gd_scene load_steps=36 format=3 uid="uid://bv1qg2112o7j2"]
+
+[ext_resource type="Texture2D" uid="uid://w4pfo4qg4y5h" path="res://Visual/Screens/Проигрыш.png" id="1_3c1t6"]
+[ext_resource type="Script" path="res://Scenes/menu.gd" id="1_o2xkf"]
+[ext_resource type="Texture2D" uid="uid://isx5ak8indxs" path="res://Visual/Screens/Катсцена2 1.png" id="2_spayj"]
+[ext_resource type="Texture2D" uid="uid://bxhhtjshlh26p" path="res://Visual/Screens/Катсцена2 2.png" id="3_2qym2"]
+[ext_resource type="Texture2D" uid="uid://d1qgwkvl0u2sm" path="res://Visual/Screens/Катсцена2 3.png" id="4_ec1vc"]
+[ext_resource type="Texture2D" uid="uid://blggpp3ll7vqk" path="res://Visual/Screens/Катсцена2 4.png" id="5_2rff3"]
+[ext_resource type="Texture2D" uid="uid://byfclaxg8kdos" path="res://Visual/Screens/Меню без кнопки.png" id="6_up5kk"]
+[ext_resource type="Texture2D" uid="uid://sqkdhm1kip0c" path="res://Visual/Screens/Катсцена1 1.png" id="7_kwoje"]
+[ext_resource type="Texture2D" uid="uid://c2lprq7e2hgm2" path="res://Visual/Screens/Катсцена1 2.png" id="8_3yp0l"]
+[ext_resource type="Texture2D" uid="uid://btsd0t2rkekc4" path="res://Visual/Screens/Катсцена1 3.png" id="9_wo40l"]
+[ext_resource type="Texture2D" uid="uid://xsjyhk1ptyna" path="res://Visual/Screens/Катсцена1 4.png" id="10_ab0hw"]
+[ext_resource type="AudioStream" uid="uid://betc3wca757hl" path="res://Audio/stemps/lev 7_2 - Track 1.wav" id="11_c4e43"]
+[ext_resource type="AudioStream" uid="uid://cuofx1glw6ebg" path="res://Audio/stemps/lev 7_2 - Track 2.wav" id="12_42mwd"]
+[ext_resource type="AudioStream" uid="uid://cn5re7ckpkqif" path="res://Audio/stemps/lev 7_2 - Track 12.wav" id="13_f2wli"]
+[ext_resource type="AudioStream" uid="uid://tvbtyyiyvq0b" path="res://Audio/stemps/lev 7_2 - Track 13.wav" id="14_he1f8"]
+[ext_resource type="AudioStream" uid="uid://bgtsh7grohexi" path="res://Audio/stemps/lev 7_2 - Track 14.wav" id="15_t1y68"]
+[ext_resource type="AudioStream" uid="uid://chmtrcoixo7f" path="res://Audio/stemps/lev 7_2 - Track 15.wav" id="16_jewef"]
+[ext_resource type="AudioStream" uid="uid://dacg0mptk7uml" path="res://Audio/stemps/lev 7_2 - Track 16.wav" id="17_juxjx"]
+[ext_resource type="AudioStream" uid="uid://eid5iuvxw5nf" path="res://Audio/stemps/lev 7_2 - Track 17.wav" id="18_toi8s"]
+[ext_resource type="AudioStream" uid="uid://cuvq051dxotlj" path="res://Audio/stemps/lev 7_2 - Track 19.wav" id="19_ve1nw"]
+[ext_resource type="AudioStream" uid="uid://8iow01c8rjxa" path="res://Audio/stemps/lev 7_2 - Track 20.wav" id="20_2ftaj"]
+[ext_resource type="AudioStream" uid="uid://d1253gdnql547" path="res://Audio/stemps/lev 7_2 - Track 3.wav" id="21_rdm7x"]
+[ext_resource type="AudioStream" uid="uid://jcgyl142mx5i" path="res://Audio/stemps/lev 7_2 - Track 4.wav" id="22_bnpx3"]
+[ext_resource type="AudioStream" uid="uid://d3jwiggnyput0" path="res://Audio/stemps/lev 7_2 - Track 5.wav" id="23_tuq0t"]
+[ext_resource type="AudioStream" uid="uid://dbgd3vybc6im7" path="res://Audio/stemps/lev 7_2 - Track 6.wav" id="24_pvpac"]
+[ext_resource type="AudioStream" uid="uid://cvpl8u8sgnwgt" path="res://Audio/stemps/lev 7_2 - Track 8.wav" id="25_07pwt"]
+[ext_resource type="AudioStream" uid="uid://3cevq0q5t2lm" path="res://Audio/stemps/lev 7_2 - Track 9.wav" id="26_eqrba"]
+[ext_resource type="AudioStream" uid="uid://ctxhtidc1cr41" path="res://Audio/stemps/lev 7_2 - Track 10.wav" id="27_cy7m1"]
+[ext_resource type="AudioStream" uid="uid://b1l3ex3kkf6w0" path="res://Audio/stemps/lev 7_2 - Track 11.wav" id="28_xw5e3"]
+[ext_resource type="Script" path="res://Scripts/game_mgmt/audio_stream_player.gd" id="29_453b5"]
+[ext_resource type="FontFile" uid="uid://c18a4x8oe4gie" path="res://Visual/Alice in Wonderland.ttf" id="30_23o3x"]
+[ext_resource type="Texture2D" uid="uid://5k44os2ktm4g" path="res://Visual/UI/Кнопка меню.png" id="31_k4tox"]
+[ext_resource type="Script" path="res://Scripts/startplay.gd" id="32_qdurj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8y5vd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3c1t6")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 4.0,
+"texture": ExtResource("2_spayj")
+}, {
+"duration": 4.0,
+"texture": ExtResource("3_2qym2")
+}, {
+"duration": 4.0,
+"texture": ExtResource("4_ec1vc")
+}, {
+"duration": 4.0,
+"texture": ExtResource("5_2rff3")
+}],
+"loop": false,
+"name": &"End",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_up5kk")
+}],
+"loop": true,
+"name": &"Menu",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 4.0,
+"texture": ExtResource("7_kwoje")
+}, {
+"duration": 4.0,
+"texture": ExtResource("8_3yp0l")
+}, {
+"duration": 4.0,
+"texture": ExtResource("9_wo40l")
+}, {
+"duration": 4.0,
+"texture": ExtResource("10_ab0hw")
+}],
+"loop": false,
+"name": &"Start",
+"speed": 1.0
+}]
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_5yi7k"]
+stream_count = 18
+stream_0/stream = ExtResource("11_c4e43")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("12_42mwd")
+stream_1/volume = -60.0
+stream_2/stream = ExtResource("21_rdm7x")
+stream_2/volume = -60.0
+stream_3/stream = ExtResource("22_bnpx3")
+stream_3/volume = -60.0
+stream_4/stream = ExtResource("23_tuq0t")
+stream_4/volume = -60.0
+stream_5/stream = ExtResource("24_pvpac")
+stream_5/volume = -60.0
+stream_6/stream = ExtResource("25_07pwt")
+stream_6/volume = -60.0
+stream_7/stream = ExtResource("26_eqrba")
+stream_7/volume = -60.0
+stream_8/stream = ExtResource("27_cy7m1")
+stream_8/volume = -60.0
+stream_9/stream = ExtResource("28_xw5e3")
+stream_9/volume = -60.0
+stream_10/stream = ExtResource("13_f2wli")
+stream_10/volume = -60.0
+stream_11/stream = ExtResource("14_he1f8")
+stream_11/volume = -60.0
+stream_12/stream = ExtResource("15_t1y68")
+stream_12/volume = -60.0
+stream_13/stream = ExtResource("16_jewef")
+stream_13/volume = -60.0
+stream_14/stream = ExtResource("17_juxjx")
+stream_14/volume = -60.0
+stream_15/stream = ExtResource("18_toi8s")
+stream_15/volume = -60.0
+stream_16/stream = ExtResource("19_ve1nw")
+stream_16/volume = -60.0
+stream_17/stream = ExtResource("20_2ftaj")
+stream_17/volume = -60.0
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_o2xkf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_8y5vd")
+animation = &"Menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_5yi7k")
+autoplay = true
+script = ExtResource("29_453b5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -87.0
+offset_right = 278.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.655, 0.655)
+pivot_offset = Vector2(278, 87)
+theme_override_colors/font_color = Color(0.000113828, 0.000113828, 0.000113828, 1)
+theme_override_fonts/font = ExtResource("30_23o3x")
+theme_override_font_sizes/font_size = 100
+text = "Play"
+icon = ExtResource("31_k4tox")
+icon_alignment = 1
+script = ExtResource("32_qdurj")
+
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

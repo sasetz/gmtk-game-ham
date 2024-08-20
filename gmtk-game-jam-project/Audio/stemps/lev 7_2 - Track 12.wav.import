@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cn5re7ckpkqif"
+path="res://.godot/imported/lev 7_2 - Track 12.wav-51338e3e8e0ce66a9c8207a9261b97a3.sample"
+
+[deps]
+
+source_file="res://Audio/stemps/lev 7_2 - Track 12.wav"
+dest_files=["res://.godot/imported/lev 7_2 - Track 12.wav-51338e3e8e0ce66a9c8207a9261b97a3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

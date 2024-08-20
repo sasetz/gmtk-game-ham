@@ -98,12 +98,15 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7pudm")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 8.0
 }]
 
 [node name="Dragon" type="Area2D"]
+collision_layer = 255
+collision_mask = 255
+monitoring = false
 script = ExtResource("1_bfqwm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -112,3 +115,8 @@ polygon = PackedVector2Array(-125, -359, -251, 467, 233, 447, 67, -336)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6tcil")
 frame_progress = 0.174938
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

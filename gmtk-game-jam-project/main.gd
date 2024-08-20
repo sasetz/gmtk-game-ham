@@ -37,19 +37,20 @@ func _on_add_interval_timeout():
 	_resource_timer.start()
 
 
+
 func _on_tower_body_entered(_body):
 	health_label.text = str("Health:", round($Tower.health))
 	$UI/HealthLabel/RichTextLabel.text = str("Saves:",$Tower.SAVEHEALTH)
 	$UI/HealthLabel/RichTextLabel2.text = str("Foor:",$Tower.number_in,"/",$Tower.Peoples)
-	if $Tower.level==17:
-		var obj : Control = game_end.instantiate()
-		add_child(obj)
-		get_tree().paused = true
+	#if $Tower.level==17:
+	#	Global.Scene="End"
+	#	get_tree().change_scene_to_file("res://Scenes/Menu.tscn")
+	if $Tower.level>= 16:
+		$Tower.level=16
 	if $Tower.health<=0:
 		if $Tower.SAVEHEALTH==0:
-			var obj : Control = game_end.instantiate()
-			add_child(obj)
-			get_tree().paused = true
+			Global.Scene="Death"
+			get_tree().change_scene_to_file("res://Scenes/Menu.tscn")
 		else:
 			$Tower.health+=50
 			$Tower.SAVEHEALTH-=1

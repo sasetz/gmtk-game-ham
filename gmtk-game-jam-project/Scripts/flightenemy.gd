@@ -4,7 +4,9 @@ var mod_dir:=0.0
 
 func _ready():
 	super._ready()
+	TOWER_DAMAGE=20
 	VERTICALSPEED=100
+	SPEED=100
 	$Timer.timeout.connect(_dir_change)
 	$Timer.start()
 
@@ -19,3 +21,4 @@ func wall_check():
 func _dir_change():
 	mod_dir=randf_range(-1,1)
 	$Timer.start()
+	

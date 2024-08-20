@@ -9,9 +9,11 @@ class_name Tower
 @export var SAVEHEALTH:=0.0
 const ENEMY_DAMAGE := 10
 const FRIEND_DAMAGE := -100
-var Peoples :=5.0
-var health := 200.0
-var maxhealth :=200.0
+#var Peoples :=5.0
+var Peoples :=1.0
+var health := 20000.0
+#var health := 200.0
+var maxhealth :=health
 var number_in := 0.0
 var MAIN: main
 
@@ -36,12 +38,13 @@ func _regenerate_timeout()->void:
 var leng=2
 
 func update_level():
+	$"../AudioStreamPlayer".get_stream().set_sync_stream_volume(level,0.0)
 	if Peoples == number_in:
 		add_new_part()
 		health+=100
 		maxhealth+=100
-		number_in-=(level + 4)
-		Peoples+=1
+		number_in=0
+		#Peoples+=1
 		level+=1
 		$"../GameManager/Inventory".add_to_roster(level)
 		$"../GameManager/Spawner".add_to_pool(level)
@@ -52,14 +55,14 @@ func update_level():
 			5:
 				$"../Weather"._weathers.append("Rain")
 			8:$"../Weather"._weathers.append("Smoke")
-			11:$"../Weather"._weathers.append("Moon")
-			12:$"../Weather"._weathers.append("Meteor")
+			12:$"../Weather"._weathers.append("Moon")
 			14:$"../Weather"._weathers.append("Dragon")
 			4:
 				leng+=1
 			7:
 				leng+=1
 			10:
+				$"../Weather"._weathers.append("Meteor")
 				leng+=1
 		
 	$Collision.scale.y = level

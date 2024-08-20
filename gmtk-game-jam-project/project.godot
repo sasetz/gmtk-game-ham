@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Tower Defense Prototype"
-run/main_scene="res://main.tscn"
+run/main_scene="res://Scenes/Menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Visual/UI/Иконка.png"
+
+[autoload]
+
+Global="*res://Scripts/global.gd"
 
 [editor_plugins]
 

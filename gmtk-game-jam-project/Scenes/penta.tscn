@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cayubc3a7lwwo"]
 
-[ext_resource type="PackedScene" path="res://Scenes/building_shape.tscn" id="1_pgpnd"]
+[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_pgpnd"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_g04ie"]
 [ext_resource type="Texture2D" uid="uid://dy5fwsdi0bdap" path="res://Visual/Backgrounds/Пятиугольник разрушение1.png" id="4_tcs8p"]
 [ext_resource type="Texture2D" uid="uid://db2y7pabisoic" path="res://Visual/Backgrounds/Пятиугольник разрушение2.png" id="5_yefqs"]

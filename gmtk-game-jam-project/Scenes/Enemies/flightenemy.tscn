@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c023g0ax6vocv"]
+[gd_scene load_steps=16 format=3 uid="uid://c023g0ax6vocv"]
 
 [ext_resource type="Script" path="res://Scripts/flightenemy.gd" id="1_uu4ww"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_a2ryx"]
@@ -74,6 +74,9 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cv061"]
+size = Vector2(42, 57)
+
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 5
@@ -105,3 +108,9 @@ position = Vector2(-2, -22)
 scale = Vector2(0.276786, 0.276786)
 sprite_frames = SubResource("SpriteFrames_naeom")
 animation = &"death"
+
+[node name="ZombifyArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZombifyArea"]
+position = Vector2(0, -28.5)
+shape = SubResource("RectangleShape2D_cv061")

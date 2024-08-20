@@ -5,6 +5,7 @@ class_name Weather
 @export var background1:CompressedTexture2D=preload("res://Visual/Backgrounds/Задник.png")
 @export var background3:CompressedTexture2D=preload("res://Visual/Screens/Задник красная луна.png")
 @export var met:PackedScene=preload("res://Scenes/Projectiles/meteor.tscn")
+@export var dragon:PackedScene=preload("res://Scenes/Projectiles/Dragon.tscn")
 # Called when the node enters the scene tree for the first time.
 
 var _weathers=[
@@ -12,10 +13,16 @@ var _weathers=[
 	"None",
 	"None",
 ]
+
+
 func _ready():
+	_weathers=[
+	"Moon",
+]
 	visible=false
 	type="None"
-	$Weather_timer.wait_time=15.0
+	$Weather_timer.wait_time=1.0
+	#$Weather_timer.wait_time=15.0
 	$Weather_timer.timeout.connect(_new_weather_timeout)
 	$Weather_timer.start()
 	$Meteor_timer.timeout.connect(_new_meteor)
@@ -88,10 +95,17 @@ func _new_weather_timeout():
 			type="Dragon"
 			play("Nothing")
 			visible=false
+			var drag:Dragon
+			drag=dragon.instantiate()
+			get_tree().current_scene.add_child(drag)
+			drag.position=Vector2(randi_range(-640,640),-421)
+			drag.breath()
 			$"../UI/Background".texture=background1
-			$Weather_timer.wait_time=5.0
+			$Weather_timer.wait_time=2.0
 			$Weather_timer.start()
 	print(type)
+	
+	
 func _new_meteor():
 	var meteor:MeteorOnCurve2D
 	meteor=met.instantiate()

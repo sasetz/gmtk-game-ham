@@ -4,7 +4,7 @@ func _ready():
 	super._ready()
 	TOWER_DAMAGE=50
 	DAMAGE=5
-	LIFE_TIME=15
+	LIFE_TIME=30
 	self.VERTICALSPEED = 0
 	self.SPEED=80
 	
