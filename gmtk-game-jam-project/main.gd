@@ -13,6 +13,7 @@ class_name main
 @onready var inventory:=$GameManager/Inventory
 var LIFE_TIME_MODIFICATOR:=1.0
 var _resource_timer: Timer
+@onready var REGULAR_CURSOR = preload("res://Visual/UI/cursor.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,12 +44,14 @@ func _on_tower_body_entered(_body):
 	$UI/HealthLabel/RichTextLabel.text = str("Saves:",$Tower.SAVEHEALTH)
 	$UI/HealthLabel/RichTextLabel2.text = str("Floor:",$Tower.number_in,"/",$Tower.Peoples)
 	if $Tower.level==17:
+		Input.set_custom_mouse_cursor(REGULAR_CURSOR)
 		Global.Scene="End"
 		get_tree().change_scene_to_file("res://Scenes/Menu.tscn")
 	if $Tower.level>= 16:
 		$Tower.level=16
 	if $Tower.health<=0:
 		if $Tower.SAVEHEALTH==0:
+			Input.set_custom_mouse_cursor(REGULAR_CURSOR)
 			Global.Scene="Death"
 			get_tree().change_scene_to_file("res://Scenes/Menu.tscn")
 		else:
