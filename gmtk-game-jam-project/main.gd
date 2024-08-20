@@ -45,8 +45,6 @@ func _on_tower_body_entered(_body):
 	if $Tower.level==17:
 		Global.Scene="End"
 		get_tree().change_scene_to_file("res://Scenes/Menu.tscn")
-	if $Tower.level>= 16:
-		$Tower.level=16
 	if $Tower.health<=0:
 		if $Tower.SAVEHEALTH==0:
 			Global.Scene="Death"

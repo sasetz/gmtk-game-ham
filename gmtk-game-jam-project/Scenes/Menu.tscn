@@ -157,7 +157,7 @@ script = ExtResource("1_o2xkf")
 z_index = -2
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_8y5vd")
-animation = &"End"
+animation = &"Menu"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamSynchronized_5yi7k")
@@ -260,7 +260,6 @@ icon_alignment = 1
 script = ExtResource("32_qdurj")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 z_index = -2
 offset_left = -610.0
 offset_top = -344.0
@@ -613,9 +612,9 @@ layout_mode = 0
 offset_left = 332.0
 offset_top = 117.0
 offset_right = 496.0
-offset_bottom = 203.0
+offset_bottom = 219.0
 theme_override_font_sizes/normal_font_size = 14
-text = "On build blocks can  be resized by mouse wheel and rotated by A and D"
+text = "On build blocks can  be resized by mouse wheel and rotated by A and D.  For quick cast use 1...0"
 
 [node name="RichTextLabel18" type="RichTextLabel" parent="ColorRect"]
 layout_mode = 0
