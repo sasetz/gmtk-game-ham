@@ -47,7 +47,7 @@ radius = 44.911
 [node name="Cube" instance=ExtResource("1_f6uf3")]
 collision_mask = 7
 script = ExtResource("2_1623g")
-INITIAL_HEALTH = 120
+INITIAL_HEALTH = 110.0
 Structure_vatiation = [ExtResource("4_agcui"), ExtResource("4_hnb44"), ExtResource("5_l1lva")]
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]

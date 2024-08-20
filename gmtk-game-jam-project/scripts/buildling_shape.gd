@@ -2,7 +2,7 @@ extends RigidBody2D
 class_name BuildingStructure
 
 
-@export var INITIAL_HEALTH:=30
+@export var INITIAL_HEALTH:float
 @export var Structure_vatiation: Array
 
 @onready var animplayer:AnimatedSprite2D=$Node2D/AnimatedSprite2D
