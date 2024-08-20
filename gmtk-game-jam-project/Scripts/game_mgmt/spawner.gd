@@ -77,15 +77,17 @@ func _on_spawn_interval_timeout() -> void:
 				entity=EnemyScene.instantiate()
 			else:
 				entity=entity_scene.instantiate()
+		elif entity_scene==FlightEnemyScene:
+			bonus=250
+			entity=entity_scene.instantiate()
 		else:
 			entity=entity_scene.instantiate()
 	else:
 		entity = Friend.instantiate()
 	
 	entity.position = Vector2(_current_spawner.position.x,_current_spawner.position.y-bonus)
-	get_tree().current_scene.add_child(entity)
+	
 	entity.LIFE_TIME=entity.LIFE_TIME*$"../..".LIFE_TIME_MODIFICATOR
-	entity.die_timer.wait_time=entity.LIFE_TIME
 	if _current_spawner == _spawner1:
 		entity.DIRECTION = 1
 		entity.scale.x = 1
@@ -94,7 +96,8 @@ func _on_spawn_interval_timeout() -> void:
 		entity.scale.x = -1
 	if _batch_left > 0:
 		_between_timer.start()
-
+	
+	get_tree().current_scene.add_child(entity)
 func _on_spawn_timeout() -> void:
 	bigcount=0
 	_spawn_timer.wait_time =data[TowerNode.level-1][6]

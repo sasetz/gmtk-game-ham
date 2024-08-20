@@ -7,6 +7,7 @@ func _ready():
 	LIFE_TIME=15
 	self.VERTICALSPEED = 130
 	self.SPEED=130
+	HEALTH=2
 
 func _on_mob_collided(entity: Node2D):
 	if not entity.is_in_group("friend"):
@@ -17,8 +18,8 @@ func _on_mob_collided(entity: Node2D):
 		new_enemy.position = mob.position
 		new_enemy.DIRECTION = mob.DIRECTION
 		new_enemy.scale.x = mob.scale.x
+		mob.queue_free()
 		get_tree().current_scene.add_child(new_enemy)
-		mob.die()
 	else:
 		print("kill")
 		$AnimatedSprite2D.play("attack")

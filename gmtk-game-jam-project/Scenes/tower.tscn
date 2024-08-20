@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://fwyt0bseuanc"]
+[gd_scene load_steps=14 format=3 uid="uid://tdt515ueewlb"]
 
 [ext_resource type="Script" path="res://Scripts/tower.gd" id="1_nv4hn"]
 [ext_resource type="PackedScene" uid="uid://dx4483odqjbpl" path="res://Scenes/towerpart.tscn" id="2_iaeff"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://btctfrqy3k0qe" path="res://Visual/Backgrounds/Башня фундамент разрушение2.png" id="5_oy1k1"]
 [ext_resource type="Texture2D" uid="uid://4n7ddina5jcp" path="res://Visual/Backgrounds/Башня фундамент разрушение3.png" id="6_hkgxb"]
 [ext_resource type="Texture2D" uid="uid://b2s7aw3n3qrw8" path="res://Visual/Backgrounds/Башня фундамент разрушение4.png" id="7_4yeix"]
+[ext_resource type="AudioStream" uid="uid://bmjx8spiebbid" path="res://Audio/Sounds/cheer.wav" id="10_otmvg"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_62g58"]
 
@@ -50,6 +51,10 @@ position = Vector2(0, -96)
 texture = ExtResource("4_jc5er")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_otmvg")
+volume_db = 10.455
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

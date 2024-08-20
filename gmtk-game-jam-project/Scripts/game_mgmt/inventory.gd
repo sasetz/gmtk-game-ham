@@ -38,7 +38,7 @@ class ActionInventoryItem extends InventoryItem:
 @export_category("Inventory")
 @export var InventoryButtonScene: PackedScene = preload("res://Scenes/UI/inventory_button.tscn")
 @export var InventoryPreviewScene: PackedScene = preload("res://Scenes/UI/inventory_button.tscn")
-@export var InventorySize: int = 2
+@export var InventorySize: int = 3
 @export var InventoryUIContainer: HBoxContainer
 
 @export_category("Actions settings")
@@ -50,14 +50,14 @@ class ActionInventoryItem extends InventoryItem:
 # Inventory item definitions (singletons)
 
 var NONE_ITEM = InventoryItem.new("none", null,1) # currently not holding anything
-@onready var RAMP_ITEM = StructureInventoryItem.new(Ramp, "Ramp", preload("res://Visual/Backgrounds/Треугольник.png"),1)
-@onready var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube", preload("res://Visual/Backgrounds/Квадрат.png"),1)
-@onready var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle", preload("res://Visual/Backgrounds/Круг.png"),1)
-@onready var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square", preload("res://Visual/Backgrounds/Прямоугольник.png"),1)
+@onready var RAMP_ITEM = StructureInventoryItem.new(Ramp, "Ramp", preload("res://Visual/Backgrounds/Треугольник.png"),2)
+@onready var CUBE_ITEM = StructureInventoryItem.new(Cube, "Cube", preload("res://Visual/Backgrounds/Квадрат.png"),2)
+@onready var CIRCLE_ITEM = StructureInventoryItem.new(Circle, "Circle", preload("res://Visual/Backgrounds/Круг.png"),4)
+@onready var SQUARE_ITEM = StructureInventoryItem.new(Square, "Square", preload("res://Visual/Backgrounds/Прямоугольник.png"),3)
 @onready var PENTA_ITEM = StructureInventoryItem.new(Penta, "Penta", preload("res://Visual/Backgrounds/Пятиугольник.png"),1)
-@onready var EG_ITEM = StructureInventoryItem.new(Eg, "Eg", preload("res://Visual/Backgrounds/Деревянный еж.png"),1)
-@onready var RESIZE_ITEM = ActionInventoryItem.new("Resize", preload("res://Visual/UI/Размер.png"),1)
-@onready var ROTATE_ITEM = ActionInventoryItem.new("Rotate", preload("res://Visual/UI/Форма.png"),1)
+@onready var EG_ITEM = StructureInventoryItem.new(Eg, "Eg", preload("res://Visual/Backgrounds/Деревянный еж.png"),4)
+@onready var RESIZE_ITEM = ActionInventoryItem.new("Resize", preload("res://Visual/UI/Размер.png"),2)
+@onready var ROTATE_ITEM = ActionInventoryItem.new("Rotate", preload("res://Visual/UI/Форма.png"),2)
 @onready var DELETE_ITEM = ActionInventoryItem.new("Delete", preload("res://Visual/UI/Удалить.png"),1)
 
 const Pi := 3.14
@@ -78,10 +78,10 @@ var _inventory: Array = []
 @onready var _item_roster := [
 	PENTA_ITEM,
 	CUBE_ITEM,
+	DELETE_ITEM
 ]
 func add_to_roster(level):
 	match level:
-		2:_item_roster.append(DELETE_ITEM)
 		3:_item_roster.append(SQUARE_ITEM)
 		4:_item_roster.append(RESIZE_ITEM)
 		5:_item_roster.append(RAMP_ITEM)
@@ -176,11 +176,12 @@ func release_item():
 func _release_and_reset(remove_object: bool = false):
 	if _held_item_object is BuildingStructure:
 		_held_item_object.has_collision = true
+		$"../..".resource-=_current_item.price
 		$"../../UI/ResourceLabel/RichTextLabel".text = str($"../..".resource)
 	if remove_object and _held_item_object != null:
+		$"../..".resource-=_current_item.price
 		$"../../UI/ResourceLabel/RichTextLabel".text = str($"../..".resource)
 		_held_item_object.queue_free()
-	$"../..".resource-=_current_item.price
 	_held_item_object = null # we don't delete the shape, we just clear this variable!
 	_scale_iterations = 0
 	_is_rotating = false

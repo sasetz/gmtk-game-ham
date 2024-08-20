@@ -38,7 +38,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cixgq"]
-size = Vector2(59, 50)
+size = Vector2(69, 57)
 
 [node name="Cube" instance=ExtResource("1_aqp8o")]
 collision_mask = 255
@@ -47,6 +47,7 @@ INITIAL_HEALTH = 20.0
 Structure_vatiation = [ExtResource("3_qvwua"), ExtResource("3_qvwua"), ExtResource("3_qvwua")]
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
+visibility_layer = 7
 shape = SubResource("RectangleShape2D_gyh0e")
 
 [node name="Node2D" type="Node2D" parent="." index="1"]
@@ -67,3 +68,6 @@ collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathCollision" index="0"]
 shape = SubResource("RectangleShape2D_cixgq")
+
+[connection signal="animation_finished" from="Node2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="DeathCollision" to="." method="_on_death_collision_body_entered"]

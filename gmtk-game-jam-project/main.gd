@@ -62,7 +62,7 @@ func _on_tower_body_entered(_body):
 		right_spawner.position.x = 1000
 		second_camera.enabled = false
 		third_camera.enabled = true
-		LIFE_TIME_MODIFICATOR=2.0
+		LIFE_TIME_MODIFICATOR=2
 	elif $Tower.level >= 5:
 		health_label.position = Vector2(601,-800)
 		resource_label.position = Vector2(-760,-800)

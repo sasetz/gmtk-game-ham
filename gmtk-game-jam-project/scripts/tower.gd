@@ -45,6 +45,7 @@ func update_level():
 		maxhealth+=100
 		number_in=0
 		#Peoples+=1
+		$AudioStreamPlayer.play()
 		level+=1
 		$"../GameManager/Inventory".add_to_roster(level)
 		$"../GameManager/Spawner".add_to_pool(level)

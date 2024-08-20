@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://ds52fjyyek6bp"]
+[gd_scene load_steps=30 format=3 uid="uid://ds52fjyyek6bp"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/killerenemy.gd" id="1_deatw"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_fsv67"]
 [ext_resource type="Texture2D" uid="uid://dgytcxyt7pkgd" path="res://Visual/Animations/Враг5 атака.png" id="3_3rifw"]
 [ext_resource type="Texture2D" uid="uid://cmecvcyj3aet3" path="res://Visual/Animations/Враг5 ходьба.png" id="4_cpfek"]
+[ext_resource type="AudioStream" uid="uid://bog2i8di74ope" path="res://Audio/Sounds/die1.wav" id="6_wrb04"]
 [ext_resource type="Texture2D" uid="uid://dghi33ii2nxen" path="res://Visual/Animations/Кровь.png" id="12_8hyep"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
@@ -42,37 +43,37 @@ region = Rect2(486, 0, 81, 91)
 atlas = ExtResource("3_3rifw")
 region = Rect2(567, 0, 81, 91)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fh1vu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6bm80"]
 atlas = ExtResource("4_cpfek")
-region = Rect2(0, 0, 71, 92)
+region = Rect2(0, 0, 76, 92)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4ahi7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hb14"]
 atlas = ExtResource("4_cpfek")
-region = Rect2(71, 0, 71, 92)
+region = Rect2(76, 0, 76, 92)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iak4m"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hk1d"]
 atlas = ExtResource("4_cpfek")
-region = Rect2(142, 0, 71, 92)
+region = Rect2(152, 0, 76, 92)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y0k4w"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xbko"]
 atlas = ExtResource("4_cpfek")
-region = Rect2(213, 0, 71, 92)
+region = Rect2(228, 0, 76, 92)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nahhs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1qim"]
 atlas = ExtResource("4_cpfek")
-region = Rect2(284, 0, 71, 92)
+region = Rect2(304, 0, 76, 92)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4jaxw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2jnh"]
 atlas = ExtResource("4_cpfek")
-region = Rect2(355, 0, 71, 92)
+region = Rect2(380, 0, 76, 92)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_avst0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nipy"]
 atlas = ExtResource("4_cpfek")
-region = Rect2(426, 0, 71, 92)
+region = Rect2(456, 0, 76, 92)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8o507"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6nvx"]
 atlas = ExtResource("4_cpfek")
-region = Rect2(497, 0, 71, 92)
+region = Rect2(532, 0, 76, 92)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lap3j"]
 animations = [{
@@ -107,28 +108,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fh1vu")
+"texture": SubResource("AtlasTexture_6bm80")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4ahi7")
+"texture": SubResource("AtlasTexture_5hb14")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iak4m")
+"texture": SubResource("AtlasTexture_4hk1d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y0k4w")
+"texture": SubResource("AtlasTexture_0xbko")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nahhs")
+"texture": SubResource("AtlasTexture_m1qim")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4jaxw")
+"texture": SubResource("AtlasTexture_a2jnh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_avst0")
+"texture": SubResource("AtlasTexture_4nipy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8o507")
+"texture": SubResource("AtlasTexture_h6nvx")
 }],
 "loop": true,
 "name": &"default",
@@ -188,7 +189,7 @@ shape = SubResource("CapsuleShape2D_x5cul")
 position = Vector2(-1.00001, -30)
 scale = Vector2(0.677778, 0.677778)
 sprite_frames = SubResource("SpriteFrames_lap3j")
-animation = &"attack"
+frame_progress = 0.401293
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -198,7 +199,13 @@ sprite_frames = SubResource("SpriteFrames_2pytg")
 animation = &"death"
 
 [node name="ZombifyArea" type="Area2D" parent="."]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZombifyArea"]
 position = Vector2(0, -35.5)
 shape = SubResource("RectangleShape2D_2y8fe")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_wrb04")
+
+[connection signal="body_entered" from="ZombifyArea" to="." method="_on_mob_collided"]

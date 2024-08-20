@@ -22,5 +22,9 @@ func _on_mob_collided(entity: Node2D):
 		new_enemy.DIRECTION = mob.DIRECTION
 		new_enemy.scale.x = mob.scale.x
 		print("zonbufied")
+		mob.queue_free()
 		get_tree().current_scene.add_child(new_enemy)
-		mob.die()
+
+func die():
+	super.die()
+	$AudioStreamPlayer.play()

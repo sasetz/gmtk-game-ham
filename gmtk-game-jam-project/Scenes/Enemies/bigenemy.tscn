@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d0usxoq1fdj7d"]
+[gd_scene load_steps=26 format=3 uid="uid://d0usxoq1fdj7d"]
 
 [ext_resource type="Script" path="res://Scripts/bigenemy.gd" id="1_g7em7"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_4t4vt"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dqjg87plgqck1" path="res://Visual/Animations/6.png" id="9_6tp40"]
 [ext_resource type="Texture2D" uid="uid://brwgq5a17k2nx" path="res://Visual/Animations/7.png" id="10_pgrsc"]
 [ext_resource type="Texture2D" uid="uid://08n7n5np1aha" path="res://Visual/Animations/8.png" id="11_t6sk5"]
+[ext_resource type="AudioStream" uid="uid://bog2i8di74ope" path="res://Audio/Sounds/die1.wav" id="13_041pg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
 radius = 23.3807
@@ -121,7 +122,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8i67v"]
 size = Vector2(166, 160)
 
-[node name="Enemy3" type="CharacterBody2D" groups=["enemy"]]
+[node name="Enemy4" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_g7em7")
@@ -153,7 +154,13 @@ sprite_frames = SubResource("SpriteFrames_2pytg")
 animation = &"death"
 
 [node name="ZombifyArea" type="Area2D" parent="."]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZombifyArea"]
 position = Vector2(-2, -80)
 shape = SubResource("RectangleShape2D_8i67v")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_041pg")
+
+[connection signal="body_entered" from="ZombifyArea" to="." method="_on_mob_collided"]

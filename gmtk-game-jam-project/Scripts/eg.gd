@@ -1,8 +1,6 @@
 extends BuildingStructure
 
 
-# Called when the node enters the scene tree for the first time.
-const SpeedToKill := 25.0
 const Damage := 1
 const SelfDamage := 5
 
@@ -18,3 +16,7 @@ func _on_death_collision_body_entered(body: Node2D) -> void:
 	
 	var mob = body as MobNPC
 	mob.health -= Damage
+
+
+func _on_animated_sprite_2d_animation_finished():
+	pass # Replace with function body.

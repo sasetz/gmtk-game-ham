@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://d1483ckuquivl"]
+[gd_scene load_steps=21 format=3 uid="uid://d1483ckuquivl"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_atmmb"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_dwrsq"]
 [ext_resource type="PackedScene" uid="uid://d0usxoq1fdj7d" path="res://Scenes/Enemies/bigenemy.tscn" id="2_m06ms"]
 [ext_resource type="Texture2D" uid="uid://rviema1f0ntf" path="res://Visual/Animations/Враг1 ходьба (2).png" id="3_3ou02"]
 [ext_resource type="Texture2D" uid="uid://dghi33ii2nxen" path="res://Visual/Animations/Кровь.png" id="4_fv235"]
+[ext_resource type="AudioStream" uid="uid://bog2i8di74ope" path="res://Audio/Sounds/die1.wav" id="6_b18mg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
 radius = 16.0
@@ -131,9 +132,13 @@ frame = 2
 frame_progress = 1.0
 
 [node name="ZombifyArea" type="Area2D" parent="."]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZombifyArea"]
 position = Vector2(0, -28.5)
 shape = SubResource("RectangleShape2D_mmv1i")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_b18mg")
 
 [connection signal="body_entered" from="ZombifyArea" to="." method="_on_mob_collided"]

@@ -17,4 +17,8 @@ func dir_check():
 func wall_check():
 	if is_on_wall():
 		velocity.y = -(VERTICALSPEED+tower.SPEED_UPGRADE)*0.5
+
+func die():
+	super.die()
+	$AudioStreamPlayer.play()
 	

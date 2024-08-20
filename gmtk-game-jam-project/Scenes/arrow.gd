@@ -33,7 +33,7 @@ func _physics_process(delta):
 func _on_body_entered(_bod):
 	for body in get_overlapping_bodies():
 		if (body is MobNPC):
-			body.die()
+			body.health-=1
 			$".".queue_free()
 		if body is BuildingStructure:
 			$".".queue_free()
