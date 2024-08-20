@@ -7,6 +7,7 @@ static var FastEnemyScene: PackedScene = preload("res://Scenes/Enemies/enemyfast
 static var BigEnemyScene: PackedScene = preload("res://Scenes/Enemies/bigenemy.tscn")
 static var FlightEnemyScene: PackedScene = preload("res://Scenes/Enemies/flightenemy.tscn")
 static var KillEnemyScene: PackedScene = preload("res://Scenes/Enemies/killerenemy.tscn")
+static var ArmoredEnemyScene: PackedScene = preload("res://Scenes/Enemies/armorenemy.tscn")
 
 @export_category("Spawning rules")
 @export var IntervalBetweenEntities: float = 0.25
@@ -20,7 +21,12 @@ static var KillEnemyScene: PackedScene = preload("res://Scenes/Enemies/killerene
 @onready var _spawner1 : Marker2D = $LeftSpawner
 @onready var _spawner2 : Marker2D = $RightSpawner
 
-var _enemies = [
+var _enemies=[
+	EnemyScene,
+	EnemyScene,
+	EnemyScene,
+	EnemyScene,
+	EnemyScene,
 	EnemyScene,
 ]
 var _between_timer: Timer
@@ -119,11 +125,20 @@ func _on_spawn_timeout() -> void:
 	_between_timer.start()
 	
 func add_to_pool(level):
-	if level==4:
+	if level==3:
 		_enemies.append(FastEnemyScene)
-	elif level==7:
+		_enemies.append(FastEnemyScene)
+		_enemies.append(FastEnemyScene)
+	elif level==6:
 		_enemies.append(BigEnemyScene)
+		_enemies.append(BigEnemyScene)
+	elif level==8:
+		_enemies.append(ArmoredEnemyScene)
+		_enemies.append(ArmoredEnemyScene)
 	elif level==9:
+		_enemies.append(FlightEnemyScene)
+		_enemies.append(FlightEnemyScene)
+		_enemies.append(FlightEnemyScene)
 		_enemies.append(FlightEnemyScene)
 	elif level==11:
 		_enemies.append(KillEnemyScene)

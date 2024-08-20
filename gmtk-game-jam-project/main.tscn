@@ -47,7 +47,6 @@
 [ext_resource type="Texture2D" uid="uid://btsd0t2rkekc4" path="res://Visual/Screens/Катсцена1 3.png" id="35_dy52x"]
 [ext_resource type="Texture2D" uid="uid://blggpp3ll7vqk" path="res://Visual/Screens/Катсцена2 4.png" id="36_8yc78"]
 [ext_resource type="Texture2D" uid="uid://xsjyhk1ptyna" path="res://Visual/Screens/Катсцена1 4.png" id="36_gr2uo"]
-[ext_resource type="PackedScene" uid="uid://fqkic1nbxvpi" path="res://Scenes/Projectiles/Dragon.tscn" id="41_ao17e"]
 [ext_resource type="AudioStream" uid="uid://betc3wca757hl" path="res://Audio/stemps/lev 7_2 - Track 1.wav" id="42_oa2fc"]
 [ext_resource type="AudioStream" uid="uid://cuofx1glw6ebg" path="res://Audio/stemps/lev 7_2 - Track 2.wav" id="43_p5m3f"]
 [ext_resource type="AudioStream" uid="uid://cn5re7ckpkqif" path="res://Audio/stemps/lev 7_2 - Track 12.wav" id="44_2n2q3"]
@@ -399,10 +398,6 @@ visible = false
 position = Vector2(0, -418.145)
 sprite_frames = SubResource("SpriteFrames_i1cw7")
 animation = &"Death"
-
-[node name="Dragon" parent="." instance=ExtResource("41_ao17e")]
-visible = false
-position = Vector2(-639, -426)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamSynchronized_dpjtx")

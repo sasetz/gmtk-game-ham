@@ -13,6 +13,7 @@ var current_health := INITIAL_HEALTH:
 			has_collision = false
 			animplayer.visible = true
 			animplayer.play("default")
+			$Node2D/AudioStreamPlayer.play()
 		current_health = value
 
 var has_collision := true :

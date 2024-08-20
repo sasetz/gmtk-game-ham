@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://bkhbjoy05eli5"]
+[gd_scene load_steps=15 format=3 uid="uid://bl5pk3p1r5a45"]
 
-[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_f6uf3"]
+[ext_resource type="PackedScene" uid="uid://c1sywu562eq4p" path="res://Scenes/building_shape.tscn" id="1_f6uf3"]
 [ext_resource type="Script" path="res://Scripts/circle.gd" id="2_1623g"]
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="3_cy8lw"]
 [ext_resource type="Texture2D" uid="uid://bbmdxxfol3uip" path="res://Visual/Backgrounds/Круг.png" id="4_agcui"]
 [ext_resource type="Texture2D" uid="uid://dgpinumdto1p4" path="res://Visual/Backgrounds/Круг разрушение1.png" id="4_hnb44"]
 [ext_resource type="Texture2D" uid="uid://nessps66h6t4" path="res://Visual/Backgrounds/Круг разрушение2.png" id="5_l1lva"]
 [ext_resource type="Texture2D" uid="uid://nq11by705wr1" path="res://Visual/Animations/Пыль.png" id="7_dert5"]
+[ext_resource type="AudioStream" uid="uid://cj0rh2idcsarc" path="res://Audio/Sounds/explode5.wav" id="8_dgtv7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1dfx"]
 radius = 35.0143
@@ -68,6 +69,10 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_x4vrj")
 frame = 2
 frame_progress = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Node2D" index="2"]
+stream = ExtResource("8_dgtv7")
+volume_db = 10.23
 
 [node name="DeathCollision" type="Area2D" parent="." index="2"]
 collision_layer = 8

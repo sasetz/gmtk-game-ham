@@ -5,7 +5,6 @@ const SpeedToKill := 25.0
 const Damage := 1
 const SelfDamage := 1
 
-
 func _on_death_collision_body_entered(body: Node2D) -> void:
 	if not has_collision:
 		return

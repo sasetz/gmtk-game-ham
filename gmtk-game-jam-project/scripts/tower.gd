@@ -59,17 +59,24 @@ func update_level():
 		match level:
 			3:
 				$"../Weather"._weathers.append("Snow")
+				$"../Weather"._weathers.append("Snow")
 				leng+=1
 			5:
 				$"../Weather"._weathers.append("Rain")
+				$"../Weather"._weathers.append("Rain")
 			8:$"../Weather"._weathers.append("Smoke")
-			12:$"../Weather"._weathers.append("Moon")
-			14:$"../Weather"._weathers.append("Dragon")
+			#12:$"../Weather"._weathers.append("Moon")
+			14:
+				$"../Weather"._weathers.append("Dragon")
+				$"../Weather"._weathers.append("Dragon")
+				$"../Weather"._weathers.append("Dragon")
+				$"../Weather"._weathers.append("Dragon")
 			4:
 				leng+=1
 			7:
 				leng+=1
 			10:
+				$"../Weather"._weathers.append("Meteor")
 				$"../Weather"._weathers.append("Meteor")
 				leng+=1
 		

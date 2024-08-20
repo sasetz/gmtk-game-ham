@@ -1,0 +1,150 @@
+[gd_scene load_steps=21 format=3 uid="uid://f5u61cgh2oyy"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/armorenemy.gd" id="1_ajcst"]
+[ext_resource type="Texture2D" uid="uid://b6r11php4xipf" path="res://Visual/Animations/Враг6 ходьба.png" id="3_rj2jg"]
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="3_yjrt5"]
+[ext_resource type="Texture2D" uid="uid://dghi33ii2nxen" path="res://Visual/Animations/Кровь.png" id="5_u0c61"]
+[ext_resource type="AudioStream" uid="uid://bog2i8di74ope" path="res://Audio/Sounds/die1.wav" id="6_xeqqv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5cul"]
+radius = 27.0
+height = 84.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e76io"]
+atlas = ExtResource("3_rj2jg")
+region = Rect2(0, 0, 92, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8mmb"]
+atlas = ExtResource("3_rj2jg")
+region = Rect2(92, 0, 92, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y84rp"]
+atlas = ExtResource("3_rj2jg")
+region = Rect2(184, 0, 92, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kucdy"]
+atlas = ExtResource("3_rj2jg")
+region = Rect2(276, 0, 92, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yge4t"]
+atlas = ExtResource("3_rj2jg")
+region = Rect2(368, 0, 92, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwax4"]
+atlas = ExtResource("3_rj2jg")
+region = Rect2(460, 0, 92, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls2wf"]
+atlas = ExtResource("3_rj2jg")
+region = Rect2(552, 0, 92, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlxp6"]
+atlas = ExtResource("3_rj2jg")
+region = Rect2(644, 0, 92, 135)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lap3j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e76io")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8mmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y84rp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kucdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yge4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwax4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls2wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlxp6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp6bq"]
+atlas = ExtResource("5_u0c61")
+region = Rect2(0, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odnnb"]
+atlas = ExtResource("5_u0c61")
+region = Rect2(224, 0, 224, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwia2"]
+atlas = ExtResource("5_u0c61")
+region = Rect2(448, 0, 224, 224)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rqmbf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp6bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odnnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwia2")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmv1i"]
+size = Vector2(62, 86)
+
+[node name="Enemy2" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_ajcst")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -28)
+scale = Vector2(0.313383, -0.568714)
+script = ExtResource("3_yjrt5")
+fill_color = Color(0.9, 0.189, 0.189, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -42)
+shape = SubResource("CapsuleShape2D_x5cul")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -43)
+scale = Vector2(0.680661, 0.647727)
+sprite_frames = SubResource("SpriteFrames_lap3j")
+frame_progress = 0.305013
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-0.499999, -44)
+scale = Vector2(0.379464, 0.410714)
+sprite_frames = SubResource("SpriteFrames_rqmbf")
+animation = &"death"
+frame = 2
+frame_progress = 1.0
+
+[node name="ZombifyArea" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZombifyArea"]
+position = Vector2(0, -43)
+shape = SubResource("RectangleShape2D_mmv1i")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_xeqqv")
+
+[connection signal="body_entered" from="ZombifyArea" to="." method="_on_mob_collided"]
