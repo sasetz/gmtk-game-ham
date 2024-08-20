@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbc0o76u5o3c3"]
+
+[ext_resource type="Texture2D" uid="uid://b32re5103hsff" path="res://Visual/UI/Индикатор.png" id="1_xo3ma"]
+
+[node name="ModifierReticle" type="Sprite2D"]
+texture = ExtResource("1_xo3ma")

@@ -32,6 +32,7 @@ func _ready() -> void:
 	Collision.disabled = not has_collision
 	freeze = not has_collision
 	animplayer.animation_finished.connect(queue_free)
+	current_health = INITIAL_HEALTH
 
 
 func rotate_physically(radians: float):

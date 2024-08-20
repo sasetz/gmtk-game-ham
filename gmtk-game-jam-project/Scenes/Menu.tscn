@@ -150,6 +150,17 @@ stream_16/volume = -60.0
 stream_17/stream = ExtResource("20_2ftaj")
 stream_17/volume = -60.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nghpc"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.847343, 0.611058, 0.28133, 1)
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_o2xkf")
 
@@ -208,6 +219,7 @@ pivot_offset = Vector2(278, 87)
 theme_override_colors/font_color = Color(0.000113828, 0.000113828, 0.000113828, 1)
 theme_override_fonts/font = ExtResource("30_23o3x")
 theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = SubResource("StyleBoxFlat_nghpc")
 text = "Play"
 icon = ExtResource("31_k4tox")
 icon_alignment = 1
@@ -231,6 +243,7 @@ pivot_offset = Vector2(278, 87)
 theme_override_colors/font_color = Color(0.000113828, 0.000113828, 0.000113828, 1)
 theme_override_fonts/font = ExtResource("30_23o3x")
 theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = SubResource("StyleBoxFlat_nghpc")
 text = "Tutorial"
 icon = ExtResource("31_k4tox")
 icon_alignment = 1
@@ -254,6 +267,7 @@ pivot_offset = Vector2(278, 87)
 theme_override_colors/font_color = Color(0.000113828, 0.000113828, 0.000113828, 1)
 theme_override_fonts/font = ExtResource("30_23o3x")
 theme_override_font_sizes/font_size = 100
+theme_override_styles/focus = SubResource("StyleBoxFlat_nghpc")
 text = "Credits"
 icon = ExtResource("31_k4tox")
 icon_alignment = 1

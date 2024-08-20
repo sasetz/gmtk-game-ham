@@ -3,6 +3,7 @@ extends MobNPC
 func _ready():
 	super._ready()
 	LIFE_TIME=15
+	DAMAGE = 0
 	if randi_range(1,3)==1:
 		$AnimatedSprite2D.play("default")
 	else:

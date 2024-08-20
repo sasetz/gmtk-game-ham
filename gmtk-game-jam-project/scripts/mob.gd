@@ -87,7 +87,7 @@ func _physics_process(delta: float) -> void:
 		should_damage and \
 		(SHOULD_DAMAGE_WHEN_ON_TOP or is_on_wall()):
 			c.get_collider().current_health -= DAMAGE
-			var perc:float=c.get_collider().current_health/c.get_collider().INITIAL_HEALTH
+			var perc: float = c.get_collider().current_health / c.get_collider().INITIAL_HEALTH
 			if perc>=0.7:
 				c.get_collider().sprite.texture=c.get_collider().Structure_vatiation[0]
 			elif perc>=0.4:
