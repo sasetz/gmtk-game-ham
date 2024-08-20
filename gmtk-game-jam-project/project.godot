@@ -13,6 +13,7 @@ config_version=5
 config/name="Tower Defense Prototype"
 run/main_scene="res://Scenes/Menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/image="res://Visual/Screens/splash_screen.png"
 config/icon="res://Visual/UI/Иконка.png"
 
 [autoload]
