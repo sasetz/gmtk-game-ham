@@ -10,15 +10,15 @@ class_name Weather
 
 var _weathers=[
 	"Wind",
+	"Wind",
+	"None",
 	"None",
 	"None",
 ]
 
 
 func _ready():
-	_weathers=[
-	"Moon",
-]
+
 	visible=false
 	type="None"
 	$Weather_timer.wait_time=1.0

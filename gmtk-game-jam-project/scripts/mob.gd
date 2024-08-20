@@ -28,6 +28,7 @@ var tower: Tower
 			die()
 var frozen := false
 
+var fly:=false
 func _ready() -> void:
 	weath=$"../Weather" as Weather
 	tower=$"../Tower" as Tower
@@ -106,7 +107,7 @@ func weather_check():
 		if position.y>=-10:
 			velocity.x*=0.8
 	elif weath.type=="Snow":
-		if not is_on_wall():
+		if (not is_on_wall()) and fly==false:
 			if slide_timer.is_stopped():
 				slide_timer.wait_time=100.0
 				slide_timer.start()

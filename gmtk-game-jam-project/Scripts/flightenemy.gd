@@ -1,9 +1,9 @@
 extends Enemy
 
 var mod_dir:=0.0
-
 func _ready():
 	super._ready()
+	fly=true
 	TOWER_DAMAGE=20
 	VERTICALSPEED=100
 	SPEED=100

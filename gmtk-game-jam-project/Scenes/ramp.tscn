@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dtup3fv82jr0b"]
+[gd_scene load_steps=12 format=3 uid="uid://da86divjgqr3b"]
 
-[ext_resource type="PackedScene" uid="uid://dp6dufimyciq3" path="res://Scenes/building_shape.tscn" id="1_r2i5y"]
+[ext_resource type="PackedScene" uid="uid://c1sywu562eq4p" path="res://Scenes/building_shape.tscn" id="1_r2i5y"]
 [ext_resource type="Script" path="res://Scripts/buildling_shape.gd" id="2_htoe6"]
 [ext_resource type="Texture2D" uid="uid://c4a1aeqmniw30" path="res://Visual/Backgrounds/Треугольник.png" id="3_rwr7d"]
 [ext_resource type="Texture2D" uid="uid://3vdso0knu814" path="res://Visual/Backgrounds/Треугольник разрушение1.png" id="4_wkq8f"]
 [ext_resource type="Texture2D" uid="uid://bw5usyel1qvc7" path="res://Visual/Backgrounds/Треугольник разрушение2.png" id="5_figtg"]
 [ext_resource type="Texture2D" uid="uid://nq11by705wr1" path="res://Visual/Animations/Пыль.png" id="6_pdod5"]
+[ext_resource type="AudioStream" uid="uid://cj0rh2idcsarc" path="res://Audio/Sounds/explode5.wav" id="7_rsq2t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iqkiw"]
 atlas = ExtResource("6_pdod5")
@@ -55,3 +56,7 @@ texture = ExtResource("3_rwr7d")
 visible = false
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_duiq2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Node2D" index="2"]
+stream = ExtResource("7_rsq2t")
+volume_db = 10.23

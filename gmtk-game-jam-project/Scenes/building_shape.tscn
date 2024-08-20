@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dp6dufimyciq3"]
+[gd_scene format=3 uid="uid://c1sywu562eq4p"]
 
 [node name="BuildingShape" type="RigidBody2D"]
 can_sleep = false
