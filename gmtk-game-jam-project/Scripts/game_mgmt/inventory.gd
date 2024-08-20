@@ -33,6 +33,7 @@ static var Circle: PackedScene = preload("res://Scenes/circle.tscn")
 static var Square: PackedScene = preload("res://Scenes/square.tscn")
 static var Delete: PackedScene = preload("res://Scenes/delete.tscn")
 static var ActionPreviewScene: PackedScene = preload("res://Scenes/UI/action_preview.tscn")
+static var ReticleScene: PackedScene = preload("res://Scenes/UI/modifier_reticle.tscn")
 
 @export_category("Inventory")
 @export var InventoryButtonScene: PackedScene = preload("res://Scenes/UI/inventory_button.tscn")
@@ -62,9 +63,15 @@ static var DELETE_ITEM = ActionInventoryItem.new("Delete", preload("res://Visual
 
 const Pi := 3.14
 
+static var REGULAR_CURSOR := preload("res://Visual/UI/cursor.png")
+static var RESIZE_CURSOR := preload("res://Visual/UI/resize_cursor.png")
+static var ROTATE_CURSOR := preload("res://Visual/UI/rotate_cursor.png")
+static var DELETE_CURSOR := preload("res://Visual/UI/delete_cursor.png")
+
 var _current_item: InventoryItem = NONE_ITEM
 var _scale_iterations: int = 0
 var _held_item_object: Node2D = null
+var _reticle: Node2D = null
 
 var _is_rotating := false
 var _is_scaling := false
@@ -148,6 +155,7 @@ func release_item():
 	elif _current_item is ActionInventoryItem:
 		if _held_item_object is BuildingStructure or not is_instance_valid(_held_item_object):
 			_release_and_reset()
+			_update_cursor()
 			return
 		var structures = _held_item_object.get_overlapping_bodies()
 		var hit_something := false
@@ -165,20 +173,39 @@ func release_item():
 					if _held_item_object != null:
 						_held_item_object.queue_free()
 					_held_item_object = structure
+					_reticle = ReticleScene.instantiate()
+					var container = _held_item_object.find_child("Node2D")
+					if container != null:
+						container.add_child(_reticle)
 					_is_rotating = false
 					_is_scaling = true
 					_should_hold_structure = false
 					_can_switch_items = false
+					_update_cursor()
 					return
 		if hit_something:
 			$"../..".resource-=_current_item.price
 			$"../../UI/ResourceLabel/RichTextLabel".text = str($"../..".resource)
 		# clean up the decal after action is done
 		_release_and_reset(true)
+	_update_cursor()
+
+func _update_cursor():
+	if _current_item == RESIZE_ITEM:
+		Input.set_custom_mouse_cursor(RESIZE_CURSOR)
+	elif _current_item == ROTATE_ITEM:
+		Input.set_custom_mouse_cursor(ROTATE_CURSOR)
+	elif _current_item == DELETE_ITEM:
+		Input.set_custom_mouse_cursor(DELETE_CURSOR)
+	else:
+		Input.set_custom_mouse_cursor(REGULAR_CURSOR)
 
 func _release_and_reset(remove_object: bool = false):
 	if _held_item_object is BuildingStructure and not remove_object:
 		_held_item_object.has_collision = true
+		if _reticle != null:
+			_reticle.queue_free()
+			_reticle = null
 	if remove_object and _held_item_object != null:
 		_held_item_object.queue_free()
 	_held_item_object = null # we don't delete the shape, we just clear this variable!
@@ -258,6 +285,7 @@ func _inventory_button_pressed(button: InventoryButton):
 		_spawn_preview()
 	elif inventory_item is ActionInventoryItem:
 		_spawn_action_preview()
+	_update_cursor()
 
 
 func _action_inventory_button_pressed(button: InventoryButton):
@@ -286,6 +314,7 @@ func _action_inventory_button_pressed(button: InventoryButton):
 
 	_current_item = inventory_item
 	_spawn_action_preview()
+	_update_cursor()
 
 
 func remove_item(index: int):

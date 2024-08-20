@@ -19,6 +19,10 @@ config/icon="res://Visual/UI/Иконка.png"
 
 Global="*res://Scripts/global.gd"
 
+[display]
+
+mouse_cursor/custom_image="res://Visual/UI/cursor.png"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/ProjectileOnCurve2DPlugin/plugin.cfg")
