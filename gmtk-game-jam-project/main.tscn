@@ -1,7 +1,7 @@
 [gd_scene load_steps=45 format=3 uid="uid://d0ha2oack7o3e"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_7an7p"]
-[ext_resource type="PackedScene" path="res://Scenes/tower.tscn" id="1_vyirh"]
+[ext_resource type="PackedScene" uid="uid://fwyt0bseuanc" path="res://Scenes/tower.tscn" id="1_vyirh"]
 [ext_resource type="Script" path="res://Scripts/game_manager.gd" id="2_53yhx"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/spawner.gd" id="4_kkvm3"]
 [ext_resource type="Script" path="res://Scripts/game_mgmt/inventory.gd" id="5_bhk52"]
@@ -208,8 +208,9 @@ level = 2
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("2_53yhx")
 
-[node name="Spawner" type="Node2D" parent="GameManager"]
+[node name="Spawner" type="Node2D" parent="GameManager" node_paths=PackedStringArray("TowerNode")]
 script = ExtResource("4_kkvm3")
+TowerNode = NodePath("../../Tower")
 
 [node name="SpawnTimer" type="Timer" parent="GameManager/Spawner"]
 wait_time = 5.0

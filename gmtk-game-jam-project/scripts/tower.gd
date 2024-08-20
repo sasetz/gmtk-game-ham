@@ -44,7 +44,7 @@ func update_level():
 		Peoples+=1
 		level+=1
 		$"../GameManager/Inventory".add_to_roster(level)
-		$"../GameManager/Spawner".add_to_pull(level)
+		$"../GameManager/Spawner".add_to_pool(level)
 		match level:
 			3:
 				$"../Weather"._weathers.append("Snow")
@@ -79,7 +79,6 @@ func _on_body_entered(body: Node) -> void:
 	if not (body is MobNPC or body is MeteorOnCurve2D):
 		return
 	if body.is_in_group("enemy"):
-		print("Enemy reached the tower!")
 		body.queue_free()
 		health -= body.TOWER_DAMAGE
 		var percentage:float= health/maxhealth
@@ -96,11 +95,9 @@ func _on_body_entered(body: Node) -> void:
 		update_level()
 	
 	if body.is_in_group("friend"):
-		print("Friend reached the tower!")
 		body.queue_free()
 		number_in+=1
 		update_level()
-	print("Current health: %d" % health)
 
 
 func _on_area_entered(area):

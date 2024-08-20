@@ -8,9 +8,12 @@ const _speed = 100
 var _gravity: float
 var _velocity: Vector2
 var _stepAmount: int
-var boom:=false
+
+@onready var _explode_anim: AnimatedSprite2D = $ExplosionAnimatedSprite
+
 func _ready():
 	$AnimatedSprite2D.play("default")	
+	_explode_anim.animation_finished.connect(queue_free)
 
 func launch(startPos: Vector2, targetPos: Vector2, grav: float, stepAmount: int = 1) -> void:
 	_gravity = grav
@@ -62,4 +65,10 @@ func _on_area_2d_body_entered(_bod):
 				body.sprite.texture=body.Structure_vatiation[1]
 			elif perc>0.0:
 				body.sprite.texture=body.Structure_vatiation[2]
-	queue_free()
+	collision_mask = 0
+	collision_layer = 0
+	$AnimatedSprite2D.call_deferred("set_visible", false)
+	_explode_anim.call_deferred("set_visible", true)
+	_explode_anim.play("explosion")
+	_velocity = Vector2.RIGHT # turn the animation the right way
+	_stepAmount = 0
